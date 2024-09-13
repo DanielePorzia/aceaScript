@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.aceaidrico.com/2021/06/wsdl/wt_crm_DmsDocImplService/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsd1="http://www.areti.com/2021/05/schema/DMSDocImplService"
+	xmlns:xsd2="http://www.areti.it/2021/05/TrackHeader"
+	name="DmsDocImplService"
+	targetNamespace="http://www.aceaidrico.com/2021/06/wsdl/wt_crm_DmsDocImplService/">
+
+
+
+
+	<wsdl:types>
+
+		<xsd:schema
+			targetNamespace="http://www.aceaidrico.com/2021/06/wsdl/wt_crm_DmsDocImplService/">
+
+		</xsd:schema>
+
+
+		<xsd:schema>
+			<xsd:import
+				namespace="http://www.areti.com/2021/05/schema/DMSDocImplService"
+				schemaLocation="../Schemas/DMSDocImplService.xsd">
+			</xsd:import>
+			<xsd:import
+				namespace="http://www.areti.it/2021/05/TrackHeader"
+				schemaLocation="../../CommonUtilityPortaliSS/Schemas/LOG/Schemas/Common/TrackHeader.xsd">
+			</xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+
+
+
+
+	<wsdl:message name="DownloadDocRequest">
+		<wsdl:part element="xsd2:TrackHeader" name="header" />
+		<wsdl:part element="xsd1:downloadDoc" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="DownloadDocResponse">
+		<wsdl:part element="xsd1:downloadDocResponse"
+			name="parameters" />
+	</wsdl:message>
+
+
+	<wsdl:message name="SearchDocRequest">
+		<wsdl:part element="xsd2:TrackHeader" name="header" />
+		<wsdl:part element="xsd1:searchDoc" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="SearchDocResponse">
+		<wsdl:part element="xsd1:searchDocResponse"
+			name="parameters" />
+	</wsdl:message>
+
+
+
+	<wsdl:message name="UploadDocRequest">
+		<wsdl:part element="xsd2:TrackHeader" name="header" />
+		<wsdl:part element="xsd1:uploadDoc" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="UploadDocResponse">
+		<wsdl:part element="xsd1:uploadDocResponse"
+			name="parameters" />
+	</wsdl:message>
+
+
+
+
+
+
+	<wsdl:portType name="DmsDocImplService">
+
+
+		<wsdl:operation name="DownloadDoc">
+			<wsdl:input message="tns:DownloadDocRequest" />
+			<wsdl:output message="tns:DownloadDocResponse" />
+		</wsdl:operation>
+
+		<wsdl:operation name="SearchDoc">
+			<wsdl:input message="tns:SearchDocRequest" />
+			<wsdl:output message="tns:SearchDocResponse" />
+		</wsdl:operation>
+
+		<wsdl:operation name="UploadDoc">
+			<wsdl:input message="tns:UploadDocRequest" />
+			<wsdl:output message="tns:UploadDocResponse" />
+		</wsdl:operation>
+
+
+	</wsdl:portType>
+
+
+
+
+
+
+
+	<wsdl:binding name="DmsDocImplServiceSOAP"
+		type="tns:DmsDocImplService">
+
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+
+
+
+		<wsdl:operation name="DownloadDoc">
+			<soap:operation
+				soapAction="http://www.aceaidrico.com/2021/06/wsdl/wt_crm_DmsDocImplService/DownloadDoc" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+
+
+
+
+		<wsdl:operation name="SearchDoc">
+			<soap:operation
+				soapAction="http://www.aceaidrico.com/2021/06/wsdl/wt_crm_DmsDocImplService/SearchDoc" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+
+
+
+		<wsdl:operation name="UploadDoc">
+			<soap:operation
+				soapAction="http://www.aceaidrico.com/2021/06/wsdl/wt_crm_DmsDocImplService/UploadDoc" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+
+	</wsdl:binding>
+
+
+
+	<wsdl:service name="DmsDocImplService">
+		<wsdl:port binding="tns:DmsDocImplServiceSOAP"
+			name="DmsDocImplServiceSOAP">
+			<soap:address
+				location="http://0.0.0.0:8090/SOAP/WT/DMSDocImplService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

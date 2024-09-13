@@ -1,0 +1,1243 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "AnagraficaTwoBeat",
+    "description" : "AnagraficaTwoBeat service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/twobeat/v1/anagrafica/enterloadprofile" : {
+      "post" : {
+        "summary" : "postAnagraficaTwoBeat",
+        "description" : "Create a new item",
+        "operationId" : "postItem",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/EnterLoadProfileRequestPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a EnterLoadProfileRequestPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/EnterLoadProfileRequestPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/twobeat/v1/anagrafica/equipmentmasterdata" : {
+      "post" : {
+        "summary" : "postAnagraficaTwoBeat",
+        "description" : "Create a new item",
+        "operationId" : "postItem",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/EquipmentMasterDataPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a EquipmentMasterDataPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/EquipmentMasterDataPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/twobeat/v1/anagrafica/meter" : {
+      "post" : {
+        "summary" : "postAnagraficaTwoBeat",
+        "description" : "postAnagraficaTwoBeat",
+        "operationId" : "post-areti-twobeat-v1-anagrafica-meter",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InstallMeterPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InstallMeterPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InstallMeterPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "putAnagraficaTwoBeat",
+        "description" : "putAnagraficaTwoBeat",
+        "operationId" : "put-areti-twobeat-v1-anagrafica-meter",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/UpdateMeterPutReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a UpdateMeterPutRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateMeterPutRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "deleteAnagraficaTwoBeat",
+        "description" : "deleteAnagraficaTwoBeat",
+        "operationId" : "delete-areti-twobeat-v1-anagrafica-meter",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "executionDate",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "format" : "date-time",
+          "required" : true
+        }, {
+          "name" : "idPratica",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "meterSerialNumber",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "supplyPointId",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RemoveMeterDeleteRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RemoveMeterDeleteRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "CommModule" : {
+      "type" : "object",
+      "properties" : {
+        "CommunicationModule" : {
+          "type" : "integer"
+        },
+        "MainCommunication" : {
+          "$ref" : "#/definitions/CommModuleData"
+        },
+        "SecondaryCommunication" : {
+          "$ref" : "#/definitions/CommModuleData"
+        },
+        "TelcoProvider" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ModemID" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ModemModel" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ModemManufacturer" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ModemFirmware" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "TimeOut" : {
+          "type" : "integer"
+        },
+        "IMEI" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "IMSI" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 18
+        },
+        "ICCID" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 22
+        },
+        "SimPIN" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 8
+        },
+        "SimPUK" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 8
+        },
+        "APN_Provider" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "IP_Nat" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 20
+        }
+      }
+    },
+    "Meter" : {
+      "type" : "object",
+      "required" : [ "ManufacturerSN", "Manufacturer", "SoftwareMeterID" ],
+      "properties" : {
+        "Manufacturer" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Model" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Firmware" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Profile" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "MeterType" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Ownership" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Group" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Priority" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Year" : {
+          "type" : "integer"
+        },
+        "MeterCode" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "ManufacturerSN" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 50
+        },
+        "SoftwareMeterID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 50
+        },
+        "ExternalMeterID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 50
+        },
+        "Multidrop" : {
+          "type" : "integer"
+        },
+        "HDLC" : {
+          "type" : "string",
+          "minLength" : 2,
+          "maxLength" : 7
+        },
+        "CallViaSN" : {
+          "type" : "integer"
+        },
+        "UsageType" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ReadingPassword_Encryption" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "ReadingPassword" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 1000
+        },
+        "WritingPassword_Encryption" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "WritingPassword" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 1000
+        },
+        "AdministrationPassword_Encryption" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "AdministrationPassword" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 1000
+        },
+        "CustomerPassword1_Encryption" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "CustomerPassword1" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 1000
+        },
+        "CustomerPassword2_Encryption" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "CustomerPassword2" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 1000
+        },
+        "EnergyConstant" : {
+          "type" : "integer"
+        },
+        "VoltageLevel" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "LoadCurvesUnitOfMeasure" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "InternalConstantOfLoadCurves" : {
+          "type" : "integer"
+        },
+        "RegistersUnitOfMeasure" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "InternalConstantOfRegisters" : {
+          "type" : "integer"
+        },
+        "DigitalSignature" : {
+          "type" : "integer"
+        },
+        "RPMProtocol" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "Protocol" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "ProtocolVersion" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "LinkAddress" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 5
+        },
+        "MeasurePointAddress" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 5
+        },
+        "ReadingType" : {
+          "type" : "string",
+          "enum" : [ "BLOCK", "COMPL", "DAY" ]
+        },
+        "PowerLevelId" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ChannelGroupCode" : {
+          "type" : "string",
+          "enum" : [ "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN" ]
+        },
+        "AddressingTypeCode" : {
+          "type" : "string",
+          "enum" : [ "DEFAULT", "DECIMAL", "HEXADECIMAL", "METERNUMBER" ]
+        },
+        "DstEnabled" : {
+          "type" : "integer"
+        },
+        "Contract1" : {
+          "type" : "integer"
+        },
+        "Contract2" : {
+          "type" : "integer"
+        },
+        "Contract3" : {
+          "type" : "integer"
+        },
+        "CTS" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 20
+        },
+        "PTS" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 20
+        },
+        "NumLog" : {
+          "type" : "integer"
+        },
+        "Formula" : {
+          "type" : "integer"
+        },
+        "ReverseValue" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CommModuleData" : {
+      "type" : "object",
+      "properties" : {
+        "Type" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "BaudRate" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "DataBit" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ParityBit" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "BitStop" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "PhoneNumber" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 20
+        },
+        "IPv4" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "IPv6" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 39
+        },
+        "IPPort" : {
+          "type" : "integer"
+        },
+        "FtpUser" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "FtpPassword" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        }
+      }
+    },
+    "EquipmentMasterDataPostReq" : {
+      "type" : "object",
+      "required" : [ "EquipmentMasterDataRequest" ],
+      "properties" : {
+        "EquipmentMasterDataRequest" : {
+          "$ref" : "#/definitions/EquipmentMasterDataRequest"
+        }
+      }
+    },
+    "EquipmentElement" : {
+      "type" : "object",
+      "required" : [ "Equipment", "Meter", "CommunicationModule" ],
+      "properties" : {
+        "Equipment" : {
+          "$ref" : "#/definitions/Equipment"
+        },
+        "Meter" : {
+          "$ref" : "#/definitions/Meter"
+        },
+        "CommunicationModule" : {
+          "$ref" : "#/definitions/CommModule"
+        }
+      }
+    },
+    "EquipmentMasterDataPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EquipmentMasterDataRequest" : {
+      "type" : "object",
+      "required" : [ "Header", "EquipmentList" ],
+      "properties" : {
+        "Header" : {
+          "$ref" : "#/definitions/HeaderEquipmentMasterDataRequest"
+        },
+        "EquipmentList" : {
+          "$ref" : "#/definitions/EquipmentList"
+        },
+        "Info" : {
+          "$ref" : "#/definitions/Info"
+        }
+      }
+    },
+    "EnterLoadProfileRequestPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "enterLpRequest" : {
+      "type" : "object",
+      "required" : [ "energyType", "itemId", "endDate", "requestId", "supplyPointId", "startDate" ],
+      "properties" : {
+        "energyType" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/energyType",
+            "uniqueItems" : false
+          }
+        },
+        "requestId" : {
+          "type" : "string",
+          "maxLength" : 36
+        },
+        "itemId" : {
+          "type" : "integer"
+        },
+        "supplyPointId" : {
+          "type" : "string"
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "endDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "updateMeterRequest" : {
+      "type" : "object",
+      "required" : [ "requestId", "executionDate", "idPratica", "meterSerialNumber", "supplyPointId" ],
+      "properties" : {
+        "requestId" : {
+          "type" : "string",
+          "maxLength" : 36
+        },
+        "company" : {
+          "type" : "string"
+        },
+        "meterSerialNumber" : {
+          "type" : "string"
+        },
+        "supplyPointId" : {
+          "type" : "string"
+        },
+        "tariffCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 8
+        },
+        "normalStatusWord" : {
+          "type" : "string"
+        },
+        "extendedStatusWord" : {
+          "type" : "string"
+        },
+        "hwVersion" : {
+          "type" : "string"
+        },
+        "swVersion" : {
+          "type" : "string"
+        },
+        "executionDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fixedSwVersion" : {
+          "type" : "string"
+        },
+        "modemSwVersion" : {
+          "type" : "string"
+        },
+        "sampleFrequency" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60 ]
+        },
+        "calendarCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 8
+        },
+        "interruptible" : {
+          "type" : "boolean"
+        },
+        "meterReadingDay" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 255 ]
+        },
+        "meterReadingMonth" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 255 ]
+        },
+        "meterReadingRecurrence" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 6, 12, 255 ]
+        },
+        "bidirectionalFlag" : {
+          "type" : "boolean"
+        },
+        "technology" : {
+          "type" : "string",
+          "enum" : [ "LT", "ST", "MM" ]
+        },
+        "idPratica" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "installationType" : {
+          "type" : "string",
+          "maxLength" : 2
+        }
+      }
+    },
+    "EnterLoadProfileRequestPostReq" : {
+      "type" : "object",
+      "required" : [ "enterLpRequestList" ],
+      "properties" : {
+        "enterLpRequestList" : {
+          "$ref" : "#/definitions/enterLpRequestList"
+        }
+      }
+    },
+    "HeaderEquipmentMasterDataRequest" : {
+      "type" : "object",
+      "required" : [ "Target", "Revision", "Verb", "Timestamp", "Source", "MessageID", "Noun" ],
+      "properties" : {
+        "MessageID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 50
+        },
+        "Source" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 20
+        },
+        "CorrelationID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 50
+        },
+        "Target" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 20
+        },
+        "Verb" : {
+          "type" : "string",
+          "enum" : [ "Create", "Update", "Remove" ]
+        },
+        "Noun" : {
+          "type" : "string",
+          "enum" : [ "EquipmentMasterDataRequest" ]
+        },
+        "Revision" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 10
+        },
+        "Timestamp" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "UpdateMeterPutRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "Info" : {
+      "type" : "object",
+      "properties" : {
+        "idPraticaMW" : {
+          "type" : "string"
+        },
+        "idPdoc" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EquipmentList" : {
+      "type" : "object",
+      "required" : [ "EquipmentElement" ],
+      "properties" : {
+        "EquipmentElement" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EquipmentElement",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "installMeterRequest" : {
+      "type" : "object",
+      "required" : [ "meterReadingRecurrence", "swVersion", "tariffCode", "executionDate", "meterSerialNumber", "adMeter", "meterReadingMonth", "hwVersion", "meterReadingDay", "requestId", "calendarCode", "idPratica", "supplyPointId" ],
+      "properties" : {
+        "requestId" : {
+          "type" : "string",
+          "maxLength" : 36
+        },
+        "company" : {
+          "type" : "string"
+        },
+        "meterSerialNumber" : {
+          "type" : "string"
+        },
+        "adMeter" : {
+          "type" : "string"
+        },
+        "supplyPointId" : {
+          "type" : "string"
+        },
+        "tariffCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 8
+        },
+        "normalStatusWord" : {
+          "type" : "string"
+        },
+        "extendedStatusWord" : {
+          "type" : "string"
+        },
+        "hwVersion" : {
+          "type" : "string"
+        },
+        "swVersion" : {
+          "type" : "string"
+        },
+        "fixedSwVersion" : {
+          "type" : "string"
+        },
+        "modemSwVersion" : {
+          "type" : "string"
+        },
+        "executionDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "sampleFrequency" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60 ]
+        },
+        "calendarCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 8
+        },
+        "interruptible" : {
+          "type" : "boolean"
+        },
+        "meterReadingDay" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 255 ]
+        },
+        "meterReadingMonth" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 255 ]
+        },
+        "meterReadingRecurrence" : {
+          "type" : "integer",
+          "enum" : [ 1, 2, 3, 4, 6, 12, 255 ]
+        },
+        "bidirectionalFlag" : {
+          "type" : "boolean"
+        },
+        "energyBalance" : {
+          "type" : "boolean"
+        },
+        "geographicalAreaCode" : {
+          "type" : "string"
+        },
+        "technology" : {
+          "type" : "string",
+          "enum" : [ "LT", "ST", "MM" ]
+        },
+        "idPratica" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "installationType" : {
+          "type" : "string",
+          "maxLength" : 2
+        }
+      }
+    },
+    "energyType" : {
+      "type" : "object",
+      "required" : [ "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "enum" : [ "A1", "A2", "R1", "R2", "R3", "R4", "D1", "D2", "D3", "D4", "D5", "D6" ]
+        }
+      }
+    },
+    "InstallMeterPostReq" : {
+      "type" : "object",
+      "required" : [ "installMeterRequest" ],
+      "properties" : {
+        "installMeterRequest" : {
+          "$ref" : "#/definitions/installMeterRequest"
+        }
+      }
+    },
+    "Equipment" : {
+      "type" : "object",
+      "required" : [ "GeographicZone", "GeographicArea", "DistributionCompany", "PODCode" ],
+      "properties" : {
+        "InstallationDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "InstallationAuthor" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "InventoringAuthor" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "TimeZone" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "TelereadingInhibition" : {
+          "type" : "integer"
+        },
+        "CommercialOffline" : {
+          "type" : "integer"
+        },
+        "CommercialOfflineDateTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "RemovalDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "RemovalReason" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 255
+        },
+        "PODCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 32
+        },
+        "ExternalCustomerID" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "CustomerName" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 255
+        },
+        "InstallationAddress" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 255
+        },
+        "StreetNumber" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "PostalCode" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "City" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "GPSXCoordinate" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "GPSYCoordinate" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "LocationOfInstallation" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 50
+        },
+        "DistributionCompany" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "GeographicArea" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "GeographicZone" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "GeographicLevel4" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "GeographicLevel5" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "SupplyType" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Notes" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 500
+        },
+        "TelemanagementInhibition" : {
+          "type" : "integer"
+        },
+        "TelemanagementInhibitionDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "SupplyStatus" : {
+          "type" : "string",
+          "enum" : [ "F", "A", "K", "D", "C", "R", "S" ]
+        },
+        "ContractStartDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "ContractEndDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "OblivionFlag" : {
+          "type" : "integer"
+        },
+        "ExportBorder" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ElectricService" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ReportType" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "OperativeGroup" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "OperativeZone" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ContractInspection" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "RegionalBillingCycle" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "Distributor" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "ExportXmlToExaBeat" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "InstallMeterPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "RemoveMeterDeleteRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "UpdateMeterPutReq" : {
+      "type" : "object",
+      "required" : [ "updateMeterRequest" ],
+      "properties" : {
+        "updateMeterRequest" : {
+          "$ref" : "#/definitions/updateMeterRequest"
+        }
+      }
+    },
+    "enterLpRequestList" : {
+      "type" : "object",
+      "required" : [ "enterLpRequest", "requestListIdentifier", "idPratica" ],
+      "properties" : {
+        "enterLpRequest" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/enterLpRequest",
+            "uniqueItems" : false
+          }
+        },
+        "requestListIdentifier" : {
+          "type" : "string",
+          "maxLength" : 36
+        },
+        "company" : {
+          "type" : "string"
+        },
+        "idPratica" : {
+          "type" : "string",
+          "maxLength" : 20
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

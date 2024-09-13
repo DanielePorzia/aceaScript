@@ -1,0 +1,226 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "IndirizzoWeb",
+    "description" : "IndirizzoWeb service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/isu/v1/bp/indirizzoweb" : {
+      "put" : {
+        "summary" : "putIndirizzoWeb",
+        "description" : "putIndirizzoWeb",
+        "operationId" : "put-api-v1-areti-interface-bpisu-indirizzoweb",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ZINDIRIZZOWEB"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ZINDIRIZZOWEBSFDCResponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ZINDIRIZZOWEBSFDCResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ZINDIRIZZOWEB" : {
+      "type" : "object",
+      "required" : [ "DATI_CLIENTE", "BP" ],
+      "properties" : {
+        "BP" : {
+          "$ref" : "#/definitions/ZTB_BUSINESS_PARTNER"
+        },
+        "DATI_CLIENTE" : {
+          "$ref" : "#/definitions/ZDATICLIENTESFDC"
+        },
+        "INDIRIZZO" : {
+          "$ref" : "#/definitions/ZINDIRIZZORECAPITO"
+        }
+      }
+    },
+    "item" : {
+      "type" : "object",
+      "required" : [ "BUSINESS_PARTNER" ],
+      "properties" : {
+        "BUSINESS_PARTNER" : {
+          "type" : "string",
+          "maxLength" : 10
+        }
+      }
+    },
+    "ZDATICLIENTESFDC" : {
+      "type" : "object",
+      "required" : [ "ACCOUNT_SALESFORCE", "TIPO_INDIRIZZO" ],
+      "properties" : {
+        "TELEFONO" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "CELLULARE" : {
+          "type" : "string",
+          "maxLength" : 30
+        },
+        "EMAIL" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "ACCOUNT_SALESFORCE" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "TIPO_INDIRIZZO" : {
+          "type" : "string",
+          "maxLength" : 4
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ZTB_BUSINESS_PARTNER" : {
+      "type" : "object",
+      "required" : [ "item" ],
+      "properties" : {
+        "item" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/item",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ZINDIRIZZORECAPITO" : {
+      "type" : "object",
+      "properties" : {
+        "PRESSO" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "DESCRIZIONE_VIA" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "CIVICODESCRITTIVO" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "SUFFISSO" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "CAP" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "LOCALITA" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "CODICEISTATCOMUNEITA" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "COMUNE" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "SIGLAPROVINCIA" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "STATO" : {
+          "type" : "string",
+          "maxLength" : 16
+        },
+        "TOPONIMO" : {
+          "type" : "string",
+          "maxLength" : 40
+        }
+      }
+    },
+    "ZINDIRIZZOWEBSFDCResponse" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    }
+  }
+}

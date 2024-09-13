@@ -1,0 +1,156 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Protocollo",
+    "description" : "Protocollo service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/af/v1/protocollo/scarto" : {
+      "post" : {
+        "summary" : "postProtocollo",
+        "description" : "postProtocollo",
+        "operationId" : "post-areti-af-v1-protocollo-scarto",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ScartoProtocolloReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ScartoProtocolloRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ScartoProtocolloRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "EsitoAF" : {
+      "type" : "object",
+      "required" : [ "Descrizione", "Codice", "TransactionId" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        },
+        "TransactionId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ScartoProtocolloReq" : {
+      "type" : "object",
+      "required" : [ "ScartoProtocollo" ],
+      "properties" : {
+        "ScartoProtocollo" : {
+          "$ref" : "#/definitions/ScartoProtocollo"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "ScartoProtocollo" : {
+      "type" : "object",
+      "required" : [ "Causale", "Archivio", "NumeroProtocollo" ],
+      "properties" : {
+        "Archivio" : {
+          "type" : "string"
+        },
+        "Causale" : {
+          "type" : "string"
+        },
+        "NumeroProtocollo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ScartoProtocolloRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAF" : {
+          "$ref" : "#/definitions/EsitoAF"
+        }
+      }
+    }
+  }
+}

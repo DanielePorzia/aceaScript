@@ -1,0 +1,1009 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Task",
+    "description" : "Task service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/task" : {
+      "post" : {
+        "summary" : "postTask",
+        "description" : "postTask - operazione post per la creazione di Task su FS",
+        "operationId" : "post-company-fs-v1-task",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/TaskPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a TaskPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/TaskPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/task/updateres" : {
+      "post" : {
+        "summary" : "postTaskUpdatePMResp",
+        "description" : "postTaskUpdatePMRes - operazione post per veicolare la risposta dell'aggiornamento Task da PM",
+        "operationId" : "post-company-fs-v1-task-updateres",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/TaskUpdatePmResPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a TaskUpdatePmResPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/TaskUpdatePmResPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/task/update/status" : {
+      "post" : {
+        "summary" : "postTask",
+        "description" : "postTask",
+        "operationId" : "post-company-fs-v1-task-cambiostato",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/UpdateStatusReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a UpdateStatusRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateStatusRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/task/avvisoconsuntivores" : {
+      "post" : {
+        "summary" : "postAvvisoConsuntivoRes",
+        "description" : "postAvvisoConsuntivoRes - operazione post per veicolare la risposta di completamento dell'avviso consuntivo del Task a FS",
+        "operationId" : "post-company-fs-v1-task-avvisoconsuntivores",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AvvisoConsuntivoResPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AvvisoConsuntivoResPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AvvisoConsuntivoResPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/task/riconciliaallegato" : {
+      "post" : {
+        "summary" : "postTaskRiconciliaAllegato",
+        "description" : "postTaskRiconciliaAllegato - operazione post per riconciliare il filenetId di un allegato a FS",
+        "operationId" : "post-company-fs-v1-task-riconciliaallegato",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/RiconciliaAllegatoReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RiconciliaAllegatoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RiconciliaAllegatoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/task/esiti" : {
+      "put" : {
+        "summary" : "putEsitiTask",
+        "description" : "putUpdateEsitiTask - operazione put per invio degli esiti (causali scostamento) del Task a FS",
+        "operationId" : "put-company-fs-v1-task-esiti",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/UpdateEsitiTaskReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a UpdateEsitiTaskRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateEsitiTaskRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "WorkOrderLineItem" : {
+      "type" : "object",
+      "properties" : {
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Priorita" : {
+          "type" : "string"
+        },
+        "TestoPriorita" : {
+          "type" : "string"
+        },
+        "NomeContatto" : {
+          "type" : "string"
+        },
+        "MailContatto" : {
+          "type" : "string"
+        },
+        "PecContatto" : {
+          "type" : "string"
+        },
+        "TelefonoContatto" : {
+          "type" : "string"
+        },
+        "CodicePratica" : {
+          "type" : "string"
+        },
+        "SedeTecnica" : {
+          "type" : "string"
+        },
+        "UnitaRichiedente" : {
+          "type" : "string"
+        },
+        "Via" : {
+          "type" : "string"
+        },
+        "Citta" : {
+          "type" : "string"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "Latitudine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Longitudine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "CausaleScostamento" : {
+          "type" : "string"
+        },
+        "Ambito" : {
+          "type" : "string"
+        },
+        "ProfiloCatalogo" : {
+          "type" : "string"
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "Idoneita" : {
+          "type" : "string"
+        },
+        "Equipment" : {
+          "type" : "string"
+        },
+        "OperazioneTestoBreve" : {
+          "type" : "string"
+        },
+        "SchemaStato" : {
+          "type" : "string"
+        },
+        "CIDAssegnatario" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "CalendarId" : {
+          "type" : "string"
+        },
+        "AbilitaContinuita" : {
+          "type" : "string",
+          "enum" : [ "SI", "NO" ]
+        }
+      }
+    },
+    "Task" : {
+      "type" : "object",
+      "required" : [ "WorkOrder" ],
+      "properties" : {
+        "WorkOrder" : {
+          "$ref" : "#/definitions/WorkOrder"
+        },
+        "Avviso" : {
+          "$ref" : "#/definitions/Avviso"
+        },
+        "WorkOrderLineItem" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WorkOrderLineItem",
+            "uniqueItems" : false
+          }
+        },
+        "Asset" : {
+          "$ref" : "#/definitions/Asset"
+        },
+        "WorkType" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WorkType",
+            "uniqueItems" : false
+          }
+        },
+        "ServiceAppointment" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ServiceAppointment",
+            "uniqueItems" : false
+          }
+        },
+        "Skill" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Skill",
+            "uniqueItems" : false
+          }
+        },
+        "Tool" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tool",
+            "uniqueItems" : false
+          }
+        },
+        "RAL" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RAL",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "UpdateStatus" : {
+      "type" : "object",
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "DataCambioStato" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "OraCambioStato" : {
+          "type" : "string"
+        },
+        "Stato" : {
+          "type" : "string",
+          "maxLength" : 4
+        }
+      }
+    },
+    "Avviso" : {
+      "type" : "object",
+      "required" : [ "NumeroAvvisoTestata" ],
+      "properties" : {
+        "NumeroAvvisoTestata" : {
+          "type" : "string"
+        },
+        "TipoAvviso" : {
+          "type" : "string"
+        },
+        "DataAuthority" : {
+          "type" : "string"
+        },
+        "ParteOgg" : {
+          "type" : "string"
+        },
+        "DescrizioneParteOgg" : {
+          "type" : "string"
+        },
+        "CausaGuasto" : {
+          "type" : "string"
+        },
+        "DescrizioneCausaGuasto" : {
+          "type" : "string"
+        },
+        "TestoCausa" : {
+          "type" : "string"
+        },
+        "DescrizioneTipoAvviso" : {
+          "type" : "string"
+        },
+        "TestoAvviso" : {
+          "type" : "string"
+        },
+        "TestoPosizioneAvviso" : {
+          "type" : "string"
+        },
+        "InizioCardineAvviso" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateEsitiTask" : {
+      "type" : "object",
+      "required" : [ "Esiti" ],
+      "properties" : {
+        "Esiti" : {
+          "$ref" : "#/definitions/Esiti"
+        }
+      }
+    },
+    "TaskUpdateRes" : {
+      "type" : "object",
+      "required" : [ "Matricola", "NumeroOrdine", "NumeroOperazione", "Stato", "CID" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "Stato" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Matricola" : {
+          "type" : "string",
+          "maxLength" : 12
+        }
+      }
+    },
+    "UpdateEsitiTaskReq" : {
+      "type" : "object",
+      "required" : [ "UpdateEsitiTask" ],
+      "properties" : {
+        "UpdateEsitiTask" : {
+          "$ref" : "#/definitions/UpdateEsitiTask"
+        }
+      }
+    },
+    "AvvisoConsuntivoResPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "WorkOrder" : {
+      "type" : "object",
+      "required" : [ "NumeroOrdine" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "CodicePraticaMW" : {
+          "type" : "string"
+        },
+        "OrigineOrdine" : {
+          "type" : "string"
+        },
+        "Cliente" : {
+          "type" : "string"
+        },
+        "Via" : {
+          "type" : "string"
+        },
+        "Citta" : {
+          "type" : "string"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "Latitudine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Longitudine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "TestoTestataOdl" : {
+          "type" : "string"
+        },
+        "TestoEstesoOdl" : {
+          "type" : "string"
+        },
+        "FlagResetSkill" : {
+          "type" : "string"
+        },
+        "FlagResetTool" : {
+          "type" : "string"
+        },
+        "FlagResetRAL" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esiti" : {
+      "type" : "object",
+      "required" : [ "NumeroOrdine" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "CausaleScostamento" : {
+          "type" : "string"
+        },
+        "Priorita" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AvvisoConsuntivoResPostReq" : {
+      "type" : "object",
+      "required" : [ "AvvisoConsuntivoRes" ],
+      "properties" : {
+        "AvvisoConsuntivoRes" : {
+          "$ref" : "#/definitions/AvvisoConsuntivoRes"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "UpdateEsitiTaskRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "TaskPostReq" : {
+      "type" : "object",
+      "required" : [ "Task" ],
+      "properties" : {
+        "Task" : {
+          "$ref" : "#/definitions/Task"
+        }
+      }
+    },
+    "Asset" : {
+      "type" : "object",
+      "properties" : {
+        "DefinizioneSedeTecnica" : {
+          "type" : "string"
+        },
+        "TipoOggettoSedeTecnica" : {
+          "type" : "string"
+        },
+        "SedeTecnicaSuperiore" : {
+          "type" : "string"
+        },
+        "DefinizioneSedeTecnicaSup" : {
+          "type" : "string"
+        },
+        "TipoOggettoSedeTecnicaSup" : {
+          "type" : "string"
+        },
+        "DefinizioneEquipment" : {
+          "type" : "string"
+        },
+        "TipoOggettoEquipment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TaskPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "EsitoUpdateRes" : {
+      "type" : "object",
+      "required" : [ "Descrizione", "Codice" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Tool" : {
+      "type" : "object",
+      "properties" : {
+        "Label" : {
+          "type" : "string"
+        },
+        "Level" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TaskUpdatePmResPostReq" : {
+      "type" : "object",
+      "required" : [ "TaskUpdatePmRes" ],
+      "properties" : {
+        "TaskUpdatePmRes" : {
+          "$ref" : "#/definitions/TaskUpdatePmRes"
+        }
+      }
+    },
+    "TaskUpdatePmResPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "RiconciliaAllegato" : {
+      "type" : "object",
+      "required" : [ "MetadatoDcs", "FilenetId", "TipoDocumentoRiconciliato" ],
+      "properties" : {
+        "FilenetId" : {
+          "type" : "string"
+        },
+        "TipoDocumentoRiconciliato" : {
+          "type" : "string"
+        },
+        "MetadatoDcs" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WorkType" : {
+      "type" : "object",
+      "required" : [ "ChiaveDiControllo" ],
+      "properties" : {
+        "TipoAttivita" : {
+          "type" : "string"
+        },
+        "DescTipoAttivita" : {
+          "type" : "string"
+        },
+        "ChiaveTestoStandard" : {
+          "type" : "string"
+        },
+        "CentroDiLavoro" : {
+          "type" : "string"
+        },
+        "TipoOrdine" : {
+          "type" : "string"
+        },
+        "ChiaveDiControllo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AvvisoConsuntivo" : {
+      "type" : "object",
+      "required" : [ "Matricola", "NumeroOrdine", "NumeroOperazione" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Matricola" : {
+          "type" : "string",
+          "maxLength" : 12
+        }
+      }
+    },
+    "EsitoAvvCon" : {
+      "type" : "object",
+      "required" : [ "Descrizione", "Codice" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateStatusReq" : {
+      "type" : "object",
+      "required" : [ "UpdateStatus" ],
+      "properties" : {
+        "UpdateStatus" : {
+          "$ref" : "#/definitions/UpdateStatus"
+        }
+      }
+    },
+    "ServiceAppointment" : {
+      "type" : "object",
+      "properties" : {
+        "IdChiamata" : {
+          "type" : "string"
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "DataInizioSchedulazione" : {
+          "type" : "string"
+        },
+        "DataFineSchedulazione" : {
+          "type" : "string"
+        },
+        "Durata" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Stato" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "AppuntamentoCliente" : {
+          "type" : "boolean"
+        },
+        "DataInizioAppuntamento" : {
+          "type" : "string"
+        },
+        "DataFineAppuntamento" : {
+          "type" : "string"
+        },
+        "Overbooking" : {
+          "type" : "boolean"
+        },
+        "AppuntamentoEsteso" : {
+          "type" : "boolean"
+        },
+        "AppuntamentoUrgente" : {
+          "type" : "boolean"
+        },
+        "TaskAssegnatoSAP" : {
+          "type" : "boolean"
+        },
+        "TaskImpresa" : {
+          "type" : "boolean"
+        },
+        "AppuntamentoRemoto" : {
+          "type" : "boolean"
+        },
+        "AppuntamentoFuoriSla" : {
+          "type" : "boolean"
+        },
+        "ModificaDipendenza" : {
+          "type" : "boolean"
+        },
+        "CallIdNumber" : {
+          "type" : "string"
+        },
+        "TipoDipendenza" : {
+          "type" : "string",
+          "enum" : [ "EF", "FI", "IF", "II" ]
+        },
+        "SameResource" : {
+          "type" : "string"
+        },
+        "InizioSchedWebAppalti" : {
+          "type" : "string"
+        },
+        "FineSchedWebAppalti" : {
+          "type" : "string"
+        },
+        "BundlerId" : {
+          "type" : "string"
+        },
+        "IconaPriorita" : {
+          "type" : "string"
+        },
+        "OperazioneRelazionata" : {
+          "type" : "string"
+        },
+        "StessoTecnico" : {
+          "type" : "boolean"
+        },
+        "OptionalTime" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "UpdateStatusRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "AvvisoConsuntivoRes" : {
+      "type" : "object",
+      "required" : [ "AvvisoConsuntivo", "EsitoAvvCon" ],
+      "properties" : {
+        "AvvisoConsuntivo" : {
+          "$ref" : "#/definitions/AvvisoConsuntivo"
+        },
+        "EsitoAvvCon" : {
+          "$ref" : "#/definitions/EsitoAvvCon"
+        }
+      }
+    },
+    "Skill" : {
+      "type" : "object",
+      "properties" : {
+        "Label" : {
+          "type" : "string"
+        },
+        "Level" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RiconciliaAllegatoReq" : {
+      "type" : "object",
+      "required" : [ "RiconciliaAllegato" ],
+      "properties" : {
+        "RiconciliaAllegato" : {
+          "$ref" : "#/definitions/RiconciliaAllegato"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RiconciliaAllegatoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "RAL" : {
+      "type" : "object",
+      "properties" : {
+        "Label" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TaskUpdatePmRes" : {
+      "type" : "object",
+      "required" : [ "TaskUpdateRes", "EsitoUpdateRes" ],
+      "properties" : {
+        "TaskUpdateRes" : {
+          "$ref" : "#/definitions/TaskUpdateRes"
+        },
+        "EsitoUpdateRes" : {
+          "$ref" : "#/definitions/EsitoUpdateRes"
+        }
+      }
+    }
+  }
+}

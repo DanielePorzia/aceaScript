@@ -1,0 +1,409 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "PraticaIsu",
+    "description" : "AnnullamentoPraticaAvviso service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/sappm/v1/gip/pratica/annullamentopraticaavviso" : {
+      "post" : {
+        "summary" : "postAnnullamentoPraticaAvviso",
+        "description" : "postAnnullamentoPraticaAvviso",
+        "operationId" : "post-areti-sappm-v1-gip-pratica-annullamentopraticaavviso",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AnnullamentoPraticaAvvisoReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CreazionePraticaAvvisoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CreazionePraticaAvvisoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/sappm/v1/gip/pratica/creazionepraticaavviso" : {
+      "post" : {
+        "summary" : "postPraticaIsu",
+        "description" : "postPraticaIsu",
+        "operationId" : "post-areti-sappm-v1-gip-pratica-creazionepraticaavviso",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CreazionePraticaAvvisoReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CreazionePraticaAvvisoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CreazionePraticaAvvisoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AnnullaPraticaAvviso" : {
+      "type" : "object",
+      "required" : [ "Avviso", "PraticaTibco" ],
+      "properties" : {
+        "PraticaTibco" : {
+          "type" : "string"
+        },
+        "Avviso" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSap" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AnnullamentoPraticaAvvisoReq" : {
+      "type" : "object",
+      "required" : [ "AnnullaPraticaAvviso" ],
+      "properties" : {
+        "AnnullaPraticaAvviso" : {
+          "$ref" : "#/definitions/AnnullaPraticaAvviso"
+        }
+      }
+    },
+    "CreaAvviso00006" : {
+      "type" : "object",
+      "properties" : {
+        "ZagNumero" : {
+          "type" : "string"
+        },
+        "ZagOrdine" : {
+          "type" : "string"
+        },
+        "ZagOssario" : {
+          "type" : "string"
+        },
+        "ZagPassagg" : {
+          "type" : "string"
+        },
+        "ZagPiano" : {
+          "type" : "string"
+        },
+        "ZagPortica" : {
+          "type" : "string"
+        },
+        "ZagRango" : {
+          "type" : "string"
+        },
+        "ZagReparto" : {
+          "type" : "string"
+        },
+        "ZagRiquadr" : {
+          "type" : "string"
+        },
+        "ZagSarcofa" : {
+          "type" : "string"
+        },
+        "ZagScaglio" : {
+          "type" : "string"
+        },
+        "ZagScala" : {
+          "type" : "string"
+        },
+        "ZagSettore" : {
+          "type" : "string"
+        },
+        "ZagSezione" : {
+          "type" : "string"
+        },
+        "ZagSpecial" : {
+          "type" : "string"
+        },
+        "ZagTomba" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CreaAvviso00005" : {
+      "type" : "object",
+      "properties" : {
+        "ZagArca" : {
+          "type" : "string"
+        },
+        "ZagBalcona" : {
+          "type" : "string"
+        },
+        "ZagBambini" : {
+          "type" : "string"
+        },
+        "ZagBlocco" : {
+          "type" : "string"
+        },
+        "ZagCampoS" : {
+          "type" : "string"
+        },
+        "ZagCappell" : {
+          "type" : "string"
+        },
+        "ZagCinerar" : {
+          "type" : "string"
+        },
+        "ZagColomba" : {
+          "type" : "string"
+        },
+        "ZagConfine" : {
+          "type" : "string"
+        },
+        "ZagCorpo" : {
+          "type" : "string"
+        },
+        "ZagCorrido" : {
+          "type" : "string"
+        },
+        "ZagEdifici" : {
+          "type" : "string"
+        },
+        "ZagFila" : {
+          "type" : "string"
+        },
+        "ZagFossa" : {
+          "type" : "string"
+        },
+        "ZagFronte" : {
+          "type" : "string"
+        },
+        "ZagGalleri" : {
+          "type" : "string"
+        },
+        "ZagGradone" : {
+          "type" : "string"
+        },
+        "ZagGruppo" : {
+          "type" : "string"
+        },
+        "ZagIngress" : {
+          "type" : "string"
+        },
+        "ZagIpogeo" : {
+          "type" : "string"
+        },
+        "ZagLotto" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "CreazionePraticaAvvisoReq" : {
+      "type" : "object",
+      "required" : [ "CreazionePraticaAvviso" ],
+      "properties" : {
+        "CreazionePraticaAvviso" : {
+          "$ref" : "#/definitions/CreazionePraticaAvviso"
+        }
+      }
+    },
+    "CreazionePraticaAvviso" : {
+      "type" : "object",
+      "required" : [ "CreaAvviso00002" ],
+      "properties" : {
+        "CreaAvviso00002" : {
+          "$ref" : "#/definitions/CreaAvviso00002"
+        },
+        "CreaAvviso00005" : {
+          "$ref" : "#/definitions/CreaAvviso00005"
+        },
+        "CreaAvviso00006" : {
+          "$ref" : "#/definitions/CreaAvviso00006"
+        },
+        "CreaAvviso00007" : {
+          "$ref" : "#/definitions/CreaAvviso00007"
+        }
+      }
+    },
+    "CreaAvviso00002" : {
+      "type" : "object",
+      "required" : [ "Tplnr", "Avviso", "TipoAvviso", "Priok" ],
+      "properties" : {
+        "PraticaTibco" : {
+          "type" : "string"
+        },
+        "Avviso" : {
+          "type" : "string"
+        },
+        "TipoAvviso" : {
+          "type" : "string"
+        },
+        "Priok" : {
+          "type" : "string"
+        },
+        "Tplnr" : {
+          "type" : "string"
+        },
+        "Contraente" : {
+          "type" : "string"
+        },
+        "Telefono" : {
+          "type" : "string"
+        },
+        "NomeDef" : {
+          "type" : "string"
+        },
+        "DataDec" : {
+          "type" : "string"
+        },
+        "Targhetta" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "NLamp" : {
+          "type" : "string"
+        },
+        "NumeroUtenza" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CreazionePraticaAvvisoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSappm" : {
+          "$ref" : "#/definitions/EsitoSap"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CreaAvviso00007" : {
+      "type" : "object",
+      "properties" : {
+        "ZagUbspec1" : {
+          "type" : "string"
+        },
+        "ZagUbspec2" : {
+          "type" : "string"
+        },
+        "ZagUbspec3" : {
+          "type" : "string"
+        },
+        "ZagUbspec4" : {
+          "type" : "string"
+        },
+        "ZagUbspec5" : {
+          "type" : "string"
+        },
+        "ZagUbspec6" : {
+          "type" : "string"
+        },
+        "ZagUbspec7" : {
+          "type" : "string"
+        },
+        "ZagUbspec8" : {
+          "type" : "string"
+        },
+        "ZagUbspec9" : {
+          "type" : "string"
+        },
+        "ZagUbspec10" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

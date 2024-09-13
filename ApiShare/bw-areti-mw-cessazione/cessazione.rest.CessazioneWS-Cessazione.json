@@ -1,0 +1,696 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Cessazione",
+    "description" : "CessazioneFornitura service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/cessazione" : {
+      "post" : {
+        "summary" : "postCessazioneFornitura",
+        "description" : "postCessazioneFornitura",
+        "operationId" : "post-areti-mw-v1-cessazione",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CessazioneFornituraPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CessazioneFornituraPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CessazioneFornituraPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/mw/v1/cessazione/amministrativa" : {
+      "post" : {
+        "summary" : "postCessazioneAmministrativa",
+        "description" : "postCessazioneAmministrativa",
+        "operationId" : "post-areti-mw-v1-cessazione-amministrativa",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CessazioneAmministrativaPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CessazioneAmministrativaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CessazioneAmministrativaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiAppuntamento" : {
+      "type" : "object",
+      "properties" : {
+        "ClienteRichiedePresenza" : {
+          "type" : "string",
+          "enum" : [ "SI", "NO" ]
+        },
+        "DataOraDifferito" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "DatiEsazioneNuovoIntestatarioType" : {
+      "type" : "object",
+      "required" : [ "stato", "CAP", "toponimoStraniero", "descrizioneComune", "toponimoItaliano", "via" ],
+      "properties" : {
+        "CAP" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "istatComune" : {
+          "type" : "string"
+        },
+        "descrizioneComune" : {
+          "type" : "string"
+        },
+        "toponimoItaliano" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "toponimoStraniero" : {
+          "type" : "string"
+        },
+        "civico" : {
+          "$ref" : "#/definitions/CivicoType"
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "presso" : {
+          "type" : "string"
+        },
+        "provincia" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string",
+          "enum" : [ "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATA", "ATG", "ANT", "SAU", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BEL", "BLZ", "BEN", "BMU", "BTN", "BLR", "MMR", "BOL", "BIH", "BWA", "BRA", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "TCD", "CHL", "CHN", "CYP", "VAT", "COL", "COM", "PRK", "KOR", "CIV", "CRI", "HRV", "CUB", "DNK", "DMA", "ECU", "EGY", "SLV", "ARE", "ERI", "EST", "ETH", "FJI", "PHL", "FIN", "FRA", "GAB", "GMB", "GEO", "SGS", "DEU", "GHA", "JAM", "JPN", "GIB", "DJI", "JOR", "GRC", "GRD", "GRL", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GNQ", "GUY", "GUF", "HTI", "HND", "HKG", "IND", "IDN", "IRN", "IRQ", "IRL", "ISL", "BVT", "IMN", "CXR", "NFK", "ALA", "CYM", "CCK", "COK", "FRO", "FLK", "HMD", "MNP", "MHL", "UMI", "PCN", "SLB", "VGB", "VIR", "ISR", "ITA", "JEY", "KAZ", "KEN", "KGZ", "KIR", "KWT", "LAO", "LSO", "LVA", "LBN", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MKD", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MAR", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MNG", "MNE", "MSR", "MOZ", "NAM", "NRU", "NPL", "NIC", "NER", "NGA", "NIU", "NOR", "NCL", "NZL", "OMN", "NLD", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PYF", "POL", "PRI", "PRT", "MCO", "QAT", "GBR", "COD", "CZE", "CAF", "COG", "DOM", "REU", "ROU", "RWA", "RUS", "ESH", "KNA", "LCA", "SHN", "VCT", "BLM", "MAF", "SPM", "WSM", "ASM", "SMR", "STP", "SEN", "SRB", "SYC", "SLE", "SGP", "SYR", "SVK", "SVN", "SOM", "ESP", "LKA", "USA", "ZAF", "SDN", "SUR", "SJM", "SWE", "CHE", "SWZ", "TWN", "TJK", "TZA", "ATF", "IOT", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UKR", "UGA", "HUN", "URY", "UZB", "VUT", "VEN", "VNM", "WLF", "YEM", "ZMB", "ZWE" ]
+        },
+        "via" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CivicoType" : {
+      "type" : "object",
+      "required" : [ "civicoDescrittivo" ],
+      "properties" : {
+        "civicoDescrittivo" : {
+          "type" : "string"
+        },
+        "suffisso" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CessazioneAmministrativaPostRes" : {
+      "type" : "object",
+      "required" : [ "RispostaSI" ],
+      "properties" : {
+        "RispostaSI" : {
+          "$ref" : "#/definitions/RispostaSI"
+        }
+      }
+    },
+    "CessazioneAmministrativaPostReq" : {
+      "type" : "object",
+      "required" : [ "RichiestaCessazioneAmministrativa" ],
+      "properties" : {
+        "RichiestaCessazioneAmministrativa" : {
+          "$ref" : "#/definitions/RichiestaCessazioneAmministrativa"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "DatiSedeLegale" : {
+      "type" : "object",
+      "required" : [ "stato", "descrizioneVia", "cap", "civicoDescrittivo", "descrizioneComune", "provincia" ],
+      "properties" : {
+        "toponimo" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "toponimoItaliano" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "toponimoStraniero" : {
+          "type" : "string"
+        },
+        "descrizioneVia" : {
+          "type" : "string"
+        },
+        "civicoDescrittivo" : {
+          "type" : "string"
+        },
+        "suffisso" : {
+          "type" : "string"
+        },
+        "istatComune" : {
+          "type" : "string"
+        },
+        "descrizioneComune" : {
+          "type" : "string"
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "cap" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "provincia" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HeaderRichiesta" : {
+      "type" : "object",
+      "properties" : {
+        "richiesta" : {
+          "$ref" : "#/definitions/Richiesta"
+        },
+        "richiedente" : {
+          "$ref" : "#/definitions/Richiedente"
+        },
+        "flagContattoRete" : {
+          "type" : "boolean"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EnteClienteDistribuzioneType" : {
+      "type" : "object",
+      "required" : [ "ragioneSociale", "codiceFiscale", "tipoSoggettoLogico" ],
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "tipoSoggettoLogico" : {
+          "type" : "string"
+        },
+        "trattamentoIva" : {
+          "type" : "string"
+        },
+        "settoreMerceologico" : {
+          "type" : "string",
+          "maxLength" : 10000
+        }
+      }
+    },
+    "CessaFornitura" : {
+      "type" : "object",
+      "required" : [ "DatiIntestatario", "pod" ],
+      "properties" : {
+        "descrizioneTipoServizio" : {
+          "type" : "string"
+        },
+        "pod" : {
+          "type" : "string"
+        },
+        "DatiContattoPratica" : {
+          "$ref" : "#/definitions/DatiRappresentanteRichiestaType"
+        },
+        "DatiAppuntamento" : {
+          "$ref" : "#/definitions/DatiAppuntamento"
+        },
+        "DatiIntestatario" : {
+          "$ref" : "#/definitions/DatiIntestatarioType"
+        },
+        "DatiClienteDistribuzione" : {
+          "$ref" : "#/definitions/DatiClienteDistribuzioneType"
+        },
+        "DatiSedeLegale" : {
+          "$ref" : "#/definitions/DatiSedeLegale"
+        },
+        "DatiEsazioneNuovoIntestatario" : {
+          "$ref" : "#/definitions/DatiEsazioneNuovoIntestatarioType"
+        },
+        "richMassivaId" : {
+          "type" : "string"
+        },
+        "idRelativoRicMassiva" : {
+          "type" : "string"
+        },
+        "fuoriOrarioDiLavoro" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "RispostaSTC" : {
+      "type" : "object",
+      "required" : [ "EsitoAccettabilita", "Testata" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "EsitoAccettabilita" : {
+          "$ref" : "#/definitions/EsitoAccettabilita"
+        },
+        "suffissoPratica" : {
+          "type" : "string"
+        },
+        "appuntamento" : {
+          "$ref" : "#/definitions/AppuntamentoHandlerType"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "IntestatarioClienteDistribuzioneType" : {
+      "type" : "object",
+      "required" : [ "DittaIndividualeClienteDistribuzione", "PersonaFisicaClienteDistribuzione", "EnteClienteDistribuzione" ],
+      "properties" : {
+        "EnteClienteDistribuzione" : {
+          "$ref" : "#/definitions/EnteClienteDistribuzioneType"
+        },
+        "PersonaFisicaClienteDistribuzione" : {
+          "$ref" : "#/definitions/PersonaFisicaClienteDistribuzioneType"
+        },
+        "DittaIndividualeClienteDistribuzione" : {
+          "$ref" : "#/definitions/DittaIndividualeClienteDistribuzioneType"
+        }
+      }
+    },
+    "CessazioneFornituraPostRes" : {
+      "type" : "object",
+      "required" : [ "RispostaSTC" ],
+      "properties" : {
+        "RispostaSTC" : {
+          "$ref" : "#/definitions/RispostaSTC"
+        }
+      }
+    },
+    "CessazioneFornituraPostReq" : {
+      "type" : "object",
+      "required" : [ "RichiestaCessaFornitura" ],
+      "properties" : {
+        "RichiestaCessaFornitura" : {
+          "$ref" : "#/definitions/RichiestaCessaFornitura"
+        }
+      }
+    },
+    "RichiestaCessazioneAmministrativa" : {
+      "type" : "object",
+      "required" : [ "HeaderRichiesta", "CessazioneAmministrativa" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "HeaderRichiesta" : {
+          "$ref" : "#/definitions/HeaderRichiesta"
+        },
+        "CessazioneAmministrativa" : {
+          "$ref" : "#/definitions/CessazioneAmministrativa"
+        }
+      }
+    },
+    "Richiedente" : {
+      "type" : "object",
+      "required" : [ "NomeRichiedente", "RuoloRichiedente" ],
+      "properties" : {
+        "NomeRichiedente" : {
+          "type" : "string"
+        },
+        "RuoloRichiedente" : {
+          "type" : "string",
+          "enum" : [ "backOffice", "frontOffice", "trader", "am", "supervisor", "tutela", "salvaguardia", "metering", "cutover", "FOcutover" ]
+        }
+      }
+    },
+    "AppuntamentoHandlerType" : {
+      "type" : "object",
+      "required" : [ "fasciaOrariaDaIntervento", "dataIntervento", "fasciaOrariaAIntervento", "idIntervento" ],
+      "properties" : {
+        "idIntervento" : {
+          "type" : "integer"
+        },
+        "dataIntervento" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "fasciaOrariaDaIntervento" : {
+          "type" : "string"
+        },
+        "fasciaOrariaAIntervento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PersonaFisicaClienteDistribuzioneType" : {
+      "type" : "object",
+      "required" : [ "codiceFiscale" ],
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "sesso" : {
+          "type" : "string",
+          "enum" : [ "M", "F" ]
+        },
+        "provinciaNascita" : {
+          "type" : "string"
+        },
+        "comuneNascita" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "dataNascita" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "statoNascita" : {
+          "type" : "string",
+          "enum" : [ "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATA", "ATG", "ANT", "SAU", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BEL", "BLZ", "BEN", "BMU", "BTN", "BLR", "MMR", "BOL", "BIH", "BWA", "BRA", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "TCD", "CHL", "CHN", "CYP", "VAT", "COL", "COM", "PRK", "KOR", "CIV", "CRI", "HRV", "CUB", "DNK", "DMA", "ECU", "EGY", "SLV", "ARE", "ERI", "EST", "ETH", "FJI", "PHL", "FIN", "FRA", "GAB", "GMB", "GEO", "SGS", "DEU", "GHA", "JAM", "JPN", "GIB", "DJI", "JOR", "GRC", "GRD", "GRL", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GNQ", "GUY", "GUF", "HTI", "HND", "HKG", "IND", "IDN", "IRN", "IRQ", "IRL", "ISL", "BVT", "IMN", "CXR", "NFK", "ALA", "CYM", "CCK", "COK", "FRO", "FLK", "HMD", "MNP", "MHL", "UMI", "PCN", "SLB", "VGB", "VIR", "ISR", "ITA", "JEY", "KAZ", "KEN", "KGZ", "KIR", "KWT", "LAO", "LSO", "LVA", "LBN", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MKD", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MAR", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MNG", "MNE", "MSR", "MOZ", "NAM", "NRU", "NPL", "NIC", "NER", "NGA", "NIU", "NOR", "NCL", "NZL", "OMN", "NLD", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PYF", "POL", "PRI", "PRT", "MCO", "QAT", "GBR", "COD", "CZE", "CAF", "COG", "DOM", "REU", "ROU", "RWA", "RUS", "ESH", "KNA", "LCA", "SHN", "VCT", "BLM", "MAF", "SPM", "WSM", "ASM", "SMR", "STP", "SEN", "SRB", "SYC", "SLE", "SGP", "SYR", "SVK", "SVN", "SOM", "ESP", "LKA", "USA", "ZAF", "SDN", "SUR", "SJM", "SWE", "CHE", "SWZ", "TWN", "TJK", "TZA", "ATF", "IOT", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UKR", "UGA", "HUN", "URY", "UZB", "VUT", "VEN", "VNM", "WLF", "YEM", "ZMB", "ZWE" ]
+        },
+        "trattamentoIva" : {
+          "type" : "string"
+        },
+        "settoreMerceologico" : {
+          "type" : "string",
+          "maxLength" : 10000
+        }
+      }
+    },
+    "EsitoAccettabilita" : {
+      "type" : "object",
+      "required" : [ "Ammissibilita" ],
+      "properties" : {
+        "Ammissibilita" : {
+          "type" : "string"
+        },
+        "CodiceEsito" : {
+          "type" : "string"
+        },
+        "Motivazione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiClienteDistribuzioneType" : {
+      "type" : "object",
+      "required" : [ "IntestatarioClienteDistribuzione" ],
+      "properties" : {
+        "IntestatarioClienteDistribuzione" : {
+          "$ref" : "#/definitions/IntestatarioClienteDistribuzioneType"
+        }
+      }
+    },
+    "Testata" : {
+      "type" : "object",
+      "required" : [ "Piva_distributore", "CodPraticaEsterna", "Cod_servizio", "Cod_flusso", "Piva_utente" ],
+      "properties" : {
+        "Cod_servizio" : {
+          "type" : "string"
+        },
+        "Cod_flusso" : {
+          "type" : "string"
+        },
+        "Piva_utente" : {
+          "type" : "string"
+        },
+        "Piva_distributore" : {
+          "type" : "string"
+        },
+        "CodPraticaEsterna" : {
+          "type" : "string"
+        },
+        "CodPraticaMW" : {
+          "type" : "string"
+        },
+        "Cod_contr_disp" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RispostaSI" : {
+      "type" : "object",
+      "required" : [ "EsitoAccettabilita" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "EsitoAccettabilita" : {
+          "$ref" : "#/definitions/EsitoAccettabilita"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "statoTelegPOD" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CessazioneAmministrativa" : {
+      "type" : "object",
+      "required" : [ "pod" ],
+      "properties" : {
+        "pod" : {
+          "type" : "string"
+        },
+        "idRelativoRicMassiva" : {
+          "type" : "string"
+        },
+        "richMassivaId" : {
+          "type" : "string"
+        },
+        "DatiTecnici" : {
+          "$ref" : "#/definitions/DatiTecnici"
+        },
+        "idPraticaPadre" : {
+          "type" : "string"
+        },
+        "DatiIntestatario" : {
+          "$ref" : "#/definitions/DatiIntestatarioType"
+        },
+        "tipoCodiceAcea" : {
+          "type" : "string",
+          "maxLength" : 25
+        }
+      }
+    },
+    "RichiestaCessaFornitura" : {
+      "type" : "object",
+      "required" : [ "Testata", "CessaFornitura" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "HeaderRichiesta" : {
+          "$ref" : "#/definitions/HeaderRichiesta"
+        },
+        "CessaFornitura" : {
+          "$ref" : "#/definitions/CessaFornitura"
+        }
+      }
+    },
+    "Richiesta" : {
+      "type" : "object",
+      "properties" : {
+        "CodiceRichiesta" : {
+          "type" : "string"
+        },
+        "DataRichiesta" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CanaleDiProvenienza" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DittaIndividualeClienteDistribuzioneType" : {
+      "type" : "object",
+      "required" : [ "partitaIVA", "codiceFiscale" ],
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "trattamentoIva" : {
+          "type" : "string"
+        },
+        "settoreMerceologico" : {
+          "type" : "string",
+          "maxLength" : 10000
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiRappresentanteRichiestaType" : {
+      "type" : "object",
+      "required" : [ "telefono" ],
+      "properties" : {
+        "telefono" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "e-mail" : {
+          "type" : "string"
+        },
+        "fax" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiIntestatarioType" : {
+      "type" : "object",
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIva" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiTecnici" : {
+      "type" : "object",
+      "properties" : {
+        "Segnalazione" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "DataDecorCessazione" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "PraticaGip",
+    "description" : "PraticaGip service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/isu/v1/gip/pratica/aggiornastatoavviso" : {
+      "post" : {
+        "summary" : "postPraticaGip",
+        "description" : "postPraticaGip",
+        "operationId" : "post-areti-sappm-v1-gip-pratica",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AggiornaStatoAvvisoReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AggiornaStatoAvvisoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AggiornaStatoAvvisoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/isu/v1/gip/pratica/riceviconfermaavviso" : {
+      "post" : {
+        "summary" : "postPraticaGip",
+        "description" : "postPraticaGip",
+        "operationId" : "post-areti-sappm-v1-gip-pratica-RiceviConfermaAvviso",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/RiceviConfermaAvvisoReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RiceviConfermaAvvisoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RiceviConfermaAvvisoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RiceviConfermaAvviso" : {
+      "type" : "object",
+      "required" : [ "Avviso", "PraticaTibco" ],
+      "properties" : {
+        "Avviso" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "PraticaTibco" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "CodOdl" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Note" : {
+          "type" : "string",
+          "maxLength" : 132
+        }
+      }
+    },
+    "AggiornaStatoAvvisoReq" : {
+      "type" : "object",
+      "required" : [ "AggiornaStatoAvviso" ],
+      "properties" : {
+        "AggiornaStatoAvviso" : {
+          "$ref" : "#/definitions/AggiornaStatoAvviso"
+        }
+      }
+    },
+    "AggiornaStatoAvvisoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoIsu" : {
+          "$ref" : "#/definitions/EsitoSap"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSap" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RiceviConfermaAvvisoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoIsu" : {
+          "$ref" : "#/definitions/EsitoSap"
+        }
+      }
+    },
+    "AggiornaStatoAvviso" : {
+      "type" : "object",
+      "required" : [ "Avviso", "PraticaTibco" ],
+      "properties" : {
+        "Avviso" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "GuastoGip" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "PraticaTibco" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "EsitoNegGip" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "StatoAvviso" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "DataFineRich" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "ZagNomedef" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "ZagDatadec" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "ZagTarghetta" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Note" : {
+          "type" : "string",
+          "maxLength" : 132
+        },
+        "ZagArca" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagBalcona" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagBambini" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagBlocco" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagCampoS" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagCappell" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagCinerar" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagColomba" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagConfine" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagCorpo" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagCorrido" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagEdifici" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagFila" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagFossa" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagFronte" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagGalleri" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagGradone" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagGruppo" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagIngress" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagIpogeo" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagLotto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagNumero" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagOrdine" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagOssario" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagPassagg" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagPiano" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagPortica" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagRango" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagReparto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagRiquadr" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagSarcofa" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagScaglio" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagScala" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagSettore" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagSezione" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagSpecial" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagTomba" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ZagUbspec1" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec2" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec3" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec4" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec5" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec6" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec7" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec8" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec9" : {
+          "type" : "string",
+          "maxLength" : 60
+        },
+        "ZagUbspec10" : {
+          "type" : "string",
+          "maxLength" : 60
+        }
+      }
+    },
+    "RiceviConfermaAvvisoReq" : {
+      "type" : "object",
+      "required" : [ "RiceviConfermaAvviso" ],
+      "properties" : {
+        "RiceviConfermaAvviso" : {
+          "$ref" : "#/definitions/RiceviConfermaAvviso"
+        }
+      }
+    }
+  }
+}

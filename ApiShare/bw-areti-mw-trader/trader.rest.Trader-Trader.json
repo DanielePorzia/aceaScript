@@ -1,0 +1,292 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Trader",
+    "description" : "Trader service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/trader" : {
+      "post" : {
+        "summary" : "postTrader",
+        "description" : "postTrader",
+        "operationId" : "post-api-areti-mw-v1-trader",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/api-areti-mw-v1-traderPostParameters"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a api-areti-mw-v1-traderPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/api-areti-mw-v1-traderPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "getTrader",
+        "description" : "getTrader",
+        "operationId" : "get-api-areti-mw-v1-trader",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "contrattoDispacciamento",
+          "in" : "query",
+          "description" : "Contratto del Dispacciamento del Trader",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a api-areti-mw-v1-traderGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/api-areti-mw-v1-traderGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "patchTrader",
+        "description" : "patchTrader",
+        "operationId" : "patch-api-areti-mw-v1-trader",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/api-areti-mw-v1-traderPatchParameters"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a api-areti-mw-v1-traderPatchRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/api-areti-mw-v1-traderPatchRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "TraderType" : {
+      "type" : "object",
+      "required" : [ "contrattoDispacciamento", "codiceTrader", "e-mailPEC", "defaultSospensioni", "partitaIVA", "e-mail", "ragioneSociale", "tipologiaDiMercato" ],
+      "properties" : {
+        "codiceTrader" : {
+          "type" : "string",
+          "maxLength" : 16
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "contrattoDispacciamento" : {
+          "type" : "string"
+        },
+        "e-mail" : {
+          "type" : "string"
+        },
+        "e-mailPEC" : {
+          "type" : "string"
+        },
+        "tipologiaDiMercato" : {
+          "type" : "string",
+          "enum" : [ "libero", "tutelato", "salvaguardia" ]
+        },
+        "defaultSospensioni" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "moroso" : {
+          "type" : "boolean"
+        },
+        "fidejussioneAttiva" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Trader" : {
+      "type" : "object",
+      "required" : [ "contrattoDispacciamento", "codiceTrader" ],
+      "properties" : {
+        "codiceTrader" : {
+          "type" : "string",
+          "maxLength" : 16
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "contrattoDispacciamento" : {
+          "type" : "string"
+        },
+        "e-mail" : {
+          "type" : "string"
+        },
+        "e-mailPEC" : {
+          "type" : "string"
+        },
+        "tipologiaDiMercato" : {
+          "type" : "string",
+          "enum" : [ "libero", "tutelato", "salvaguardia" ]
+        },
+        "defaultSospensioni" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "partitaIva" : {
+          "type" : "string"
+        },
+        "moroso" : {
+          "type" : "boolean"
+        },
+        "fidejussioneAttiva" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "api-areti-mw-v1-traderPatchRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "api-areti-mw-v1-traderPostParameters" : {
+      "type" : "object",
+      "required" : [ "Trader" ],
+      "properties" : {
+        "Trader" : {
+          "$ref" : "#/definitions/TraderType"
+        }
+      }
+    },
+    "api-areti-mw-v1-traderGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Trader" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Trader",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "api-areti-mw-v1-traderPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "api-areti-mw-v1-traderPatchParameters" : {
+      "type" : "object",
+      "required" : [ "Trader" ],
+      "properties" : {
+        "Trader" : {
+          "$ref" : "#/definitions/Trader"
+        }
+      }
+    }
+  }
+}

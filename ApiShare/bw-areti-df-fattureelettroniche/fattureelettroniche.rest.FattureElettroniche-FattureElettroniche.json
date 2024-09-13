@@ -1,0 +1,238 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "FattureElettroniche",
+    "description" : "FattureElettroniche service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/df/v1/fattureelettroniche/aggiornamentostati" : {
+      "post" : {
+        "summary" : "postFattureElettronicheAggiornamentoStati",
+        "description" : "operazione per Aggiornamento Stati delle Fatture Elettroniche",
+        "operationId" : "post-areti-df-v1-fattureelettroniche-aggiornamentostati",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AggiornamentoStatiFEPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AggiornamentoStatiFEPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AggiornamentoStatiFEPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/ds/v1/fattureelettroniche/recuperofile" : {
+      "post" : {
+        "summary" : "postFattureElettronicheRecuperoFile",
+        "description" : "operazione per Recupero File delle Fatture Elettroniche",
+        "operationId" : "post-areti-ds-v1-fattureelettroniche-recuperofile",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/Request"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a Response to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Response" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Files" : {
+          "$ref" : "#/definitions/Files"
+        }
+      }
+    },
+    "AggiornamentoStatiFEPostRes" : {
+      "type" : "object",
+      "required" : [ "AggiornamentoStatiFEOutputParams" ],
+      "properties" : {
+        "AggiornamentoStatiFEOutputParams" : {
+          "$ref" : "#/definitions/AggiornamentoStatiFEOutputTypes"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AggiornamentoStatiFEPostReq" : {
+      "type" : "object",
+      "required" : [ "AggiornamentoStatiFEInputParams" ],
+      "properties" : {
+        "AggiornamentoStatiFEInputParams" : {
+          "$ref" : "#/definitions/AggiornamentoStatiFEInputTypes"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AggiornamentoStatiFEInputTypes" : {
+      "type" : "object",
+      "properties" : {
+        "CodiceSocieta" : {
+          "type" : "string"
+        },
+        "Exbel" : {
+          "type" : "string"
+        },
+        "NomeFlusso" : {
+          "type" : "string"
+        },
+        "Stato" : {
+          "type" : "string"
+        },
+        "DataEvento" : {
+          "type" : "string"
+        },
+        "ErroriSDI" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Request" : {
+      "type" : "object",
+      "properties" : {
+        "idSdi" : {
+          "type" : "string"
+        },
+        "codiceSocieta" : {
+          "type" : "string"
+        },
+        "classeDocumentale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "payloadArray" : {
+      "type" : "object",
+      "properties" : {
+        "codice" : {
+          "type" : "string"
+        },
+        "payload" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Files" : {
+      "type" : "object",
+      "properties" : {
+        "codice" : {
+          "type" : "string"
+        },
+        "payloadArray" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/payloadArray",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AggiornamentoStatiFEOutputTypes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    }
+  }
+}

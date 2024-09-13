@@ -1,0 +1,210 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "MaterialiFs",
+    "description" : "MaterialiFs service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/materiali/pianificati" : {
+      "put" : {
+        "summary" : "putMaterialiPianificatiFs",
+        "description" : "putMaterialiPianificatiFs - operazione put per l'allineamento su FS dei materiali pianificati per le operazioni di un ordine",
+        "operationId" : "put-company-fs-v1-materiali-pianificati",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/MatPianificatiPutReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a MatPianificatiPutRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/MatPianificatiPutRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "MatPianificatiPutReq" : {
+      "type" : "object",
+      "required" : [ "MaterialiPianificati" ],
+      "properties" : {
+        "MaterialiPianificati" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MaterialiPianificati",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "MatPianificatiPutRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "EsitoMaterialiPianificati" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EsitoMaterialiPianificati",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "MaterialiPianificati" : {
+      "type" : "object",
+      "required" : [ "IdMateriale", "Operazione", "Divisione", "Materiale", "Ordine", "NumPosizioneImpegno", "Impegno" ],
+      "properties" : {
+        "IdMateriale" : {
+          "type" : "string"
+        },
+        "Ordine" : {
+          "type" : "string"
+        },
+        "Operazione" : {
+          "type" : "string"
+        },
+        "Materiale" : {
+          "type" : "string"
+        },
+        "DescrizioneMateriale" : {
+          "type" : "string"
+        },
+        "Quantita" : {
+          "type" : "string"
+        },
+        "UnitaDiMisura" : {
+          "type" : "string"
+        },
+        "Divisione" : {
+          "type" : "string"
+        },
+        "Magazzino" : {
+          "type" : "string"
+        },
+        "Impegno" : {
+          "type" : "string"
+        },
+        "NumPosizioneImpegno" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoMaterialiPianificati" : {
+      "type" : "object",
+      "required" : [ "IdMateriale", "Codice" ],
+      "properties" : {
+        "IdMateriale" : {
+          "type" : "string"
+        },
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

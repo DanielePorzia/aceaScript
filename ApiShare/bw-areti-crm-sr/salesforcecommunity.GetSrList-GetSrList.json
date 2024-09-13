@@ -1,0 +1,481 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "GetSrList",
+    "description" : "GetSrList service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/crm/v1/puntifornitura/getsrlist" : {
+      "post" : {
+        "summary" : "postGetSrList",
+        "description" : "postGetSrList",
+        "operationId" : "post-getsrlist",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/GetSrListInput"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a GetSrListOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/GetSrListOutput"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "item" : {
+      "type" : "object",
+      "properties" : {
+        "IdReclamo" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "StatoReclamo" : {
+          "type" : "string"
+        },
+        "SottoStatoReclamo" : {
+          "type" : "string"
+        },
+        "CodCategoria" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "CategoriaLivello1" : {
+          "type" : "string"
+        },
+        "CategoriaLivello2" : {
+          "type" : "string"
+        },
+        "CategoriaLivello3" : {
+          "type" : "string"
+        },
+        "DataIngresso" : {
+          "type" : "string"
+        },
+        "DataRisposta" : {
+          "type" : "string"
+        },
+        "DipendenteResponsabile" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "GruppoAssegnatario" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "ContattiInbound" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ContattiInbound",
+            "uniqueItems" : false
+          }
+        },
+        "ContattiOut" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ContattiOut",
+            "uniqueItems" : false
+          }
+        },
+        "Task" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Task",
+            "uniqueItems" : false
+          }
+        },
+        "TestiReclamo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TestiReclamo",
+            "uniqueItems" : false
+          }
+        },
+        "ReclamiFigli" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ReclamiFigli",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Task" : {
+      "type" : "object",
+      "properties" : {
+        "IdTask" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "Motivo" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "GruppoAssegnatario" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "DipendenteResponsabile" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "StatoTask" : {
+          "type" : "string",
+          "maxLength" : 30
+        },
+        "Note" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Note",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AllegatiOut" : {
+      "type" : "object",
+      "properties" : {
+        "TipoDocumento" : {
+          "type" : "string"
+        },
+        "StatoStampa" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "EsitoInvio" : {
+          "type" : "string"
+        },
+        "IndirizzoInvio" : {
+          "type" : "string"
+        },
+        "StatoArchiviazione" : {
+          "type" : "string"
+        },
+        "DataInvioDcs" : {
+          "type" : "string"
+        },
+        "DataRiconciliazione" : {
+          "type" : "string"
+        },
+        "DataArchiviazione" : {
+          "type" : "string"
+        },
+        "DataRecapito" : {
+          "type" : "string"
+        },
+        "IDocArch" : {
+          "type" : "string"
+        },
+        "DataCreazione" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataModfica" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "GetSrListInput" : {
+      "type" : "object",
+      "properties" : {
+        "Bp" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GetSrListOutput" : {
+      "type" : "object",
+      "required" : [ "OutputMessage", "Esito" ],
+      "properties" : {
+        "OutputMessage" : {
+          "$ref" : "#/definitions/OutputMessage"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "TestiReclamo" : {
+      "type" : "object",
+      "properties" : {
+        "IdTestoReclamo" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "DescTestoReclamo" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "Testo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContattiOut" : {
+      "type" : "object",
+      "properties" : {
+        "Id" : {
+          "type" : "string",
+          "maxLength" : 11
+        },
+        "idCategoria" : {
+          "type" : "string",
+          "maxLength" : 15
+        },
+        "DescCategoria" : {
+          "type" : "string"
+        },
+        "Stato" : {
+          "type" : "string"
+        },
+        "Protocollo" : {
+          "type" : "string"
+        },
+        "DataProtocollo" : {
+          "type" : "string"
+        },
+        "Canale" : {
+          "type" : "string"
+        },
+        "TestiReclamo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TestiReclamo",
+            "uniqueItems" : false
+          }
+        },
+        "AllegatiOut" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AllegatiOut",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AllegatiIn" : {
+      "type" : "object",
+      "properties" : {
+        "Tipo" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "DataRicezione" : {
+          "type" : "string"
+        },
+        "ArcDocID" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Scartato" : {
+          "type" : "string",
+          "maxLength" : 1
+        },
+        "CausaScarto" : {
+          "type" : "string",
+          "maxLength" : 30
+        }
+      }
+    },
+    "OutputMessage" : {
+      "type" : "object",
+      "properties" : {
+        "item" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/item",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Note" : {
+      "type" : "object",
+      "properties" : {
+        "IdTesto" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "DescTesto" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "Testo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReclamiFigli" : {
+      "type" : "object",
+      "properties" : {
+        "IdReclamoFigli" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "StatoReclamoFigli" : {
+          "type" : "string",
+          "maxLength" : 30
+        },
+        "SottoStatoReclamoFigli" : {
+          "type" : "string",
+          "maxLength" : 30
+        },
+        "CodCategoria" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "Categoria1" : {
+          "type" : "string"
+        },
+        "Categoria2" : {
+          "type" : "string"
+        },
+        "Categoria3" : {
+          "type" : "string"
+        },
+        "DataIngressoFigli" : {
+          "type" : "string"
+        },
+        "DataRispostaFigli" : {
+          "type" : "string"
+        },
+        "DipendeResposabileFigli" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "GruppoAssegnatarioFigli" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "ContattiInbound" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ContattiInbound",
+            "uniqueItems" : false
+          }
+        },
+        "ContattiOut" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ContattiOut",
+            "uniqueItems" : false
+          }
+        },
+        "Task" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Task",
+            "uniqueItems" : false
+          }
+        },
+        "TestiReclamo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TestiReclamo",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContattiInbound" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "ProtIn" : {
+          "type" : "string"
+        },
+        "DataProtIn" : {
+          "type" : "string"
+        },
+        "AllegatiIn" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AllegatiIn",
+            "uniqueItems" : false
+          }
+        }
+      }
+    }
+  }
+}

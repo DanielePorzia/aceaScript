@@ -1,0 +1,585 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "OffertaCommerciale",
+    "description" : "OffertaCommerciale service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/offertacommerciale/connessioneattiva" : {
+      "post" : {
+        "summary" : "postOffertaCommerciale",
+        "description" : "postOffertaCommerciale",
+        "operationId" : "post-areti-mw-v1-offertacommerciale-connessioneattiva",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/NotificaAccettazionePreventivoCAPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a NotificaAccettazionePreventivoCAPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/NotificaAccettazionePreventivoCAPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/mw/v1/offertacommerciale/scadenza" : {
+      "post" : {
+        "summary" : "postOffertaCommerciale",
+        "description" : "postOffertaCommerciale",
+        "operationId" : "post-areti-mw-v1-offertacommerciale-scadenza",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/areti-mw-v1-offertacommerciale-scadenzaPostParameters"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a areti-mw-v1-offertacommerciale-scadenzaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/areti-mw-v1-offertacommerciale-scadenzaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/isu/v1/offertacommerciale/dettagliaggiuntivi" : {
+      "post" : {
+        "summary" : "postInformazioniIntegrative",
+        "description" : "postInformazioniIntegrative\r\n",
+        "operationId" : "post-areti-isu-v1-offertacommerciale-dettagliaggiuntivi",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InformazioniIntegrativePostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InformazioniIntegrativePostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InformazioniIntegrativePostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/mw/v1/offertacommerciale" : {
+      "put" : {
+        "summary" : "putOffertaCommerciale",
+        "description" : "putOffertaCommerciale",
+        "operationId" : "put-areti-mw-v1-offertacommerciale",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/areti-mw-v1-offertacommerciale-putParameters"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a areti-mw-v1-offertacommerciale-putRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/areti-mw-v1-offertacommerciale-putRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "NotificaAccettazionePreventivoCAPostReq" : {
+      "type" : "object",
+      "required" : [ "NotificaAccettazionePreventivoCA" ],
+      "properties" : {
+        "NotificaAccettazionePreventivoCA" : {
+          "$ref" : "#/definitions/NotificaAccettazionePreventivoCA"
+        }
+      }
+    },
+    "areti-mw-v1-offertacommerciale-scadenzaPostParameters" : {
+      "type" : "object",
+      "required" : [ "TestataScadenza" ],
+      "properties" : {
+        "TestataScadenza" : {
+          "$ref" : "#/definitions/TestataScadenza"
+        }
+      }
+    },
+    "NotificaAccettazionePreventivoCAPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "Dettagli" : {
+      "type" : "object",
+      "properties" : {
+        "codiceVoce" : {
+          "type" : "string"
+        },
+        "descrizioneVoce" : {
+          "type" : "string"
+        },
+        "importo" : {
+          "type" : "string"
+        },
+        "quantita" : {
+          "type" : "string"
+        },
+        "codiceUnitaMisura" : {
+          "type" : "string"
+        },
+        "descrizioneUnitaMisura" : {
+          "type" : "string"
+        },
+        "numeroGiorni" : {
+          "type" : "string"
+        },
+        "prezzoUnitario" : {
+          "type" : "string"
+        },
+        "qualificatore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Preventivi" : {
+      "type" : "object",
+      "properties" : {
+        "Preventivo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Preventivo",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "InformazioniIntegrativePostReq" : {
+      "type" : "object",
+      "required" : [ "InformazioniIntegrative" ],
+      "properties" : {
+        "InformazioniIntegrative" : {
+          "$ref" : "#/definitions/InformazioniIntegrative"
+        }
+      }
+    },
+    "areti-mw-v1-offertacommerciale-putParameters" : {
+      "type" : "object",
+      "required" : [ "TestataAccettazione" ],
+      "properties" : {
+        "TestataAccettazione" : {
+          "$ref" : "#/definitions/TestataAccettazione"
+        },
+        "RichiestaAccettazione" : {
+          "$ref" : "#/definitions/RichiestaAccettazione"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InformazioniIntegrativePostRes" : {
+      "type" : "object",
+      "required" : [ "InformazioniIntegrativeOutput" ],
+      "properties" : {
+        "InformazioniIntegrativeOutput" : {
+          "$ref" : "#/definitions/InformazioniIntegrativeOutput"
+        }
+      }
+    },
+    "TestataScadenza" : {
+      "type" : "object",
+      "required" : [ "tipoAttivita", "idPratica", "tipoServizio", "codiceProcesso" ],
+      "properties" : {
+        "idPratica" : {
+          "type" : "string"
+        },
+        "contrattoDispacciamento" : {
+          "type" : "string"
+        },
+        "codiceProcesso" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "tipoAttivita" : {
+          "type" : "string",
+          "minLength" : 2,
+          "maxLength" : 10
+        },
+        "tipoServizio" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiPreventivo" : {
+      "type" : "object",
+      "properties" : {
+        "classeLavoro" : {
+          "type" : "string"
+        },
+        "totaleCosto" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Preventivo" : {
+      "type" : "object",
+      "required" : [ "idPratica" ],
+      "properties" : {
+        "idPratica" : {
+          "type" : "string"
+        },
+        "DatiPreventivo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DatiPreventivo",
+            "uniqueItems" : false
+          }
+        },
+        "Costi" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Costi",
+            "uniqueItems" : false
+          }
+        },
+        "Dettagli" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Dettagli",
+            "uniqueItems" : false
+          }
+        },
+        "Consistenze" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Consistenze",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "NotificaAccettazionePreventivoCA" : {
+      "type" : "object",
+      "required" : [ "dataAvanzAcquisita", "flagPreventivoAccettato", "canaleDiProvenienza", "dataAvanzRichiesta", "idPratica", "flagModificaPrevComplessa" ],
+      "properties" : {
+        "canaleDiProvenienza" : {
+          "type" : "string"
+        },
+        "idPratica" : {
+          "type" : "string"
+        },
+        "dataAvanzAcquisita" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataBET" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dataAvanzRichiesta" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "documentazione" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "flagPreventivoAccettato" : {
+          "type" : "boolean"
+        },
+        "flagModificaPrevComplessa" : {
+          "type" : "boolean"
+        },
+        "flagAttesaSaldo" : {
+          "type" : "boolean"
+        },
+        "gestioneComplessoMisura" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "iterAutorizzativo" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "lavori" : {
+          "type" : "string",
+          "maxLength" : 5
+        },
+        "nuovaPotenza" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      }
+    },
+    "Consistenze" : {
+      "type" : "object",
+      "properties" : {
+        "numeroFasi" : {
+          "type" : "string"
+        },
+        "valoreTensione" : {
+          "type" : "string"
+        },
+        "potenzaPrelievoConcessa" : {
+          "type" : "string"
+        },
+        "tensioneRete" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaAccettazione" : {
+      "type" : "object",
+      "required" : [ "dataAvanzamentoBET", "dataAvanzamentoAcquisita" ],
+      "properties" : {
+        "dataAvanzamentoBET" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dataAvanzamentoAcquisita" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "noteLavori" : {
+          "type" : "string"
+        },
+        "iterAutorizzativo" : {
+          "type" : "string",
+          "enum" : [ "C - A CARICO CLIENTE", "A - A CARICO ARETI" ]
+        },
+        "lavori" : {
+          "type" : "string",
+          "enum" : [ "C - A CARICO CLIENTE", "A - A CARICO ARETI" ]
+        },
+        "documentazione" : {
+          "type" : "string",
+          "enum" : [ "C - A CARICO CLIENTE", "A - A CARICO ARETI" ]
+        },
+        "dataInizioFornitura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dataFineFornitura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "flagForfait" : {
+          "type" : "string",
+          "enum" : [ "S", "N" ]
+        }
+      }
+    },
+    "areti-mw-v1-offertacommerciale-putRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "TestataAccettazione" : {
+      "type" : "object",
+      "required" : [ "tipoAttivita", "idPratica", "tipoServizio", "dataAvanzamento", "ruoloRichiedente", "flagAccettazione", "CodicePOD", "codiceProcesso" ],
+      "properties" : {
+        "CodicePOD" : {
+          "type" : "string"
+        },
+        "idPratica" : {
+          "type" : "string"
+        },
+        "contrattoDispacciamento" : {
+          "type" : "string"
+        },
+        "ruoloRichiedente" : {
+          "type" : "string",
+          "enum" : [ "backOffice", "frontOffice", "trader", "am", "supervisor", "tutela", "salvaguardia", "metering", "cutover", "FOcutover" ]
+        },
+        "codiceProcesso" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "tipoServizio" : {
+          "type" : "string"
+        },
+        "tipoAttivita" : {
+          "type" : "string",
+          "minLength" : 2,
+          "maxLength" : 10
+        },
+        "flagAccettazione" : {
+          "type" : "string",
+          "enum" : [ "S", "N" ]
+        },
+        "dataAvanzamento" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Costi" : {
+      "type" : "object",
+      "properties" : {
+        "voceCosto" : {
+          "type" : "string"
+        },
+        "importo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InformazioniIntegrativeOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Preventivi" : {
+          "$ref" : "#/definitions/Preventivi"
+        }
+      }
+    },
+    "Pratica" : {
+      "type" : "object",
+      "required" : [ "idPratica" ],
+      "properties" : {
+        "idPratica" : {
+          "type" : "string"
+        }
+      }
+    },
+    "areti-mw-v1-offertacommerciale-scadenzaPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InformazioniIntegrative" : {
+      "type" : "object",
+      "properties" : {
+        "Pratica" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pratica",
+            "uniqueItems" : false
+          }
+        }
+      }
+    }
+  }
+}

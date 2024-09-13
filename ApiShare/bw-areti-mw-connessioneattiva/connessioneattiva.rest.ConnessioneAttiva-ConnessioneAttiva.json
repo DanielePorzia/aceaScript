@@ -1,0 +1,1403 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "ConnessioneAttiva",
+    "description" : "ConnessioneAttiva_1 service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/connessioneattiva/modificaconnessioneattiva" : {
+      "post" : {
+        "summary" : "postConnessioneAttiva_1",
+        "description" : "postConnessioneAttiva_1",
+        "operationId" : "post-areti-mw-v1-connessioneattiva-modificaconnessioneattiva_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/PreventivoConnessioneAttivaPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a PreventivoConnessioneAttivaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/PreventivoConnessioneAttivaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "PreventivoConnessioniAttive" : {
+      "type" : "object",
+      "required" : [ "Dichiarazioni", "IntestatarioPuntoConnessione", "DatiFornitura", "DatiRichiedente", "DatiSedeLegale", "DatiImpianto", "IndirizzoEsazionePreventivo", "TipologiaRichiesta", "AttestazioneRuoloRichiedente", "IntestatarioPreventivo", "DatiProduttore" ],
+      "properties" : {
+        "motivazioneRichiestaModifica" : {
+          "type" : "string"
+        },
+        "DatiRichiedente" : {
+          "$ref" : "#/definitions/DatiRichiedente"
+        },
+        "TipologiaRichiesta" : {
+          "$ref" : "#/definitions/TipologiaRichiesta"
+        },
+        "Dichiarazioni" : {
+          "$ref" : "#/definitions/Dichiarazioni"
+        },
+        "AttestazioneRuoloRichiedente" : {
+          "$ref" : "#/definitions/AttestazioneRuoloRichiedente"
+        },
+        "IntestatarioPuntoConnessione" : {
+          "$ref" : "#/definitions/IntestatarioPuntoConnessione"
+        },
+        "DatiSedeLegale" : {
+          "$ref" : "#/definitions/DatiSedeLegale"
+        },
+        "IndirizzoEsazionePreventivo" : {
+          "$ref" : "#/definitions/DatiEsazioneNuovoIntestatarioType"
+        },
+        "ReferenteTecnicoConnessione" : {
+          "$ref" : "#/definitions/DatiReferenteType"
+        },
+        "IntestatarioPreventivo" : {
+          "$ref" : "#/definitions/IntestatarioPreventivo"
+        },
+        "DatiProduttore" : {
+          "$ref" : "#/definitions/DatiProduttore"
+        },
+        "DatiRichiedentePreventivoRapido" : {
+          "$ref" : "#/definitions/DatiRichiedentePreventivoRapido"
+        },
+        "DatiImpianto" : {
+          "$ref" : "#/definitions/DatiImpianto"
+        },
+        "DatiFornitura" : {
+          "$ref" : "#/definitions/DatiFornitura"
+        }
+      }
+    },
+    "DatiTecniciImmissioneAccumulo" : {
+      "type" : "object",
+      "properties" : {
+        "PotenzaImmissione" : {
+          "type" : "integer"
+        },
+        "potenzaImmissioneFinale" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "delta_potenzaImpiantoProduzione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "potenzaNominaleSistemaAccumulo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "NumeroFasiImpiantoProduzione" : {
+          "type" : "string"
+        },
+        "contributoImpiantoCorrenteCC" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "flagPresenzaAltriImpianti" : {
+          "type" : "boolean"
+        },
+        "dataInizioOpere" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "denominazioneImpianto" : {
+          "type" : "string"
+        },
+        "PotenzaNominaleImpiantoProduzione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "potenzaNominaleComplessivaInverter" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "CodiceSezione" : {
+          "type" : "string"
+        },
+        "flagPlugAndPlay" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "IntestatarioPuntoConnessione" : {
+      "type" : "object",
+      "required" : [ "codiceFiscale" ],
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "sesso" : {
+          "type" : "string",
+          "enum" : [ "M", "F" ]
+        },
+        "provinciaNascita" : {
+          "type" : "string"
+        },
+        "comuneNascita" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "dataNascita" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "statoNascita" : {
+          "type" : "string",
+          "enum" : [ "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATA", "ATG", "ANT", "SAU", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BEL", "BLZ", "BEN", "BMU", "BTN", "BLR", "MMR", "BOL", "BIH", "BWA", "BRA", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "TCD", "CHL", "CHN", "CYP", "VAT", "COL", "COM", "PRK", "KOR", "CIV", "CRI", "HRV", "CUB", "DNK", "DMA", "ECU", "EGY", "SLV", "ARE", "ERI", "EST", "ETH", "FJI", "PHL", "FIN", "FRA", "GAB", "GMB", "GEO", "SGS", "DEU", "GHA", "JAM", "JPN", "GIB", "DJI", "JOR", "GRC", "GRD", "GRL", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GNQ", "GUY", "GUF", "HTI", "HND", "HKG", "IND", "IDN", "IRN", "IRQ", "IRL", "ISL", "BVT", "IMN", "CXR", "NFK", "ALA", "CYM", "CCK", "COK", "FRO", "FLK", "HMD", "MNP", "MHL", "UMI", "PCN", "SLB", "VGB", "VIR", "ISR", "ITA", "JEY", "KAZ", "KEN", "KGZ", "KIR", "KWT", "LAO", "LSO", "LVA", "LBN", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MKD", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MAR", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MNG", "MNE", "MSR", "MOZ", "NAM", "NRU", "NPL", "NIC", "NER", "NGA", "NIU", "NOR", "NCL", "NZL", "OMN", "NLD", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PYF", "POL", "PRI", "PRT", "MCO", "QAT", "GBR", "COD", "CZE", "CAF", "COG", "DOM", "REU", "ROU", "RWA", "RUS", "ESH", "KNA", "LCA", "SHN", "VCT", "BLM", "MAF", "SPM", "WSM", "ASM", "SMR", "STP", "SEN", "SRB", "SYC", "SLE", "SGP", "SYR", "SVK", "SVN", "SOM", "ESP", "LKA", "USA", "ZAF", "SDN", "SUR", "SJM", "SWE", "CHE", "SWZ", "TWN", "TJK", "TZA", "ATF", "IOT", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UKR", "UGA", "HUN", "URY", "UZB", "VUT", "VEN", "VNM", "WLF", "YEM", "ZMB", "ZWE" ]
+        },
+        "trattamentoIva" : {
+          "type" : "string"
+        },
+        "settoreMerceologico" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "tipoSoggettoLogico" : {
+          "type" : "string"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "pubblicaAmministrazione" : {
+          "$ref" : "#/definitions/PubblicaAmministrazioneType"
+        }
+      }
+    },
+    "SezioniImpianto" : {
+      "type" : "object",
+      "properties" : {
+        "numeroSezioniImpianto" : {
+          "type" : "string"
+        },
+        "Sezione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Sezione",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Sezione" : {
+      "type" : "object",
+      "properties" : {
+        "codice" : {
+          "type" : "string"
+        },
+        "potenzaImmissioneSezione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "potenzaAccumuloSezione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "installazionePotenzaAccumulo" : {
+          "type" : "string"
+        },
+        "dataEntrataEsercizioSezione" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "flagSistemaAccumulo" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "DatiRichiedente" : {
+      "type" : "object",
+      "required" : [ "userID" ],
+      "properties" : {
+        "userID" : {
+          "type" : "string"
+        },
+        "nominativoRichiedente" : {
+          "type" : "string"
+        },
+        "CFRichiedente" : {
+          "type" : "string"
+        },
+        "PIVARichiedente" : {
+          "type" : "string"
+        },
+        "telefonoFisso" : {
+          "type" : "string"
+        },
+        "telefonoMobile" : {
+          "type" : "string"
+        },
+        "fax" : {
+          "type" : "string"
+        },
+        "e-mail" : {
+          "type" : "string"
+        },
+        "numIscrizioneCameraCommercio" : {
+          "type" : "string"
+        },
+        "cameraCommercioDiAppartenenza" : {
+          "type" : "string"
+        },
+        "numeroREA" : {
+          "type" : "string"
+        },
+        "comuneNascita" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "provinciaNascita" : {
+          "type" : "string"
+        },
+        "statoNascita" : {
+          "type" : "string",
+          "enum" : [ "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATA", "ATG", "ANT", "SAU", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BEL", "BLZ", "BEN", "BMU", "BTN", "BLR", "MMR", "BOL", "BIH", "BWA", "BRA", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "TCD", "CHL", "CHN", "CYP", "VAT", "COL", "COM", "PRK", "KOR", "CIV", "CRI", "HRV", "CUB", "DNK", "DMA", "ECU", "EGY", "SLV", "ARE", "ERI", "EST", "ETH", "FJI", "PHL", "FIN", "FRA", "GAB", "GMB", "GEO", "SGS", "DEU", "GHA", "JAM", "JPN", "GIB", "DJI", "JOR", "GRC", "GRD", "GRL", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GNQ", "GUY", "GUF", "HTI", "HND", "HKG", "IND", "IDN", "IRN", "IRQ", "IRL", "ISL", "BVT", "IMN", "CXR", "NFK", "ALA", "CYM", "CCK", "COK", "FRO", "FLK", "HMD", "MNP", "MHL", "UMI", "PCN", "SLB", "VGB", "VIR", "ISR", "ITA", "JEY", "KAZ", "KEN", "KGZ", "KIR", "KWT", "LAO", "LSO", "LVA", "LBN", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MKD", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MAR", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MNG", "MNE", "MSR", "MOZ", "NAM", "NRU", "NPL", "NIC", "NER", "NGA", "NIU", "NOR", "NCL", "NZL", "OMN", "NLD", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PYF", "POL", "PRI", "PRT", "MCO", "QAT", "GBR", "COD", "CZE", "CAF", "COG", "DOM", "REU", "ROU", "RWA", "RUS", "ESH", "KNA", "LCA", "SHN", "VCT", "BLM", "MAF", "SPM", "WSM", "ASM", "SMR", "STP", "SEN", "SRB", "SYC", "SLE", "SGP", "SYR", "SVK", "SVN", "SOM", "ESP", "LKA", "USA", "ZAF", "SDN", "SUR", "SJM", "SWE", "CHE", "SWZ", "TWN", "TJK", "TZA", "ATF", "IOT", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UKR", "UGA", "HUN", "URY", "UZB", "VUT", "VEN", "VNM", "WLF", "YEM", "ZMB", "ZWE" ]
+        },
+        "dataNascita" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "indirizzoResidenza_sedeLegale" : {
+          "$ref" : "#/definitions/indirizzoResidenza_sedeLegale"
+        },
+        "pubblicaAmministrazione" : {
+          "$ref" : "#/definitions/PubblicaAmministrazioneType"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiEsazioneNuovoIntestatarioType" : {
+      "type" : "object",
+      "required" : [ "stato", "CAP", "toponimoStraniero", "descrizioneComune", "toponimoItaliano", "via" ],
+      "properties" : {
+        "CAP" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "istatComune" : {
+          "type" : "string"
+        },
+        "descrizioneComune" : {
+          "type" : "string"
+        },
+        "toponimoItaliano" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "toponimoStraniero" : {
+          "type" : "string"
+        },
+        "civico" : {
+          "$ref" : "#/definitions/CivicoType"
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "presso" : {
+          "type" : "string"
+        },
+        "provincia" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string",
+          "enum" : [ "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATA", "ATG", "ANT", "SAU", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BEL", "BLZ", "BEN", "BMU", "BTN", "BLR", "MMR", "BOL", "BIH", "BWA", "BRA", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "TCD", "CHL", "CHN", "CYP", "VAT", "COL", "COM", "PRK", "KOR", "CIV", "CRI", "HRV", "CUB", "DNK", "DMA", "ECU", "EGY", "SLV", "ARE", "ERI", "EST", "ETH", "FJI", "PHL", "FIN", "FRA", "GAB", "GMB", "GEO", "SGS", "DEU", "GHA", "JAM", "JPN", "GIB", "DJI", "JOR", "GRC", "GRD", "GRL", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GNQ", "GUY", "GUF", "HTI", "HND", "HKG", "IND", "IDN", "IRN", "IRQ", "IRL", "ISL", "BVT", "IMN", "CXR", "NFK", "ALA", "CYM", "CCK", "COK", "FRO", "FLK", "HMD", "MNP", "MHL", "UMI", "PCN", "SLB", "VGB", "VIR", "ISR", "ITA", "JEY", "KAZ", "KEN", "KGZ", "KIR", "KWT", "LAO", "LSO", "LVA", "LBN", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MKD", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MAR", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MNG", "MNE", "MSR", "MOZ", "NAM", "NRU", "NPL", "NIC", "NER", "NGA", "NIU", "NOR", "NCL", "NZL", "OMN", "NLD", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PYF", "POL", "PRI", "PRT", "MCO", "QAT", "GBR", "COD", "CZE", "CAF", "COG", "DOM", "REU", "ROU", "RWA", "RUS", "ESH", "KNA", "LCA", "SHN", "VCT", "BLM", "MAF", "SPM", "WSM", "ASM", "SMR", "STP", "SEN", "SRB", "SYC", "SLE", "SGP", "SYR", "SVK", "SVN", "SOM", "ESP", "LKA", "USA", "ZAF", "SDN", "SUR", "SJM", "SWE", "CHE", "SWZ", "TWN", "TJK", "TZA", "ATF", "IOT", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UKR", "UGA", "HUN", "URY", "UZB", "VUT", "VEN", "VNM", "WLF", "YEM", "ZMB", "ZWE" ]
+        },
+        "via" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CivicoType" : {
+      "type" : "object",
+      "required" : [ "civicoDescrittivo" ],
+      "properties" : {
+        "civicoDescrittivo" : {
+          "type" : "string"
+        },
+        "suffisso" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaPreventivoConnessioniAttive" : {
+      "type" : "object",
+      "required" : [ "PreventivoConnessioniAttive" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "HeaderRichiesta" : {
+          "$ref" : "#/definitions/HeaderRichiesta"
+        },
+        "PreventivoConnessioniAttive" : {
+          "$ref" : "#/definitions/PreventivoConnessioniAttive"
+        }
+      }
+    },
+    "IntestatarioPreventivo" : {
+      "type" : "object",
+      "required" : [ "codiceFiscale" ],
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "sesso" : {
+          "type" : "string",
+          "enum" : [ "M", "F" ]
+        },
+        "provinciaNascita" : {
+          "type" : "string"
+        },
+        "comuneNascita" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "dataNascita" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "statoNascita" : {
+          "type" : "string",
+          "enum" : [ "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATA", "ATG", "ANT", "SAU", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB", "BEL", "BLZ", "BEN", "BMU", "BTN", "BLR", "MMR", "BOL", "BIH", "BWA", "BRA", "BRN", "BGR", "BFA", "BDI", "KHM", "CMR", "CAN", "CPV", "TCD", "CHL", "CHN", "CYP", "VAT", "COL", "COM", "PRK", "KOR", "CIV", "CRI", "HRV", "CUB", "DNK", "DMA", "ECU", "EGY", "SLV", "ARE", "ERI", "EST", "ETH", "FJI", "PHL", "FIN", "FRA", "GAB", "GMB", "GEO", "SGS", "DEU", "GHA", "JAM", "JPN", "GIB", "DJI", "JOR", "GRC", "GRD", "GRL", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GNQ", "GUY", "GUF", "HTI", "HND", "HKG", "IND", "IDN", "IRN", "IRQ", "IRL", "ISL", "BVT", "IMN", "CXR", "NFK", "ALA", "CYM", "CCK", "COK", "FRO", "FLK", "HMD", "MNP", "MHL", "UMI", "PCN", "SLB", "VGB", "VIR", "ISR", "ITA", "JEY", "KAZ", "KEN", "KGZ", "KIR", "KWT", "LAO", "LSO", "LVA", "LBN", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MKD", "MDG", "MWI", "MYS", "MDV", "MLI", "MLT", "MAR", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MNG", "MNE", "MSR", "MOZ", "NAM", "NRU", "NPL", "NIC", "NER", "NGA", "NIU", "NOR", "NCL", "NZL", "OMN", "NLD", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PYF", "POL", "PRI", "PRT", "MCO", "QAT", "GBR", "COD", "CZE", "CAF", "COG", "DOM", "REU", "ROU", "RWA", "RUS", "ESH", "KNA", "LCA", "SHN", "VCT", "BLM", "MAF", "SPM", "WSM", "ASM", "SMR", "STP", "SEN", "SRB", "SYC", "SLE", "SGP", "SYR", "SVK", "SVN", "SOM", "ESP", "LKA", "USA", "ZAF", "SDN", "SUR", "SJM", "SWE", "CHE", "SWZ", "TWN", "TJK", "TZA", "ATF", "IOT", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UKR", "UGA", "HUN", "URY", "UZB", "VUT", "VEN", "VNM", "WLF", "YEM", "ZMB", "ZWE" ]
+        },
+        "trattamentoIva" : {
+          "type" : "string"
+        },
+        "settoreMerceologico" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "tipoSoggettoLogico" : {
+          "type" : "string"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "pubblicaAmministrazione" : {
+          "$ref" : "#/definitions/PubblicaAmministrazioneType"
+        },
+        "e-mailPEC" : {
+          "type" : "string"
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 7
+        },
+        "splitPayment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UbicazionePuntoConnessione" : {
+      "type" : "object",
+      "properties" : {
+        "flagIndirizzoPross" : {
+          "type" : "boolean"
+        },
+        "toponimo" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "via" : {
+          "type" : "string"
+        },
+        "civicoDescrittivo" : {
+          "type" : "string"
+        },
+        "civicoNumerico" : {
+          "type" : "integer"
+        },
+        "suffisso" : {
+          "type" : "string"
+        },
+        "provincia" : {
+          "type" : "string"
+        },
+        "comune" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "flagOpzioneIndirizzo" : {
+          "type" : "boolean"
+        },
+        "coordinataX" : {
+          "type" : "integer"
+        },
+        "coordinataY" : {
+          "type" : "integer"
+        },
+        "indirizzoPuntoEsistenteRete" : {
+          "type" : "string"
+        },
+        "foglio" : {
+          "type" : "string"
+        },
+        "particella" : {
+          "type" : "string"
+        },
+        "subalterno" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiProduttore" : {
+      "type" : "object",
+      "required" : [ "codiceFiscale" ],
+      "properties" : {
+        "tipoSoggettoLogico" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "sesso" : {
+          "type" : "string"
+        },
+        "dataNascita" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        },
+        "inQualitaDi" : {
+          "type" : "string"
+        },
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "sedeLegale" : {
+          "type" : "string"
+        },
+        "telefonoFisso" : {
+          "type" : "string"
+        },
+        "telefonoMobile" : {
+          "type" : "string"
+        },
+        "fax" : {
+          "type" : "string"
+        },
+        "e-mail" : {
+          "type" : "string"
+        },
+        "indirizzoResidenza_sedeLegale" : {
+          "$ref" : "#/definitions/indirizzoResidenza_sedeLegale"
+        },
+        "indirizzoEsazione" : {
+          "$ref" : "#/definitions/indirizzoEsazione"
+        },
+        "trattamentoIVA" : {
+          "type" : "string"
+        },
+        "pubblicaAmministrazione" : {
+          "$ref" : "#/definitions/PubblicaAmministrazioneType"
+        },
+        "rappresentanteLegale" : {
+          "$ref" : "#/definitions/rappresentanteLegale"
+        },
+        "e-mailPEC" : {
+          "type" : "string"
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 7
+        },
+        "splitPayment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "DatiSedeLegale" : {
+      "type" : "object",
+      "required" : [ "stato", "descrizioneVia", "cap", "civicoDescrittivo", "descrizioneComune", "provincia" ],
+      "properties" : {
+        "toponimo" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "toponimoItaliano" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "toponimoStraniero" : {
+          "type" : "string"
+        },
+        "descrizioneVia" : {
+          "type" : "string"
+        },
+        "civicoDescrittivo" : {
+          "type" : "string"
+        },
+        "suffisso" : {
+          "type" : "string"
+        },
+        "istatComune" : {
+          "type" : "string"
+        },
+        "descrizioneComune" : {
+          "type" : "string"
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "cap" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "provincia" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiReferenteType" : {
+      "type" : "object",
+      "required" : [ "telefonoMobile", "telefonoFisso" ],
+      "properties" : {
+        "cognome" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "telefonoFisso" : {
+          "type" : "string"
+        },
+        "telefonoMobile" : {
+          "type" : "string"
+        },
+        "e-mail" : {
+          "type" : "string"
+        },
+        "fax" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HeaderRichiesta" : {
+      "type" : "object",
+      "properties" : {
+        "richiesta" : {
+          "$ref" : "#/definitions/Richiesta"
+        },
+        "richiedente" : {
+          "$ref" : "#/definitions/Richiedente"
+        },
+        "flagContattoRete" : {
+          "type" : "boolean"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "rappresentanteLegale" : {
+      "type" : "object",
+      "required" : [ "stato", "dataNascita", "cognome", "nome", "codiceFiscale" ],
+      "properties" : {
+        "nome" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        },
+        "dataNascita" : {
+          "type" : "string",
+          "format" : "date"
+        }
+      }
+    },
+    "AttestazioneRuoloRichiedente" : {
+      "type" : "object",
+      "properties" : {
+        "titolaritaPuntoDiConnessione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ConfigurazioneSSPC" : {
+      "type" : "object",
+      "properties" : {
+        "flagSSPC" : {
+          "type" : "boolean"
+        },
+        "codiceSSPC" : {
+          "type" : "string"
+        },
+        "flagModificaSSPC" : {
+          "type" : "boolean"
+        },
+        "tipologiaSSPC" : {
+          "type" : "string"
+        },
+        "codicePOD" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "tipologiaPOD" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "dismissione" : {
+          "type" : "array",
+          "items" : {
+            "type" : "boolean",
+            "type" : "boolean",
+            "uniqueItems" : false
+          }
+        },
+        "potenzaRichiesta" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number",
+            "format" : "double",
+            "uniqueItems" : false
+          }
+        },
+        "distributore" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "PubblicaAmministrazioneType" : {
+      "type" : "object",
+      "required" : [ "IDPubAmministrazione", "codiceUfficio", "splitPayment", "dataInizioCodiceUfficioPA" ],
+      "properties" : {
+        "splitPayment" : {
+          "type" : "string"
+        },
+        "IDPubAmministrazione" : {
+          "type" : "string"
+        },
+        "codiceUfficio" : {
+          "type" : "string"
+        },
+        "dataInizioCodiceUfficioPA" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "CodiceCIG" : {
+          "type" : "string"
+        },
+        "CodiceCUP" : {
+          "type" : "string"
+        },
+        "DeterminazioneDirigenziale" : {
+          "type" : "string"
+        },
+        "IdentificativoContratto" : {
+          "type" : "string"
+        },
+        "DataContratto" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "PEC" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PreventivoConnessioneAttivaPostRes" : {
+      "type" : "object",
+      "required" : [ "RispostaPreventivi" ],
+      "properties" : {
+        "RispostaPreventivi" : {
+          "$ref" : "#/definitions/RispostaPreventivi"
+        }
+      }
+    },
+    "Dichiarazioni" : {
+      "type" : "object",
+      "properties" : {
+        "flagEsistenzaAltriRichiedenti" : {
+          "type" : "boolean"
+        },
+        "flagAutPubDatiAltriRichiedenti" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "PreventivoConnessioneAttivaPostReq" : {
+      "type" : "object",
+      "required" : [ "RichiestaPreventivoConnessioniAttive" ],
+      "properties" : {
+        "RichiestaPreventivoConnessioniAttive" : {
+          "$ref" : "#/definitions/RichiestaPreventivoConnessioniAttive"
+        }
+      }
+    },
+    "DatiCommercialiImpiantoProduzione" : {
+      "type" : "object",
+      "properties" : {
+        "fontePrimaria" : {
+          "type" : "string"
+        },
+        "tipologiaProduzione" : {
+          "type" : "string"
+        },
+        "destinazioneCommercialePresuntiva" : {
+          "type" : "string"
+        },
+        "altraDestinazioneCommerciale" : {
+          "type" : "string"
+        },
+        "incentivazione" : {
+          "type" : "string"
+        },
+        "altroIncentivo" : {
+          "type" : "string"
+        },
+        "richiestaSuperbonus" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RecapitoComunicazioniFornitura" : {
+      "type" : "object",
+      "properties" : {
+        "presso" : {
+          "type" : "string"
+        },
+        "toponimo" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "via" : {
+          "type" : "string"
+        },
+        "civicoNumerico" : {
+          "type" : "integer"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "comune" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "provincia" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        }
+      }
+    },
+    "indirizzoEsazione" : {
+      "type" : "object",
+      "properties" : {
+        "presso" : {
+          "type" : "string"
+        },
+        "toponimo" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "descrizioneVia" : {
+          "type" : "string"
+        },
+        "civicoNumerico" : {
+          "type" : "integer"
+        },
+        "suffisso" : {
+          "type" : "string"
+        },
+        "CAPResidenza" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "comuneResidenza" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "provinciaResidenza" : {
+          "type" : "string"
+        },
+        "statoResidenza_sedeLegale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiTecniciPrelievo" : {
+      "type" : "object",
+      "properties" : {
+        "potenzaPrelievo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "potenzaRichiestaPrelievo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "numeroFasiPrelievo" : {
+          "type" : "string"
+        },
+        "tensioneAlimentazione" : {
+          "type" : "string"
+        },
+        "classeTensione" : {
+          "type" : "string"
+        },
+        "potenzaAlimentServAusiliari" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "potenzaAlimentServAusiliariAccumulo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "prelievoDedicatoServAusiliari" : {
+          "type" : "boolean"
+        },
+        "settoreMercDestPotServAusliari" : {
+          "type" : "string"
+        },
+        "esistenzaAltriPODServAusliari" : {
+          "type" : "boolean"
+        },
+        "PODServAusiliari" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Richiedente" : {
+      "type" : "object",
+      "required" : [ "NomeRichiedente", "RuoloRichiedente" ],
+      "properties" : {
+        "NomeRichiedente" : {
+          "type" : "string"
+        },
+        "RuoloRichiedente" : {
+          "type" : "string",
+          "enum" : [ "backOffice", "frontOffice", "trader", "am", "supervisor", "tutela", "salvaguardia", "metering", "cutover", "FOcutover" ]
+        }
+      }
+    },
+    "indirizzoResidenza_sedeLegale" : {
+      "type" : "object",
+      "properties" : {
+        "toponimo" : {
+          "type" : "string",
+          "maxLength" : 10000
+        },
+        "descrizioneVia" : {
+          "type" : "string"
+        },
+        "dettaglioCivico" : {
+          "type" : "string"
+        },
+        "civicoNumerico" : {
+          "type" : "integer"
+        },
+        "suffisso" : {
+          "type" : "string"
+        },
+        "CAPResidenza" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "localita" : {
+          "type" : "string"
+        },
+        "comuneResidenza" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "provinciaResidenza" : {
+          "type" : "string"
+        },
+        "statoResidenza_sedeLegale" : {
+          "type" : "string"
+        },
+        "codiceIstatComune" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AppuntamentoHandlerType" : {
+      "type" : "object",
+      "required" : [ "fasciaOrariaDaIntervento", "dataIntervento", "fasciaOrariaAIntervento", "idIntervento" ],
+      "properties" : {
+        "idIntervento" : {
+          "type" : "integer"
+        },
+        "dataIntervento" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "fasciaOrariaDaIntervento" : {
+          "type" : "string"
+        },
+        "fasciaOrariaAIntervento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RispostaPreventivi" : {
+      "type" : "object",
+      "required" : [ "EsitoAccettabilita", "Testata" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "EsitoAccettabilita" : {
+          "$ref" : "#/definitions/EsitoAccettabilita"
+        },
+        "appuntamento" : {
+          "$ref" : "#/definitions/AppuntamentoHandlerType"
+        },
+        "suffissoPratica" : {
+          "type" : "string"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "EsitoAccettabilita" : {
+      "type" : "object",
+      "required" : [ "Ammissibilita" ],
+      "properties" : {
+        "Ammissibilita" : {
+          "type" : "string"
+        },
+        "CodiceEsito" : {
+          "type" : "string"
+        },
+        "Motivazione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiRichiedentePreventivoRapido" : {
+      "type" : "object",
+      "properties" : {
+        "tipologiaSoggetto" : {
+          "type" : "string"
+        },
+        "altro" : {
+          "type" : "string"
+        },
+        "intestatarioCC" : {
+          "type" : "string"
+        },
+        "codiceIBAN" : {
+          "type" : "string"
+        },
+        "trattamentoIVA" : {
+          "type" : "string"
+        },
+        "pubblicaAmministrazione" : {
+          "$ref" : "#/definitions/PubblicaAmministrazioneType"
+        }
+      }
+    },
+    "DatiFornitura" : {
+      "type" : "object",
+      "required" : [ "RecapitoComunicazioniFornitura", "DatiContrattuali", "DettaglioUbicazione" ],
+      "properties" : {
+        "DettaglioUbicazione" : {
+          "$ref" : "#/definitions/DettaglioUbicazione"
+        },
+        "DatiContrattuali" : {
+          "$ref" : "#/definitions/DatiContrattuali"
+        },
+        "DatiReferenteFornitura" : {
+          "$ref" : "#/definitions/DatiReferenteType"
+        },
+        "RecapitoComunicazioniFornitura" : {
+          "$ref" : "#/definitions/RecapitoComunicazioniFornitura"
+        }
+      }
+    },
+    "Testata" : {
+      "type" : "object",
+      "required" : [ "Piva_distributore", "CodPraticaEsterna", "Cod_servizio", "Cod_flusso", "Piva_utente" ],
+      "properties" : {
+        "Cod_servizio" : {
+          "type" : "string"
+        },
+        "Cod_flusso" : {
+          "type" : "string"
+        },
+        "Piva_utente" : {
+          "type" : "string"
+        },
+        "Piva_distributore" : {
+          "type" : "string"
+        },
+        "CodPraticaEsterna" : {
+          "type" : "string"
+        },
+        "CodPraticaMW" : {
+          "type" : "string"
+        },
+        "Cod_contr_disp" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RealizzazioneImpianto" : {
+      "type" : "object",
+      "properties" : {
+        "dataPrevistaInizioLavori" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dataPrevistaConclusioneLavori" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dataPrevistaEntrataEsercizio" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "noteTecniche" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiImpianto" : {
+      "type" : "object",
+      "required" : [ "DatiTecniciImmissioneAccumulo", "DatiCommercialiImpiantoProduzione", "SezioniImpianto", "RealizzazioneImpianto", "UbicazionePuntoConnessione" ],
+      "properties" : {
+        "UbicazionePuntoConnessione" : {
+          "$ref" : "#/definitions/UbicazionePuntoConnessione"
+        },
+        "DatiCommercialiImpiantoProduzione" : {
+          "$ref" : "#/definitions/DatiCommercialiImpiantoProduzione"
+        },
+        "DatiTecniciImmissioneAccumulo" : {
+          "$ref" : "#/definitions/DatiTecniciImmissioneAccumulo"
+        },
+        "DatiTecniciPrelievo" : {
+          "$ref" : "#/definitions/DatiTecniciPrelievo"
+        },
+        "RealizzazioneImpianto" : {
+          "$ref" : "#/definitions/RealizzazioneImpianto"
+        },
+        "SezioniImpianto" : {
+          "$ref" : "#/definitions/SezioniImpianto"
+        },
+        "ConfigurazioneSSPC" : {
+          "$ref" : "#/definitions/ConfigurazioneSSPC"
+        },
+        "noteTecniche" : {
+          "type" : "string"
+        },
+        "DatiTecniciAccumulo" : {
+          "$ref" : "#/definitions/DatiTecniciAccumuloType"
+        }
+      }
+    },
+    "Richiesta" : {
+      "type" : "object",
+      "properties" : {
+        "CodiceRichiesta" : {
+          "type" : "string"
+        },
+        "DataRichiesta" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CanaleDiProvenienza" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TipologiaRichiesta" : {
+      "type" : "object",
+      "required" : [ "codiceTipoServizio", "descrizioneTipoServizio" ],
+      "properties" : {
+        "impiantoSingoloLottoImpianti" : {
+          "type" : "string"
+        },
+        "numeroImpiantiLotto" : {
+          "type" : "string"
+        },
+        "potenzaImmissioneComplessivaLotto" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "codiceLotto" : {
+          "type" : "string"
+        },
+        "codiceTipoServizio" : {
+          "type" : "string"
+        },
+        "descrizioneTipoServizio" : {
+          "type" : "string"
+        },
+        "modalitaConnessione" : {
+          "type" : "string"
+        },
+        "referentiCondivisionePuntoConnessione" : {
+          "type" : "string"
+        },
+        "flagNuovaConnessione" : {
+          "type" : "boolean"
+        },
+        "codicePOD" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiContrattuali" : {
+      "type" : "object",
+      "properties" : {
+        "UsoFornitura" : {
+          "type" : "string"
+        },
+        "TipoFornitura" : {
+          "type" : "string"
+        },
+        "residenza" : {
+          "type" : "boolean"
+        },
+        "venditore" : {
+          "type" : "string"
+        },
+        "flagMoroso" : {
+          "type" : "boolean"
+        },
+        "MandatoConnessione" : {
+          "type" : "string"
+        },
+        "MercatoAttuale" : {
+          "type" : "string",
+          "enum" : [ "0001 - USIPRTRN", "0002 - IPACEAVIRT", "0003 - MERLIB", "0004 - MERTUT", "0005 - SALVA", "0006 - USIPRACEA", "0007 - VATICANO", "0008 - IPACEA", "0009 - USIBILANC", "0010 - INTERD", "0011 - MLIBTRARFI" ]
+        },
+        "certificazioneAntiabusivismo" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "DatiTecniciAccumuloType" : {
+      "type" : "object",
+      "required" : [ "tipoTecnologiaAccumulo", "potenzaNominaleSistemaAccumulo", "modalitaInstallazione", "sottotipologiaSistemaAccumulo" ],
+      "properties" : {
+        "modalitaInstallazione" : {
+          "type" : "string",
+          "enum" : [ "MONODIREZIONALE - LATO PRODUZIONE", "BIDIREZIONALE - LATO PRODUZIONE", "BIDIREZIONALE - POST PRODUZIONE" ]
+        },
+        "posizionamento" : {
+          "type" : "string",
+          "enum" : [ "LATO CORRENTE CONTINUA - CC", "LATO CORRENTE ALTERNATA - CA" ]
+        },
+        "potenzaNominaleInverter" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "potenzaNominaleSistemaAccumulo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "codiceSezione" : {
+          "type" : "string"
+        },
+        "tipoTecnologiaAccumulo" : {
+          "type" : "string",
+          "enum" : [ "BATTERIA ELETTROCHIMICA", "ALTRI ACCUMULATORI" ]
+        },
+        "sottotipologiaSistemaAccumulo" : {
+          "type" : "string",
+          "enum" : [ "BATTERIA AL LITIO", "BATTERIA AL PIOMBO", "BATTERIA AL NICHEL-CADMIO", "BATTERIA A FLUSSO VANADIO-REDOX", "BATTERIA Z.E.B.R.A", "BATTERIA NICHEL-IDRURI", "BATTERIA NICHEL-ZINCO", "BATTERIA A FLUSSO ZINCO-BROMO", "BATTERIA A FLUSSO POLI-SOLFURO-BROMURO", "BATTERIA METALLO-ARIA", "BATTERIA A VOLANO", "SUPERCONDENSATORI", "IDROGENO", "ARIA COMPRESSA" ]
+        },
+        "modelloSistemaAccumulo" : {
+          "type" : "string"
+        },
+        "costruttoreSistemaAccumulo" : {
+          "type" : "string"
+        },
+        "potenzaAttivaNominaleInRilascio" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "tensioneNominale" : {
+          "type" : "string",
+          "enum" : [ "127", "220", "380", "8400", "20000", "60000", "150000", "220000", "380000" ]
+        },
+        "capacitaAccumuloNominale" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "flagObbligatorietaInstallazioneMisuratore" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DettaglioUbicazione" : {
+      "type" : "object",
+      "properties" : {
+        "TipoPosizione" : {
+          "type" : "string",
+          "enum" : [ "01 - APPARTAMENTO", "02 - AREA ESTESA", "03 - ASCENSORE", "04 - COSTRUZIONE ISOLATA", "05 - DISPOSITIVO ELETTRONICO O SIMI", "06 - EDIFICIO", "07 - LINEA DI TRASPORTO", "08 - LOCALE", "09 - MANUFATTO", "10 - NICCHIA / MANUFATTO IN NICCHIA", "11 - PUNTO SOTTERRANEO", "12 - PUNTO STRADALE", "13 - NON DEFINITO", "14 - POD FITTIZIO PER FRODI", "15 - PALINA PUBBLICITARIA", "16 - MOBILI E PRECARIE", "17 - POD PERMANENTE PER FORNITURE TEMPORANEE", "18 - TEMP. PERM. SOLL. PERS.", "19 - TEMP. PERM. SENZA SOLL. PERS.", "20 - TEMP. TRANSITORIA - LUMINARIE - SENZA S.P.", "21 - TEMP. TRANS. LUMIN.-SENZA S.P.", "22 - TEMP. TRANS.- SPETT. VIAGG.- SENZA S.P.", "23 - TEMP. TRANSITORIA - ALTRO - SENZA S.P.", "24 - TEMP. TRANS.- ALTRO - SENZA S.P.", "25 - TEMP. TRANS.- ALTRO - CON S.P.", "26 - TEMP. TRANS.- ALTRO - CANTIERE", "27 - TEMP. PERM. E.E. SOLL. PERS.", "28 - TEMP. PERM. E.E. SENZA SOLL. PERS.", "29 - TEMP. TRANSITORIA - EMERGENZA ABITATIVA - SENZA S.", "30 - TEMP. TRANSITORIA - EMERGENZA ABITATIVA - CON S.P", "31 - RICARICA PUBBLICA AUTO ELETTRICA", "32 - RICARICA PRIVATA AUTO ELETTRICA", "34 - COTTIMO NON ATTIVO DA MIGRAZIONE", "37 - TEMP. TRANS.- SPETT. VIAGG.- CON S.P.", "35 - PUNTO DI INTERCONNESSIONE" ]
+        },
+        "scala" : {
+          "type" : "string"
+        },
+        "piano" : {
+          "type" : "string"
+        },
+        "interno" : {
+          "type" : "string"
+        },
+        "letteraInterno" : {
+          "type" : "string"
+        },
+        "edificio" : {
+          "type" : "string"
+        },
+        "civicoNumerico" : {
+          "type" : "integer"
+        },
+        "banco" : {
+          "type" : "string"
+        },
+        "lotto" : {
+          "type" : "string"
+        },
+        "complesso" : {
+          "type" : "string"
+        },
+        "isola" : {
+          "type" : "string"
+        },
+        "fabbricato" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

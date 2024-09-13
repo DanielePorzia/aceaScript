@@ -1,0 +1,217 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "ReclamiSapIsu",
+    "description" : "ReclamiSapIsu service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/isu/v1/reclamo/recuperodati" : {
+      "get" : {
+        "summary" : "getReclamiSapIsu",
+        "description" : "getReclamiSapIsu",
+        "operationId" : "get-areti-sapisu-v1-reclamisapisu-recuperodati",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "ContoContrattuale",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "NumeroFattura",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "NumeroUtenza",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "Targhetta",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RecuperoDatiGIPRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RecuperoDatiGIPRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoIsu" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "CodiceErrore" : {
+          "type" : "string"
+        },
+        "DescrizioneErrore" : {
+          "type" : "string"
+        },
+        "DatiGIP" : {
+          "$ref" : "#/definitions/DatiGip"
+        }
+      }
+    },
+    "Ubicazione" : {
+      "type" : "object",
+      "required" : [ "Chiave", "Valore" ],
+      "properties" : {
+        "Chiave" : {
+          "type" : "string"
+        },
+        "Valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiUbicazioneFornitura" : {
+      "type" : "object",
+      "properties" : {
+        "Ubicazione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Ubicazione",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RecuperoDatiGIPRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoIsu" : {
+          "$ref" : "#/definitions/EsitoIsu"
+        }
+      }
+    },
+    "DatiGip" : {
+      "type" : "object",
+      "properties" : {
+        "ContoContrattuale" : {
+          "type" : "string"
+        },
+        "NumeroFattura" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "NumeroUtenza" : {
+          "type" : "string"
+        },
+        "DenominazioneCimitero" : {
+          "type" : "string"
+        },
+        "IndirizzoCimitero" : {
+          "type" : "string"
+        },
+        "NomeCognomeIntestatario" : {
+          "type" : "string"
+        },
+        "NomeCognomeDefunto" : {
+          "type" : "string"
+        },
+        "BusinessPartner" : {
+          "type" : "string"
+        },
+        "PraticaMWCommerciale" : {
+          "type" : "string"
+        },
+        "PraticaGuasto" : {
+          "type" : "string"
+        },
+        "DatiUbicazioneFornitura" : {
+          "$ref" : "#/definitions/DatiUbicazioneFornitura"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,328 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Continuita",
+    "description" : "Continuita service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/sappm/v1/continuita" : {
+      "post" : {
+        "summary" : "postContinuita",
+        "description" : "postContinuita - operazione post per veicolare le informazioni della Continuita del Servizio a PM",
+        "operationId" : "post-company-sappm-v1-continuita",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ContinuitaReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ContinuitaRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ContinuitaRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ContinuitaReq" : {
+      "type" : "object",
+      "required" : [ "Avviso" ],
+      "properties" : {
+        "Avviso" : {
+          "$ref" : "#/definitions/Avviso"
+        },
+        "Continuita" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Continuita",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Continuita" : {
+      "type" : "object",
+      "required" : [ "Matricola", "Progressivo" ],
+      "properties" : {
+        "Progressivo" : {
+          "type" : "integer"
+        },
+        "Matricola" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "DataOraInizio" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataOraFine" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "ElementoInterrotto" : {
+          "type" : "string"
+        },
+        "ImpiantoInterrotto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "MetodoRilevazione" : {
+          "type" : "string"
+        },
+        "CausaInterruzione" : {
+          "type" : "string"
+        },
+        "CodicePod" : {
+          "type" : "string",
+          "maxLength" : 18
+        },
+        "NomeSingoloUtente" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "InterrottoReclamante" : {
+          "type" : "string"
+        },
+        "ModalitaRialimentazione" : {
+          "type" : "string"
+        },
+        "NotePosizione" : {
+          "type" : "string",
+          "maxLength" : 136
+        },
+        "EseguitaInterruzioneImp" : {
+          "type" : "string"
+        },
+        "EseguitaRialimentazioneImp" : {
+          "type" : "string"
+        },
+        "TipoManovraDisalimentazione" : {
+          "type" : "string"
+        },
+        "TipoManovraRialimentazione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Avviso" : {
+      "type" : "object",
+      "required" : [ "CodiceAvviso", "MatricolaTestata" ],
+      "properties" : {
+        "CodiceAvviso" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NoteTestata" : {
+          "type" : "string",
+          "maxLength" : 136
+        },
+        "MatricolaTestata" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "EsisteInterruzione" : {
+          "type" : "string"
+        },
+        "AccutePost" : {
+          "type" : "boolean"
+        },
+        "AccutePre" : {
+          "type" : "boolean"
+        },
+        "AccuteRic" : {
+          "type" : "boolean"
+        },
+        "CabinaPrimaria" : {
+          "type" : "string"
+        },
+        "Linea" : {
+          "type" : "string"
+        },
+        "CausaInterruzioneAT" : {
+          "type" : "string"
+        },
+        "CausaInterruzioneMT" : {
+          "type" : "string"
+        },
+        "Codice1Estr1TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "PrimoEstr1TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Codice2Estr1TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "SecondoEstr1TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Codice1Estr2TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "PrimoEstr2TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Codice2Estr2TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "SecondoEstr2TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Codice1Estr3TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "PrimoEstr3TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Codice2Estr3TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "SecondoEstr3TrattoGuasto" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "UtilizzoGE" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DettaglioErrore" : {
+      "type" : "object",
+      "required" : [ "Progressivo" ],
+      "properties" : {
+        "Progressivo" : {
+          "type" : "integer"
+        },
+        "DescrizioneProgressivo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContinuitaRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "DettaglioErrore" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DettaglioErrore",
+            "uniqueItems" : false
+          }
+        }
+      }
+    }
+  }
+}

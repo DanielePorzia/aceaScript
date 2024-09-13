@@ -1,0 +1,170 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Mail",
+    "description" : "api/v1/areti/interface/mail service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/mail" : {
+      "post" : {
+        "summary" : "postApi/v1/areti/interface/mail",
+        "description" : "postApi/v1/areti/interface/mail",
+        "operationId" : "post-api-v1-areti-interface-mail",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InvioMailInput"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InvioMailOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InvioMailOutput"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "InvioMailInput" : {
+      "type" : "object",
+      "required" : [ "InvioMail" ],
+      "properties" : {
+        "InvioMail" : {
+          "$ref" : "#/definitions/InvioMail"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Attachment" : {
+      "type" : "object",
+      "required" : [ "ContentType" ],
+      "properties" : {
+        "ContentType" : {
+          "type" : "string"
+        },
+        "FileName" : {
+          "type" : "string"
+        },
+        "BinaryContent" : { }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvioMailOutput" : {
+      "type" : "object",
+      "required" : [ "EsitoHttp" ],
+      "properties" : {
+        "EsitoHttp" : {
+          "$ref" : "#/definitions/EsitoHttp"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "InvioMail" : {
+      "type" : "object",
+      "required" : [ "MailPec", "BodyText", "To", "Subject" ],
+      "properties" : {
+        "MailPec" : {
+          "type" : "boolean"
+        },
+        "To" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "Cc" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "Subject" : {
+          "type" : "string"
+        },
+        "BodyText" : {
+          "type" : "string"
+        },
+        "Attachment" : {
+          "$ref" : "#/definitions/Attachment"
+        }
+      }
+    }
+  }
+}

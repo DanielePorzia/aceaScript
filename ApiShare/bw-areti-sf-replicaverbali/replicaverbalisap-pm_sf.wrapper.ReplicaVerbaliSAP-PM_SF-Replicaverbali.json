@@ -1,0 +1,96 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Replicaverbali",
+    "description" : " service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/sf/v1/verbali/replica" : {
+      "post" : {
+        "summary" : "postReplicaVerbali",
+        "description" : "postReplicaVerbali",
+        "operationId" : "post-replicaverbali",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ReplicaVerbaliRequest"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ReplicaVerbaliResponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ReplicaVerbaliResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ReplicaVerbaliResponse" : {
+      "type" : "object",
+      "properties" : {
+        "Id" : {
+          "type" : "string"
+        },
+        "Success" : {
+          "type" : "string"
+        },
+        "ErrorMessage" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReplicaVerbaliRequest" : {
+      "type" : "object",
+      "properties" : {
+        "DataVer" : {
+          "type" : "string"
+        },
+        "Pod" : {
+          "type" : "string"
+        },
+        "Odl" : {
+          "type" : "string"
+        },
+        "Pratica" : {
+          "type" : "string"
+        },
+        "Via" : {
+          "type" : "string"
+        },
+        "Civico" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "Prov" : {
+          "type" : "string"
+        },
+        "Localita" : {
+          "type" : "string"
+        },
+        "Scala" : {
+          "type" : "string"
+        },
+        "Piano" : {
+          "type" : "string"
+        },
+        "Interno" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

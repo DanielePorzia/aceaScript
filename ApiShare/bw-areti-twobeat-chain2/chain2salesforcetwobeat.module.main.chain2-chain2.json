@@ -1,0 +1,184 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "chain2",
+    "description" : "Summary about the new REST service."
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/twobeat/v1/chain2/attivazione" : {
+      "post" : {
+        "summary" : "",
+        "description" : "",
+        "operationId" : "post-rest-v1-acea-integration-chain-2-attivazione",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/Attivazione_Request"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a Attivazione_Response to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/Attivazione_Response"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/twobeat/v1/chain2/cessazione" : {
+      "post" : {
+        "summary" : "",
+        "description" : "",
+        "operationId" : "post-rest-v1-acea-integration-chain-2-cessazione",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/Cessazione_Request"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a Cessazione_Response to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/Cessazione_Response"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Attivazione_Response" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "string"
+        },
+        "Codice_errore" : {
+          "type" : "string"
+        },
+        "Descrizione_errore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Cessazione_Response" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "string"
+        },
+        "Codice_errore" : {
+          "type" : "string"
+        },
+        "Descrizione_errore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Attivazione_Request" : {
+      "type" : "object",
+      "required" : [ "ADECD", "Matricola_contatore", "RequestId", "POD", "Profilo", "System_Title", "UserId", "Chiave_Esercizio", "Chiave_Inizializzazione" ],
+      "properties" : {
+        "RequestId" : {
+          "type" : "string",
+          "maxLength" : 36
+        },
+        "UserId" : {
+          "type" : "string"
+        },
+        "Matricola_contatore" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "Profilo" : {
+          "type" : "string"
+        },
+        "Chiave_Inizializzazione" : {
+          "type" : "string"
+        },
+        "Chiave_Esercizio" : {
+          "type" : "string"
+        },
+        "System_Title" : {
+          "type" : "string"
+        },
+        "ADECD" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Cessazione_Request" : {
+      "type" : "object",
+      "required" : [ "Matricola_contatore", "RequestId", "POD", "Profilo", "UserId" ],
+      "properties" : {
+        "RequestId" : {
+          "type" : "string",
+          "maxLength" : 36
+        },
+        "UserId" : {
+          "type" : "string"
+        },
+        "Matricola_contatore" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "Profilo" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

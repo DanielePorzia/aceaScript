@@ -1,0 +1,213 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Timbrature",
+    "description" : "Timbrature service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/timbrature" : {
+      "patch" : {
+        "summary" : "patchTimbrature",
+        "description" : "patchTimbrature - operazione patch per la creazione e aggiornamento di un oggetto Timbrature su FS",
+        "operationId" : "patch-fs-v1-timbrature",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/TimbraturePatchReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a TimbraturePatchRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/TimbraturePatchRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "TimbraturePatchRes" : {
+      "type" : "object",
+      "required" : [ "TimbraturePatchOutputParams" ],
+      "properties" : {
+        "TimbraturePatchOutputParams" : {
+          "$ref" : "#/definitions/TimbraturePatchOutputTypes"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "TimbraturePatchReq" : {
+      "type" : "object",
+      "required" : [ "TimbraturePatchInputParams" ],
+      "properties" : {
+        "TimbraturePatchInputParams" : {
+          "$ref" : "#/definitions/TimbraturePatchInputTypes"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TimbraturePatchInputTypes" : {
+      "type" : "object",
+      "required" : [ "OraTimbratura", "UtenteSAP", "ExtId", "DataTimbratura", "Direzione", "CID" ],
+      "properties" : {
+        "ExtId" : {
+          "type" : "string",
+          "maxLength" : 30
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "DataTimbratura" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "OraTimbratura" : {
+          "type" : "string",
+          "maxLength" : 6
+        },
+        "UtenteSAP" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Direzione" : {
+          "type" : "string",
+          "maxLength" : 1
+        },
+        "Longitudine" : {
+          "type" : "integer"
+        },
+        "Latitudine" : {
+          "type" : "integer"
+        },
+        "Motivo" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "NumeroBadge" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "VersioneBadge" : {
+          "type" : "string",
+          "maxLength" : 1
+        },
+        "IdBadge" : {
+          "type" : "string",
+          "maxLength" : 20
+        },
+        "CIDRiferimento" : {
+          "type" : "string",
+          "maxLength" : 8
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TimbraturePatchOutputTypes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "FS_id" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

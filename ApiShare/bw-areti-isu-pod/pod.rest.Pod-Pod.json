@@ -1,0 +1,1589 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Pod",
+    "description" : "Resource service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/isu/v1/pod/{codicepod}/attivo" : {
+      "get" : {
+        "summary" : "getResource",
+        "description" : "getResource",
+        "operationId" : "get-areti-isu-v1-pod-attivo",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codicepod",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a VisualizzaInfopodCaGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/VisualizzaInfopodCaGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/isu/v1/pod/forniture" : {
+      "get" : {
+        "summary" : "getPod",
+        "description" : "getPod",
+        "operationId" : "get-areti-isu-v1-pod-forniture",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "contrattoDispacciamento",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "codiceImpianto",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "codicepod",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "ruoloUtente",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a VisualizzaInfoPODLightGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/VisualizzaInfoPODLightGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ContattoAnagraficaPodType" : {
+      "type" : "object",
+      "properties" : {
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "DescrizioneVia" : {
+          "type" : "string"
+        },
+        "CivicoDescrittivo" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "DescrizioneComune" : {
+          "type" : "string"
+        },
+        "SiglaProvincia" : {
+          "type" : "string"
+        },
+        "TelefonoFisso" : {
+          "type" : "string"
+        },
+        "TelefonoMobile" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoAnagraficaPOD" : {
+      "type" : "object",
+      "required" : [ "Descrizione", "EsitoRichiesta", "FornituraAnagraficaPOD", "Codice", "PodVirtuale" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "string"
+        },
+        "EsitoRichiesta" : {
+          "type" : "string",
+          "enum" : [ "OK", "KO" ]
+        },
+        "Descrizione" : {
+          "type" : "string"
+        },
+        "PodVirtuale" : {
+          "$ref" : "#/definitions/PODVirtualeAnagraficaPOD"
+        },
+        "FornituraAnagraficaPOD" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FornituraAnagraficaPOD",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Accessorio" : {
+      "type" : "object",
+      "properties" : {
+        "AccessorioAnagraficaPod" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AccessorioAnagraficaPod",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Sezione" : {
+      "type" : "object",
+      "required" : [ "UbicazioneApparecchiatura", "CodiceSezione" ],
+      "properties" : {
+        "UbicazioneApparecchiatura" : {
+          "type" : "string"
+        },
+        "PotenzaNominale" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "CodiceSezione" : {
+          "type" : "string"
+        },
+        "TipoSchema" : {
+          "type" : "string"
+        },
+        "DataEntrataEserc" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "DataFineEserc" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "StatoSezione" : {
+          "type" : "string"
+        },
+        "Accessibilita" : {
+          "type" : "string"
+        },
+        "TensioneDiRete" : {
+          "type" : "string"
+        },
+        "ValoreTensione" : {
+          "type" : "string"
+        },
+        "NumeroFasi" : {
+          "type" : "string"
+        },
+        "NoteTecniche" : {
+          "type" : "string"
+        },
+        "ModalitaInstallo" : {
+          "type" : "string"
+        },
+        "TipoLinea" : {
+          "type" : "string"
+        },
+        "MisuratoreAttivo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MisuratoreAttivo",
+            "uniqueItems" : false
+          }
+        },
+        "AccessorioAttivo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AccessorioAttivo",
+            "uniqueItems" : false
+          }
+        },
+        "DatiTecniciAccumulo" : {
+          "$ref" : "#/definitions/DatiTecniciAccumuloPODType"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PODVirtualeAnagraficaPOD" : {
+      "type" : "object",
+      "required" : [ "CodicePubblicoPOD", "IndirizzoPODVirtuale", "ClasseTensione" ],
+      "properties" : {
+        "CodicePubblicoPOD" : {
+          "type" : "string"
+        },
+        "CodImpianto" : {
+          "type" : "string"
+        },
+        "PotenzaDisponibileDiAllaccio" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "ClasseTensione" : {
+          "type" : "string"
+        },
+        "ValoreTensione" : {
+          "type" : "string"
+        },
+        "NumeroFasi" : {
+          "type" : "string"
+        },
+        "TensioneDiRete" : {
+          "type" : "string"
+        },
+        "PotenzaLimite" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "PotenzaDisponibileInImmissione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TipologiaPosizione" : {
+          "type" : "string"
+        },
+        "IndirizzoPODVirtuale" : {
+          "$ref" : "#/definitions/IndirizzoPODVirtualeAnagraficaPOD"
+        }
+      }
+    },
+    "LetturaPodAttivo" : {
+      "type" : "object",
+      "required" : [ "IdNumeratore", "Valore" ],
+      "properties" : {
+        "Data" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "Valore" : {
+          "type" : "string"
+        },
+        "IdNumeratore" : {
+          "type" : "string"
+        },
+        "Tipo" : {
+          "type" : "string"
+        },
+        "Categoria" : {
+          "type" : "string"
+        },
+        "K" : {
+          "type" : "string"
+        },
+        "NumeroCifre" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MisuratoreAttivo" : {
+      "type" : "object",
+      "required" : [ "DescrizioneModello", "Matricola", "PianoOrarioMisura", "CodiceModello", "StatoMisuratore", "StatoTelegestione" ],
+      "properties" : {
+        "Matricola" : {
+          "type" : "string"
+        },
+        "StatoMisuratore" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "CodiceModello" : {
+          "type" : "string"
+        },
+        "DescrizioneModello" : {
+          "type" : "string"
+        },
+        "ClasseFunzione" : {
+          "type" : "string"
+        },
+        "StatoTelegestione" : {
+          "type" : "string"
+        },
+        "AnnoBollo" : {
+          "type" : "string"
+        },
+        "CodicePinsa" : {
+          "type" : "string"
+        },
+        "DataCambiamentoStato" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "PianoOrarioMisura" : {
+          "type" : "string"
+        },
+        "DataDecorrenzaPianoOrario" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataValidita" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "NumeroSIM" : {
+          "type" : "string"
+        },
+        "OperatoreSIM" : {
+          "type" : "string"
+        },
+        "LetturaPodAttivo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LetturaPodAttivo",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "MisuratoreAnagraficaPod" : {
+      "type" : "object",
+      "required" : [ "Matricola", "DescStatoMisuratore", "CodiceModelloMisuratore", "DataCambiamentoStato", "DescrizioneModelloMisuratore", "StatoMisuratore", "PianoOrarioDiMisura", "DataDecorrenzaPianoOrarioDiMisura", "StatoTelegestione" ],
+      "properties" : {
+        "Matricola" : {
+          "type" : "string"
+        },
+        "StatoMisuratore" : {
+          "type" : "string"
+        },
+        "DescStatoMisuratore" : {
+          "type" : "string"
+        },
+        "CodiceModelloMisuratore" : {
+          "type" : "string"
+        },
+        "DescrizioneModelloMisuratore" : {
+          "type" : "string"
+        },
+        "ClasseFunzione" : {
+          "type" : "string"
+        },
+        "StatoTelegestione" : {
+          "type" : "string"
+        },
+        "AnnoBollo" : {
+          "type" : "string"
+        },
+        "CodicePinza" : {
+          "type" : "string"
+        },
+        "DataCambiamentoStato" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "PianoOrarioDiMisura" : {
+          "type" : "string"
+        },
+        "DataDecorrenzaPianoOrarioDiMisura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataValidita" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "NumeroSim" : {
+          "type" : "string"
+        },
+        "OperatoreSim" : {
+          "type" : "string"
+        },
+        "Lettura" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Lettura",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "PODEstesoAnagraficaPOD" : {
+      "type" : "object",
+      "required" : [ "IndirizzoPodEsteso" ],
+      "properties" : {
+        "CodicePodEsteso" : {
+          "type" : "string"
+        },
+        "StatoPODEsteso" : {
+          "type" : "string"
+        },
+        "CollocazioneCod" : {
+          "type" : "string"
+        },
+        "CollocazioneDesc" : {
+          "type" : "string"
+        },
+        "Accessibilita" : {
+          "type" : "string"
+        },
+        "TensioneDiRete" : {
+          "type" : "string"
+        },
+        "ValoreTensione" : {
+          "type" : "string"
+        },
+        "NumeroFasi" : {
+          "type" : "string"
+        },
+        "NoteTecniche" : {
+          "type" : "string"
+        },
+        "PianoOrarioDiMisura" : {
+          "type" : "string"
+        },
+        "ModalitaInstallo" : {
+          "type" : "string"
+        },
+        "TipoLinea" : {
+          "type" : "string"
+        },
+        "IndirizzoPodEsteso" : {
+          "$ref" : "#/definitions/IndirizzoPodEstesoAnagraficaPodType"
+        },
+        "Misuratore" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Misuratore",
+            "uniqueItems" : false
+          }
+        },
+        "Accessorio" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Accessorio",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "SoggettoPlayerAnagraficaPOD" : {
+      "type" : "object",
+      "properties" : {
+        "NumeroContrattoDispacciamento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoAnagraficaPODCa" : {
+      "type" : "object",
+      "required" : [ "AnagraficaPODResultCa" ],
+      "properties" : {
+        "AnagraficaPODResultCa" : {
+          "$ref" : "#/definitions/EsitoAnagraficaPODCaType"
+        }
+      }
+    },
+    "ImpiantoProduzione" : {
+      "type" : "object",
+      "required" : [ "CodicePubblicoPOD", "StatoPODVirtuale", "ClasseTensione" ],
+      "properties" : {
+        "CodicePubblicoPOD" : {
+          "type" : "string"
+        },
+        "StatoPODVirtuale" : {
+          "type" : "string"
+        },
+        "PotenzaImmissioneImpiantoAttivo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "ClasseTensione" : {
+          "type" : "string"
+        },
+        "DataRealizzazione" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CodiceCensimp" : {
+          "type" : "string"
+        },
+        "CodiceOfficina" : {
+          "type" : "string"
+        },
+        "DataEntrEsercizio" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "Fatt_MIS" : {
+          "type" : "string"
+        },
+        "CodiceUP" : {
+          "type" : "string"
+        },
+        "PotenzaImmissioneUP" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "DestinazioneCommerciale" : {
+          "type" : "string"
+        },
+        "Incentivazione" : {
+          "type" : "string"
+        },
+        "TipoFonteEnergeticaPrimaria" : {
+          "type" : "string"
+        },
+        "TipoMISProduzione" : {
+          "type" : "string"
+        },
+        "TipologiaProduzione" : {
+          "type" : "string"
+        },
+        "Fornitura" : {
+          "$ref" : "#/definitions/FornituraPODType"
+        },
+        "Sezione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Sezione",
+            "uniqueItems" : false
+          }
+        },
+        "SoggettoProduttore" : {
+          "$ref" : "#/definitions/SoggettoProduttorePODType"
+        }
+      }
+    },
+    "IndirizzoFornituraPODType" : {
+      "type" : "object",
+      "required" : [ "Cap", "SiglaProvincia", "CivicoDescrittivo", "DescrizioneVia", "Stato", "Comune" ],
+      "properties" : {
+        "DescrizioneVia" : {
+          "type" : "string"
+        },
+        "CivicoDescrittivo" : {
+          "type" : "string"
+        },
+        "Suffisso" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "Localita" : {
+          "type" : "string"
+        },
+        "CodiceISTATComune" : {
+          "type" : "string"
+        },
+        "Comune" : {
+          "type" : "string"
+        },
+        "SiglaProvincia" : {
+          "type" : "string"
+        },
+        "Stato" : {
+          "type" : "string"
+        },
+        "Toponimo" : {
+          "type" : "string"
+        },
+        "ToponimoCivico" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SoggettoPlayerAnagraficaPODType" : {
+      "type" : "object",
+      "properties" : {
+        "NumeroContrattoDispacciamento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AccessorioAnagraficaPod" : {
+      "type" : "object",
+      "required" : [ "CodiceModelloAccessorio", "DescTipoAccessorio", "CodiceTipoAccessorio" ],
+      "properties" : {
+        "CodiceModelloAccessorio" : {
+          "type" : "string"
+        },
+        "CodiceTipoAccessorio" : {
+          "type" : "string"
+        },
+        "DescTipoAccessorio" : {
+          "type" : "string"
+        },
+        "ValoreLimitatore" : {
+          "type" : "string"
+        },
+        "Rid1" : {
+          "type" : "string"
+        },
+        "Rid2" : {
+          "type" : "string"
+        },
+        "Rid3" : {
+          "type" : "string"
+        },
+        "MatricolaAceaLink" : {
+          "type" : "string"
+        },
+        "CostanteRid" : {
+          "type" : "string"
+        },
+        "DataValidita" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "FabbricanteAccessorio" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FornituraAnagraficaPODType" : {
+      "type" : "object",
+      "required" : [ "StatoFornituraCod", "CategoriaUso", "TipoMercatoRiferimento", "MercatoAttuale" ],
+      "properties" : {
+        "NumeroUtenza" : {
+          "type" : "integer"
+        },
+        "StatoFornituraCod" : {
+          "type" : "string"
+        },
+        "StatoFornituraDesc" : {
+          "type" : "string"
+        },
+        "DataInizioFornitura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataFineFornitura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CategoriaUso" : {
+          "type" : "string"
+        },
+        "CodiceAtecueCod" : {
+          "type" : "string"
+        },
+        "CodiceAtecueDesc" : {
+          "type" : "string"
+        },
+        "TipoFornitura" : {
+          "type" : "string"
+        },
+        "PotenzaContrattualeImpegnata" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "PotenzaMassimaPrelevabile" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TipoUtilizzoContrattoCod" : {
+          "type" : "string"
+        },
+        "TipoUtilizzoContrattoDesc" : {
+          "type" : "string"
+        },
+        "CodiceTariffa" : {
+          "type" : "string"
+        },
+        "DescrizioneCodiceTariffa" : {
+          "type" : "string"
+        },
+        "Residenza" : {
+          "type" : "string"
+        },
+        "TipoMercatoRiferimento" : {
+          "type" : "string"
+        },
+        "DestinazioneUso" : {
+          "type" : "string"
+        },
+        "PianoOrario" : {
+          "type" : "string"
+        },
+        "Interrompibilita" : {
+          "type" : "string"
+        },
+        "OreUtilizzoGiornaliere" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TipoTrattamentoCommerciale" : {
+          "type" : "string"
+        },
+        "DataDecorrenzaTipoTrattamentoCommerciale" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CausaleFornitura" : {
+          "type" : "string"
+        },
+        "MercatoAttuale" : {
+          "type" : "string"
+        },
+        "PotenzaInImissione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "MandatoDiConnessione" : {
+          "type" : "string"
+        },
+        "Contatto" : {
+          "$ref" : "#/definitions/ContattoAnagraficaPodType"
+        },
+        "TipologiaDiFornitura" : {
+          "type" : "string"
+        },
+        "TraderInadempiente" : {
+          "type" : "string",
+          "maxLength" : 1
+        },
+        "DataDecorrenzaRicarica" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "AgevolazioneTica" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SoggettoCLFAnagraficaPODType" : {
+      "type" : "object",
+      "properties" : {
+        "Id" : {
+          "type" : "string"
+        },
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "RagioneSociale" : {
+          "type" : "string"
+        },
+        "StatusCertificazione" : {
+          "type" : "string"
+        },
+        "TipoSoggettoLogicoDesc" : {
+          "type" : "string"
+        },
+        "TipoSoggettoFisico" : {
+          "type" : "string"
+        },
+        "TipoSoggettoLogicoCod" : {
+          "type" : "string"
+        },
+        "TipoSocieta" : {
+          "type" : "string"
+        },
+        "PartitaIVA" : {
+          "type" : "string"
+        },
+        "NazioneIVA" : {
+          "type" : "string"
+        },
+        "CodiceFiscale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Misuratore" : {
+      "type" : "object",
+      "properties" : {
+        "MisuratoreAnagraficaPod" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MisuratoreAnagraficaPod",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AccessorioAttivo" : {
+      "type" : "object",
+      "required" : [ "CodiceModelloAccessorio", "DescTipoAccessorio", "CodiceTipoAccessorio" ],
+      "properties" : {
+        "CodiceModelloAccessorio" : {
+          "type" : "string"
+        },
+        "CodiceTipoAccessorio" : {
+          "type" : "string"
+        },
+        "DescTipoAccessorio" : {
+          "type" : "string"
+        },
+        "ValoreLimitatore" : {
+          "type" : "string"
+        },
+        "Rid1" : {
+          "type" : "string"
+        },
+        "Rid2" : {
+          "type" : "string"
+        },
+        "Rid3" : {
+          "type" : "string"
+        },
+        "MatricolaAceaLink" : {
+          "type" : "string"
+        },
+        "CostanteRid" : {
+          "type" : "string"
+        },
+        "DataValidita" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "FabbricanteAccessorio" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Lettura" : {
+      "type" : "object",
+      "properties" : {
+        "DataLettura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "ValoreLettura" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "IdNumeratore" : {
+          "type" : "string"
+        },
+        "TipoLettura" : {
+          "type" : "string"
+        },
+        "CategoriaNumeratore" : {
+          "type" : "string"
+        },
+        "TipoNumeratore" : {
+          "type" : "string"
+        },
+        "K" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "NumeroCifre" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TipoProgressivoLettura" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SoggettoCLFAnagraficaPOD" : {
+      "type" : "object",
+      "properties" : {
+        "Id" : {
+          "type" : "string"
+        },
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "RagioneSociale" : {
+          "type" : "string"
+        },
+        "StatusCertificazione" : {
+          "type" : "string"
+        },
+        "TipoSoggettoLogicoDesc" : {
+          "type" : "string"
+        },
+        "TipoSoggettoFisico" : {
+          "type" : "string"
+        },
+        "TipoSoggettoLogicoCod" : {
+          "type" : "string"
+        },
+        "TipoSocieta" : {
+          "type" : "string"
+        },
+        "PartitaIVA" : {
+          "type" : "string"
+        },
+        "NazioneIVA" : {
+          "type" : "string"
+        },
+        "CodiceFiscale" : {
+          "type" : "string"
+        },
+        "Nominativo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SoggettoProduttorePODType" : {
+      "type" : "object",
+      "required" : [ "IndirizzoFornituraResidenzaSedeLegale", "CodiceFiscale", "Telefono_obbl" ],
+      "properties" : {
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "Telefono_obbl" : {
+          "type" : "string"
+        },
+        "Telefono_facolt" : {
+          "type" : "string"
+        },
+        "Fax" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "TipoSoggettoLogico" : {
+          "type" : "string"
+        },
+        "TipoSoggettoFisico" : {
+          "type" : "string"
+        },
+        "RagioneSociale" : {
+          "type" : "string"
+        },
+        "InQualitaDi" : {
+          "type" : "string"
+        },
+        "PartitaIva" : {
+          "type" : "string"
+        },
+        "CodiceFiscale" : {
+          "type" : "string"
+        },
+        "TrattamentoIva" : {
+          "type" : "string"
+        },
+        "ComuneResidenza" : {
+          "type" : "string"
+        },
+        "ProvinciaResidenza" : {
+          "type" : "string"
+        },
+        "DataNascita" : {
+          "type" : "string"
+        },
+        "Sesso" : {
+          "type" : "string"
+        },
+        "SedeLegale" : {
+          "type" : "string"
+        },
+        "NazioneNascita" : {
+          "type" : "string"
+        },
+        "IndirizzoFornituraResidenzaSedeLegale" : {
+          "$ref" : "#/definitions/IndirizzoFornituraPODType"
+        }
+      }
+    },
+    "PodEstesoAnagraficaPOD" : {
+      "type" : "object",
+      "properties" : {
+        "PODEstesoAnagraficaPOD" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PODEstesoAnagraficaPOD",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "VisualizzaInfoPODLightGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAnagraficaPODFE" : {
+          "$ref" : "#/definitions/EsitoAnagraficaPOD"
+        }
+      }
+    },
+    "FornituraAnagraficaPOD" : {
+      "type" : "object",
+      "required" : [ "StatoFornituraCod", "CategoriaUso" ],
+      "properties" : {
+        "NumeroUtenza" : {
+          "type" : "integer"
+        },
+        "StatoFornituraCod" : {
+          "type" : "string"
+        },
+        "StatoFornituraDesc" : {
+          "type" : "string"
+        },
+        "DataInizioFornitura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "DataFineFornitura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CategoriaUso" : {
+          "type" : "string"
+        },
+        "CodiceAtecueCod" : {
+          "type" : "string"
+        },
+        "CodiceAtecueDesc" : {
+          "type" : "string"
+        },
+        "PotenzaContrattualeImpegnata" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "PotenzaMassimaPrelevabile" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TipoUtilizzoContrattoCod" : {
+          "type" : "string"
+        },
+        "TipoUtilizzoContrattoDesc" : {
+          "type" : "string"
+        },
+        "Residenza" : {
+          "type" : "string"
+        },
+        "Interrompibilita" : {
+          "type" : "string"
+        },
+        "PotenzaInImissione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "MandatoDiConnessione" : {
+          "type" : "string"
+        },
+        "Contatto" : {
+          "$ref" : "#/definitions/ContattoAnagraficaPod"
+        },
+        "TipologiaDiFornitura" : {
+          "type" : "string"
+        },
+        "Player" : {
+          "$ref" : "#/definitions/SoggettoPlayerAnagraficaPOD"
+        },
+        "SoggettoUtilizzatore" : {
+          "$ref" : "#/definitions/SoggettoCLFAnagraficaPOD"
+        }
+      }
+    },
+    "IndirizzoPODVirtualeAnagraficaPOD" : {
+      "type" : "object",
+      "required" : [ "DescrizioneComune", "CoordinataGis1", "ZonaUrbanistica", "IDCivico", "CoordinataGis2", "Cap", "SiglaProvincia", "Dug", "DescrizioneVia", "TipoCivico" ],
+      "properties" : {
+        "IDCivico" : {
+          "type" : "string"
+        },
+        "Edificio" : {
+          "type" : "string"
+        },
+        "Scala" : {
+          "type" : "string"
+        },
+        "Piano" : {
+          "type" : "string"
+        },
+        "Interno" : {
+          "type" : "string"
+        },
+        "LetteraInterno" : {
+          "type" : "string"
+        },
+        "Dug" : {
+          "type" : "string"
+        },
+        "DescrizioneVia" : {
+          "type" : "string"
+        },
+        "DescrizioneComune" : {
+          "type" : "string"
+        },
+        "SiglaProvincia" : {
+          "type" : "string"
+        },
+        "TipoCivico" : {
+          "type" : "string"
+        },
+        "CivicoNumerico" : {
+          "type" : "string"
+        },
+        "Suffisso" : {
+          "type" : "string"
+        },
+        "CivicoDiRiferimento" : {
+          "type" : "string"
+        },
+        "CoordinataGis1" : {
+          "type" : "string"
+        },
+        "CoordinataGis2" : {
+          "type" : "string"
+        },
+        "ZonaUrbanistica" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PODVirtualeAnagraficaPODType" : {
+      "type" : "object",
+      "required" : [ "CodicePubblicoPOD", "IndirizzoPODVirtuale", "StatoPOD", "ClasseTensione" ],
+      "properties" : {
+        "CodicePubblicoPOD" : {
+          "type" : "string"
+        },
+        "StatoPOD" : {
+          "type" : "string"
+        },
+        "Collocazione" : {
+          "type" : "string"
+        },
+        "Accessibilita" : {
+          "type" : "string"
+        },
+        "PotenzaDisponibileDiAllaccio" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "ClasseTensione" : {
+          "type" : "string"
+        },
+        "TipoSchema" : {
+          "type" : "string"
+        },
+        "PotenzaLimite" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "PotenzaDisponibileInImmissione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TipologiaPosizione" : {
+          "type" : "string"
+        },
+        "DescTipologiaPosizione" : {
+          "type" : "string"
+        },
+        "DataRealizzazione" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "TensioneDiRete" : {
+          "type" : "string"
+        },
+        "ValoreTensione" : {
+          "type" : "string"
+        },
+        "NumeroFasi" : {
+          "type" : "string"
+        },
+        "IndirizzoPODVirtuale" : {
+          "$ref" : "#/definitions/IndirizzoPODVirtualeAnagraficaPODType"
+        },
+        "PodEstesoAnagraficaPOD" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PodEstesoAnagraficaPOD",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "ContattoAnagraficaPod" : {
+      "type" : "object",
+      "properties" : {
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "DescrizioneVia" : {
+          "type" : "string"
+        },
+        "CivicoDescrittivo" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "DescrizioneComune" : {
+          "type" : "string"
+        },
+        "SiglaProvincia" : {
+          "type" : "string"
+        },
+        "TelefonoFisso" : {
+          "type" : "string"
+        },
+        "TelefonoMobile" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoAnagraficaPODCaType" : {
+      "type" : "object",
+      "required" : [ "EsitoRichiesta" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "string"
+        },
+        "EsitoRichiesta" : {
+          "type" : "string",
+          "enum" : [ "OK", "KO" ]
+        },
+        "Descrizione" : {
+          "type" : "string"
+        },
+        "PodVirtuale" : {
+          "$ref" : "#/definitions/PODVirtualeAnagraficaPODType"
+        },
+        "FornituraAnagraficaPOD" : {
+          "$ref" : "#/definitions/FornituraAnagraficaPODType"
+        },
+        "Player" : {
+          "$ref" : "#/definitions/SoggettoPlayerAnagraficaPODType"
+        },
+        "SoggettoUtilizzatore" : {
+          "$ref" : "#/definitions/SoggettoCLFAnagraficaPODType"
+        },
+        "ImpiantoPrincipalePassivo" : {
+          "$ref" : "#/definitions/ImpiantoPrincipalePassivoPODType"
+        },
+        "ImpiantoProduzione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ImpiantoProduzione",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "VisualizzaInfopodCaGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAnagraficaPODCa" : {
+          "$ref" : "#/definitions/EsitoAnagraficaPODCa"
+        }
+      }
+    },
+    "ImpiantoPrincipalePassivoPODType" : {
+      "type" : "object",
+      "required" : [ "CodicePubblicoPOD" ],
+      "properties" : {
+        "CodicePubblicoPOD" : {
+          "type" : "string"
+        },
+        "PotenzaImmissione" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "PotenzaNominaleProdotta" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "CodiceSSPC" : {
+          "type" : "string"
+        },
+        "DataSSPC" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "DataInizioSSPC" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "DataFineSSPC" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "Modalita" : {
+          "type" : "string"
+        },
+        "QualificaSSPC" : {
+          "type" : "string"
+        },
+        "TipoConnessione" : {
+          "type" : "string"
+        },
+        "TipoFonte" : {
+          "type" : "string"
+        },
+        "DestCommerciale" : {
+          "type" : "string"
+        },
+        "DataDismissione" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "TariffaMaggioranzaA3" : {
+          "type" : "string"
+        }
+      }
+    },
+    "IndirizzoPODVirtualeAnagraficaPODType" : {
+      "type" : "object",
+      "required" : [ "DescrizioneComune", "CoordinataGis1", "ZonaUrbanistica", "IDCivico", "CoordinataGis2", "Cap", "SiglaProvincia", "Dug", "DescrizioneVia", "TipoCivico" ],
+      "properties" : {
+        "IDCivico" : {
+          "type" : "string"
+        },
+        "Edificio" : {
+          "type" : "string"
+        },
+        "Scala" : {
+          "type" : "string"
+        },
+        "Piano" : {
+          "type" : "string"
+        },
+        "Interno" : {
+          "type" : "string"
+        },
+        "LetteraInterno" : {
+          "type" : "string"
+        },
+        "DettaglioCivico" : {
+          "type" : "string"
+        },
+        "Dug" : {
+          "type" : "string"
+        },
+        "DescrizioneVia" : {
+          "type" : "string"
+        },
+        "DescrizioneComune" : {
+          "type" : "string"
+        },
+        "SiglaProvincia" : {
+          "type" : "string"
+        },
+        "TipoCivico" : {
+          "type" : "string"
+        },
+        "CivicoNumerico" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Suffisso" : {
+          "type" : "string"
+        },
+        "CivicoDiRiferimentoSNC" : {
+          "type" : "string"
+        },
+        "CivicoDiRiferimento" : {
+          "type" : "string"
+        },
+        "CoordinataGis1" : {
+          "type" : "string"
+        },
+        "CoordinataGis2" : {
+          "type" : "string"
+        },
+        "ZonaUrbanistica" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiTecniciAccumuloPODType" : {
+      "type" : "object",
+      "required" : [ "ModalitaInstallazione", "PotenzaNominaleSistemaAccumulo", "SottotipologiaSistemaAccumulo", "TipoTecnologiaAccumulo" ],
+      "properties" : {
+        "ModalitaInstallazione" : {
+          "type" : "string"
+        },
+        "Posizionamento" : {
+          "type" : "string"
+        },
+        "PotenzaNominaleInverter" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "PotenzaNominaleSistemaAccumulo" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "CodiceSezione" : {
+          "type" : "string"
+        },
+        "TipoTecnologiaAccumulo" : {
+          "type" : "string"
+        },
+        "SottotipologiaSistemaAccumulo" : {
+          "type" : "string"
+        },
+        "ModelloSistemaAccumulo" : {
+          "type" : "string"
+        },
+        "CostruttoreSistemaAccumulo" : {
+          "type" : "string"
+        },
+        "PotenzaAttivaNominaleInRilascio" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "TensioneNominale" : {
+          "type" : "string"
+        },
+        "CapacitaAccumuloNominale" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "flagObbligatorietaInstallazioneMisuratore" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FornituraPODType" : {
+      "type" : "object",
+      "required" : [ "Telefono_obbl" ],
+      "properties" : {
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "Telefono_obbl" : {
+          "type" : "string"
+        },
+        "Telefono_facolt" : {
+          "type" : "string"
+        },
+        "Fax" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "IndirizzoPodEstesoAnagraficaPodType" : {
+      "type" : "object",
+      "required" : [ "Dug", "DescrizioneVia", "TipoCivico" ],
+      "properties" : {
+        "Dug" : {
+          "type" : "string"
+        },
+        "DescrizioneVia" : {
+          "type" : "string"
+        },
+        "TipoCivico" : {
+          "type" : "string"
+        },
+        "CivicoNumerico" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "Suffiso" : {
+          "type" : "string"
+        },
+        "CivicoDiRiferimentoSNC" : {
+          "type" : "string"
+        },
+        "CivicoDiRiferimentoNonSNC" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

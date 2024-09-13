@@ -1,0 +1,102 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "RichiestaRinunciaWSREST",
+    "description" : "Summary about the new REST service."
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/gse/v1/accesso/rinuncia" : {
+      "post" : {
+        "summary" : "",
+        "description" : "",
+        "operationId" : "post-richiestarinunciawsrest",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/root"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a rootRsp to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/rootRsp"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "root" : {
+      "type" : "object",
+      "required" : [ "codiceFlusso", "codiceFiscaleCliente", "codicePraticaGSE", "dataRichiestaRinuncia", "pod", "dataNotifica", "codiceRichiesta", "codiceServizio" ],
+      "properties" : {
+        "codiceRichiesta" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 20
+        },
+        "codiceServizio" : {
+          "type" : "string",
+          "enum" : [ "NAC", "RIN", "DIS" ]
+        },
+        "codiceFlusso" : {
+          "type" : "string",
+          "enum" : [ "RVE-API-00-010", "RVE-API-00-020", "RVE-API-00-030" ]
+        },
+        "codicePraticaGSE" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 18
+        },
+        "partitaIVACliente" : {
+          "type" : "string"
+        },
+        "codiceFiscaleCliente" : {
+          "type" : "string"
+        },
+        "pod" : {
+          "type" : "string"
+        },
+        "dataRichiestaRinuncia" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dataNotifica" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "rootRsp" : {
+      "type" : "object",
+      "properties" : {
+        "codiceRichiesta" : {
+          "type" : "string"
+        },
+        "codiceEsito" : {
+          "type" : "string"
+        },
+        "motivazione" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

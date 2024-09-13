@@ -1,0 +1,249 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Via",
+    "description" : "Via service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/isu/v1/stradario/via" : {
+      "get" : {
+        "summary" : "getVia",
+        "description" : "getVia",
+        "operationId" : "get-via",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codiceistatcomune",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "dug",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "matchtype",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "tiporicerca",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "via",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RicercaViaOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RicercaViaOutput"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/isu/v1/stradario/civico" : {
+      "get" : {
+        "summary" : "getCivico",
+        "description" : "getCivico",
+        "operationId" : "get-api-v1-areti-interface-stradario-civico",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "civiconumerico",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "idvia",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "suffisso",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "tipocivico",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "tiporicerca",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RicercaCivicoOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RicercaCivicoOutput"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "RicercaViaOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "OutputBody" : {
+          "$ref" : "#/definitions/OutputBody"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RicercaCivicoOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "OutputBody" : {
+          "$ref" : "#/definitions/OutputBody"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OutputBody" : {
+      "type" : "object",
+      "properties" : {
+        "EsitoRichiestaVia" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EsitoRichiestaVia",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoRichiestaVia" : {
+      "type" : "object",
+      "required" : [ "stato", "descrizioneVia", "idVia", "DUG", "codiceIstatComune", "flagValidazione", "descrizioneComune", "siglaProvincia" ],
+      "properties" : {
+        "idVia" : {
+          "type" : "string"
+        },
+        "DUG" : {
+          "type" : "string"
+        },
+        "descrizioneVia" : {
+          "type" : "string"
+        },
+        "codiceIstatComune" : {
+          "type" : "string"
+        },
+        "descrizioneComune" : {
+          "type" : "string"
+        },
+        "siglaProvincia" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        },
+        "flagValidazione" : {
+          "type" : "string"
+        },
+        "centroStorico" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

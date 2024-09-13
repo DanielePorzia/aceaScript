@@ -1,0 +1,226 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "DeliberaCapacitiva",
+    "description" : "Summary about the new REST service."
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/sapisu/v1/deliberacapacitiva" : {
+      "get" : {
+        "summary" : "",
+        "description" : "",
+        "operationId" : "get-delibera-capacitiva",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "ANNO",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "POD",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "BSN_PART",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "MESE",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a DeliberaCapacitivaOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/DeliberaCapacitivaOutput"
+            },
+            "headers" : { }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/DeliberaCapacitivaFault"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/DeliberaCapacitivaFault"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "DeliberaCapacitivaOutput" : {
+      "type" : "object",
+      "properties" : {
+        "YT_STORICOH" : {
+          "$ref" : "#/definitions/YT_STORICOH_Type"
+        },
+        "YT_STORICOMT" : {
+          "$ref" : "#/definitions/YT_STORICOMT_Type"
+        }
+      }
+    },
+    "YT_STORICOH_Type" : {
+      "type" : "object",
+      "properties" : {
+        "storico_h" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/storico_h",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "storico_h" : {
+      "type" : "object",
+      "properties" : {
+        "BSNPART" : {
+          "type" : "string"
+        },
+        "DATETO" : {
+          "type" : "string"
+        },
+        "DATEFROM" : {
+          "type" : "string"
+        },
+        "ESITO" : {
+          "type" : "string"
+        },
+        "DESCRIZIONE" : {
+          "type" : "string"
+        },
+        "Y_CF" : {
+          "type" : "string"
+        },
+        "Y_IVA" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DeliberaCapacitivaFault" : {
+      "type" : "object",
+      "required" : [ "Y_DESCRIZIONE", "Y_ESITO" ],
+      "properties" : {
+        "Y_ESITO" : {
+          "type" : "string"
+        },
+        "Y_DESCRIZIONE" : {
+          "type" : "string"
+        }
+      }
+    },
+    "YT_STORICOMT_Type" : {
+      "type" : "object",
+      "properties" : {
+        "storico_mt" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/storico_mt",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "storico_mt" : {
+      "type" : "object",
+      "properties" : {
+        "BSNPART" : {
+          "type" : "string"
+        },
+        "DATEFROM" : {
+          "type" : "string"
+        },
+        "DATETO" : {
+          "type" : "string"
+        },
+        "EXT_UI" : {
+          "type" : "string"
+        },
+        "MESE" : {
+          "type" : "string"
+        },
+        "ANNO" : {
+          "type" : "string"
+        },
+        "TIMESTAMP" : {
+          "type" : "string"
+        },
+        "F1_ACTIVE_EN" : {
+          "type" : "string"
+        },
+        "F2_ACTIVE_EN" : {
+          "type" : "string"
+        },
+        "F3_ACTIVE_EN" : {
+          "type" : "string"
+        },
+        "TOT_ACTIVE_EN" : {
+          "type" : "string"
+        },
+        "F1_REACTIVE_EN" : {
+          "type" : "string"
+        },
+        "F2_REACTIVE_EN" : {
+          "type" : "string"
+        },
+        "F3_REACTIVE_EN" : {
+          "type" : "string"
+        },
+        "TOT_REACTIVE_EN" : {
+          "type" : "string"
+        },
+        "F1_CAPACITIVA" : {
+          "type" : "string"
+        },
+        "F2_CAPACITIVA" : {
+          "type" : "string"
+        },
+        "F3_CAPACITIVA" : {
+          "type" : "string"
+        },
+        "TOT_CAPACITIVA" : {
+          "type" : "string"
+        },
+        "F1_INDUTTIVA" : {
+          "type" : "string"
+        },
+        "F2_INDUTTIVA" : {
+          "type" : "string"
+        },
+        "F3_INDUTTIVA" : {
+          "type" : "string"
+        },
+        "TOT_INDUTTIVA" : {
+          "type" : "string"
+        },
+        "ESITO" : {
+          "type" : "string"
+        },
+        "DESCRIZIONE" : {
+          "type" : "string"
+        },
+        "INDUTTIVA" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

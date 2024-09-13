@@ -1,0 +1,366 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "ParametriContrattuali",
+    "description" : "ParametriContrattuali service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/parametricontrattuali/proroga" : {
+      "post" : {
+        "summary" : "postParametriContrattuali",
+        "description" : "postParametriContrattuali",
+        "operationId" : "post-areti-mw-v1-parametricontrattuali-proroga",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ProrogaPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ProrogaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ProrogaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ProrogaPostRes" : {
+      "type" : "object",
+      "required" : [ "RispostaSTC" ],
+      "properties" : {
+        "RispostaSTC" : {
+          "$ref" : "#/definitions/RispostaSTC"
+        }
+      }
+    },
+    "ProrogaPostReq" : {
+      "type" : "object",
+      "required" : [ "RichiestaProroga" ],
+      "properties" : {
+        "RichiestaProroga" : {
+          "$ref" : "#/definitions/RichiestaProroga"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Proroga" : {
+      "type" : "object",
+      "required" : [ "DataFineFornitura", "OraFineFornitura" ],
+      "properties" : {
+        "DataFineFornitura" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "OraFineFornitura" : {
+          "type" : "string"
+        },
+        "oreUtilizzo" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "CambioDatiCommercialiProroga" : {
+      "type" : "object",
+      "required" : [ "Proroga" ],
+      "properties" : {
+        "Proroga" : {
+          "$ref" : "#/definitions/Proroga"
+        }
+      }
+    },
+    "Richiedente" : {
+      "type" : "object",
+      "required" : [ "NomeRichiedente", "RuoloRichiedente" ],
+      "properties" : {
+        "NomeRichiedente" : {
+          "type" : "string"
+        },
+        "RuoloRichiedente" : {
+          "type" : "string",
+          "enum" : [ "backOffice", "frontOffice", "trader", "am", "supervisor", "tutela", "salvaguardia", "metering", "cutover", "FOcutover" ]
+        }
+      }
+    },
+    "AppuntamentoHandlerType" : {
+      "type" : "object",
+      "required" : [ "fasciaOrariaDaIntervento", "dataIntervento", "fasciaOrariaAIntervento", "idIntervento" ],
+      "properties" : {
+        "idIntervento" : {
+          "type" : "integer"
+        },
+        "dataIntervento" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "fasciaOrariaDaIntervento" : {
+          "type" : "string"
+        },
+        "fasciaOrariaAIntervento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatiServiziTCType" : {
+      "type" : "object",
+      "required" : [ "pod" ],
+      "properties" : {
+        "descrizioneTipoServizio" : {
+          "type" : "string"
+        },
+        "pod" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaProroga" : {
+      "type" : "object",
+      "required" : [ "Testata", "ParametriContrattualiProroga" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "HeaderRichiesta" : {
+          "$ref" : "#/definitions/HeaderRichiesta"
+        },
+        "ParametriContrattualiProroga" : {
+          "$ref" : "#/definitions/ParametriContrattualiProroga"
+        }
+      }
+    },
+    "EsitoAccettabilita" : {
+      "type" : "object",
+      "required" : [ "Ammissibilita" ],
+      "properties" : {
+        "Ammissibilita" : {
+          "type" : "string"
+        },
+        "CodiceEsito" : {
+          "type" : "string"
+        },
+        "Motivazione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Testata" : {
+      "type" : "object",
+      "required" : [ "Piva_distributore", "CodPraticaEsterna", "Cod_servizio", "Cod_flusso", "Piva_utente" ],
+      "properties" : {
+        "Cod_servizio" : {
+          "type" : "string"
+        },
+        "Cod_flusso" : {
+          "type" : "string"
+        },
+        "Piva_utente" : {
+          "type" : "string"
+        },
+        "Piva_distributore" : {
+          "type" : "string"
+        },
+        "CodPraticaEsterna" : {
+          "type" : "string"
+        },
+        "CodPraticaMW" : {
+          "type" : "string"
+        },
+        "Cod_contr_disp" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "HeaderRichiesta" : {
+      "type" : "object",
+      "properties" : {
+        "richiesta" : {
+          "$ref" : "#/definitions/Richiesta"
+        },
+        "richiedente" : {
+          "$ref" : "#/definitions/Richiedente"
+        },
+        "flagContattoRete" : {
+          "type" : "boolean"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Richiesta" : {
+      "type" : "object",
+      "properties" : {
+        "CodiceRichiesta" : {
+          "type" : "string"
+        },
+        "DataRichiesta" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CanaleDiProvenienza" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FatturazioneTutelaType" : {
+      "type" : "object",
+      "properties" : {
+        "ordineDiVendita" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "dataCreazioneOdV" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "fatturazioneImmediata" : {
+          "type" : "string",
+          "enum" : [ "S", "N" ]
+        },
+        "tipoSpedizione" : {
+          "type" : "string",
+          "enum" : [ "01", "02", "03" ]
+        },
+        "dataDecorrenzaVariazione" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "contractAccount" : {
+          "type" : "string",
+          "maxLength" : 12
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ParametriContrattualiProroga" : {
+      "type" : "object",
+      "required" : [ "DatiServiziTCProroga", "DatiIntestatarioProroga", "CambioDatiCommercialiProroga" ],
+      "properties" : {
+        "DatiServiziTCProroga" : {
+          "$ref" : "#/definitions/DatiServiziTCType"
+        },
+        "DatiIntestatarioProroga" : {
+          "$ref" : "#/definitions/DatiIntestatarioType"
+        },
+        "CambioDatiCommercialiProroga" : {
+          "$ref" : "#/definitions/CambioDatiCommercialiProroga"
+        },
+        "richMassivaId" : {
+          "type" : "string"
+        },
+        "idRelativoRicMassiva" : {
+          "type" : "string"
+        },
+        "DatiFatturazioneTutela" : {
+          "$ref" : "#/definitions/FatturazioneTutelaType"
+        }
+      }
+    },
+    "DatiIntestatarioType" : {
+      "type" : "object",
+      "properties" : {
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIva" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RispostaSTC" : {
+      "type" : "object",
+      "required" : [ "EsitoAccettabilita", "Testata" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "EsitoAccettabilita" : {
+          "$ref" : "#/definitions/EsitoAccettabilita"
+        },
+        "suffissoPratica" : {
+          "type" : "string"
+        },
+        "appuntamento" : {
+          "$ref" : "#/definitions/AppuntamentoHandlerType"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    }
+  }
+}

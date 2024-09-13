@@ -1,0 +1,289 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "AvvisoPm",
+    "description" : "AvvisoPm service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/sappm/v1/avvisopm" : {
+      "patch" : {
+        "summary" : "patchAvvisoPm",
+        "description" : "patchAvvisoPm - operazione patch per la creazione e/o modifica di un Avviso su SAP PM",
+        "operationId" : "patch-company-sappm-v1-avvisopm",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AvvisoPmReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AvvisoPmRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AvvisoPmRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Testata" : {
+      "type" : "object",
+      "required" : [ "Utenza", "Divisione", "DescrizioneAvviso" ],
+      "properties" : {
+        "DescrizioneAvviso" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "Priorita" : {
+          "type" : "string",
+          "maxLength" : 1
+        },
+        "Divisione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Utenza" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "SedeTecnica" : {
+          "type" : "string",
+          "maxLength" : 30
+        }
+      }
+    },
+    "AvvisoPm" : {
+      "type" : "object",
+      "required" : [ "Testata", "IdFs", "TipoAvviso" ],
+      "properties" : {
+        "IdFs" : {
+          "type" : "string"
+        },
+        "NumeroAvviso" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "TipoAvviso" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "TestoEsteso" : {
+          "type" : "string"
+        },
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "ParteOggetto" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ParteOggetto",
+            "uniqueItems" : false
+          }
+        },
+        "CausaGuasto" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CausaGuasto",
+            "uniqueItems" : false
+          }
+        },
+        "TabPartner" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TabPartner",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "ParteOggetto" : {
+      "type" : "object",
+      "required" : [ "ItemKey", "ItemSortNo", "GruppoCodice", "Codice" ],
+      "properties" : {
+        "ItemKey" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "ItemSortNo" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "TestoRisposta" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "GruppoCodice" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "Codice" : {
+          "type" : "string",
+          "maxLength" : 4
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TabPartner" : {
+      "type" : "object",
+      "required" : [ "RuoloPartner", "Partner" ],
+      "properties" : {
+        "RuoloPartner" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "Partner" : {
+          "type" : "string",
+          "maxLength" : 12
+        }
+      }
+    },
+    "AvvisoPmRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "AvvisoPmReq" : {
+      "type" : "object",
+      "required" : [ "AvvisoPm" ],
+      "properties" : {
+        "AvvisoPm" : {
+          "$ref" : "#/definitions/AvvisoPm"
+        }
+      }
+    },
+    "CausaGuasto" : {
+      "type" : "object",
+      "required" : [ "ItemCauseKey", "CauseKey", "GruppoCodice", "Codice", "CauseSortNo", "ItemCauseSortNo" ],
+      "properties" : {
+        "CauseKey" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "CauseSortNo" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "ItemCauseKey" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "ItemCauseSortNo" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "TestoRisposta" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "GruppoCodice" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "Codice" : {
+          "type" : "string",
+          "maxLength" : 4
+        }
+      }
+    }
+  }
+}

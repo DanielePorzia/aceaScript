@@ -1,0 +1,197 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "MagazzinoPm",
+    "description" : "MagazzinoPm service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/sappm/v1/magazzino/stockmateriali" : {
+      "get" : {
+        "summary" : "getMagazzinoPm",
+        "description" : "getMagazzinoPm - operazione get per recuperare su SAP PM le informazioni dei materiali contenuti in un determinato Magazzino Viaggiante",
+        "operationId" : "get-conpany-sappm-v1-magazzino-stockmateriali",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "divisione",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "magazzino",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "cid",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a StockMaterialiGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/StockMaterialiGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "StockMateriali" : {
+      "type" : "object",
+      "required" : [ "Divisione", "Materiale", "MagazzinoViaggiante" ],
+      "properties" : {
+        "Materiale" : {
+          "type" : "string"
+        },
+        "DescrizioneMateriale" : {
+          "type" : "string"
+        },
+        "MagazzinoViaggiante" : {
+          "type" : "string"
+        },
+        "Divisione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "UtilizzoLibero" : {
+          "type" : "string"
+        },
+        "UnitaMisura" : {
+          "type" : "string"
+        },
+        "Serializzati" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Serializzati",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "StockMaterialiGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "StockMateriali" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/StockMateriali",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Serializzati" : {
+      "type" : "object",
+      "required" : [ "Seriale" ],
+      "properties" : {
+        "Seriale" : {
+          "type" : "string"
+        },
+        "Partita" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

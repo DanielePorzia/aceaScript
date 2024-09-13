@@ -1,0 +1,477 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Documento",
+    "description" : "Documento service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/dms/v1/documento/downloadfromdms" : {
+      "post" : {
+        "summary" : "postDownloadFromDMS",
+        "description" : "postDownloadFromDMS",
+        "operationId" : "post-api-v1-areti-interface-documento-downloadfromdms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/DownloadAndStoreInput"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a DownloadAndStoreOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/DownloadAndStoreOutput"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/dms/v1/documento" : {
+      "post" : {
+        "summary" : "postDocumento",
+        "description" : "postDocumento",
+        "operationId" : "post-api-v1-areti-interface-documento",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/DocumentoPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a DocumentoPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/DocumentoPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "getDocumento",
+        "description" : "getDocumento",
+        "operationId" : "get-api-v1-areti-interface-documento",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "filenetId",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a DownloadDocGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/DownloadDocGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "patchDocumento",
+        "description" : "patchDocumento",
+        "operationId" : "patch-areti-dms-v1-documento",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AssociaDocumentoReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AssociaDocumentoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AssociaDocumentoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "InserimentoDocumentoOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "InserimentoDocumentoOut" : {
+          "$ref" : "#/definitions/InserimentoDocumentoOutputTypes"
+        }
+      }
+    },
+    "AssociaDocumentoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "DownloadAndStoreInput" : {
+      "type" : "object",
+      "required" : [ "DownloadAndStore" ],
+      "properties" : {
+        "DownloadAndStore" : {
+          "$ref" : "#/definitions/DownloadAndStore"
+        }
+      }
+    },
+    "Return" : {
+      "type" : "object",
+      "properties" : {
+        "response" : {
+          "type" : "string"
+        },
+        "responseCode" : {
+          "type" : "string"
+        },
+        "responseDescription" : {
+          "type" : "string"
+        },
+        "documentTitle" : {
+          "type" : "string"
+        },
+        "BinaryContent" : { }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DownloadAndStore" : {
+      "type" : "object",
+      "properties" : {
+        "praticaMw" : {
+          "type" : "string"
+        },
+        "idDocDMS" : {
+          "type" : "string"
+        },
+        "codiceUtenza" : {
+          "type" : "string"
+        },
+        "codiceBP" : {
+          "type" : "string"
+        },
+        "sapDocID" : {
+          "type" : "string"
+        },
+        "dcsKey" : {
+          "type" : "string"
+        },
+        "direzione" : {
+          "type" : "string"
+        },
+        "canale" : {
+          "type" : "string"
+        },
+        "objId" : {
+          "type" : "string"
+        },
+        "documentTitle" : {
+          "type" : "string"
+        },
+        "relObjId" : {
+          "type" : "string"
+        },
+        "dataRicezione" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "categoria" : {
+          "type" : "string"
+        },
+        "tipoDocumento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DocumentoPostReq" : {
+      "type" : "object",
+      "required" : [ "InserimentoDocumento" ],
+      "properties" : {
+        "InserimentoDocumento" : {
+          "$ref" : "#/definitions/InserimentoDocumentoInputTypes"
+        }
+      }
+    },
+    "DocumentoPostRes" : {
+      "type" : "object",
+      "required" : [ "InserimentoDocumentoOutput" ],
+      "properties" : {
+        "InserimentoDocumentoOutput" : {
+          "$ref" : "#/definitions/InserimentoDocumentoOutput"
+        }
+      }
+    },
+    "InserimentoDocumentoOutputTypes" : {
+      "type" : "object",
+      "required" : [ "filenetId" ],
+      "properties" : {
+        "filenetId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DownloadDocGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito", "VisualizzaDocumentoOut" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "VisualizzaDocumentoOut" : {
+          "$ref" : "#/definitions/VisualizzaDocumentoOut"
+        }
+      }
+    },
+    "AssociaDocumentoReq" : {
+      "type" : "object",
+      "required" : [ "IDpraticaMW", "filenetID" ],
+      "properties" : {
+        "IDpraticaMW" : {
+          "type" : "string"
+        },
+        "filenetID" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DownloadAndStoreOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Return" : {
+          "$ref" : "#/definitions/Return"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "InserimentoDocumentoInputTypes" : {
+      "type" : "object",
+      "required" : [ "nomeDocumento", "formatoDocumento", "contenutoBinarioBase64" ],
+      "properties" : {
+        "caseID" : {
+          "type" : "string"
+        },
+        "accountID" : {
+          "type" : "string"
+        },
+        "BP" : {
+          "type" : "string"
+        },
+        "categoriaDocumento" : {
+          "type" : "string"
+        },
+        "chiaveDocumento" : {
+          "type" : "string"
+        },
+        "nomeDocumento" : {
+          "type" : "string"
+        },
+        "formatoDocumento" : {
+          "type" : "string",
+          "enum" : [ "EML", "PDF", "JPG", "PNG", "XLS", "XLSX", "CSV", "DOC", "DOCX", "HTML", "TXT", "XML", "P7S", "GIF", "JPEG", "ZIP", "HEIC", "DAT", "MSG", "ODS", "P7M", "TIF", "BMP", "DWG", "HTM", "ODT", "RTF", "ASC", "MP4", "NUMBERS", "PNGX" ]
+        },
+        "nomeCliente" : {
+          "type" : "string"
+        },
+        "cognomeCliente" : {
+          "type" : "string"
+        },
+        "ragioneSocialeCliente" : {
+          "type" : "string"
+        },
+        "codiceFiscale" : {
+          "type" : "string"
+        },
+        "partitaIVA" : {
+          "type" : "string"
+        },
+        "mailCliente" : {
+          "type" : "string"
+        },
+        "numTelefonoContatto" : {
+          "type" : "string"
+        },
+        "praticaMW" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "taskID" : {
+          "type" : "string"
+        },
+        "odl" : {
+          "type" : "string"
+        },
+        "avviso" : {
+          "type" : "string"
+        },
+        "contactID" : {
+          "type" : "string"
+        },
+        "contenutoBinarioBase64" : { },
+        "classeDocumentale" : {
+          "type" : "string"
+        },
+        "mailAccettazioneElettronica" : {
+          "type" : "string"
+        },
+        "dataOraAccettazioneElettronica" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "codiceProgetto" : {
+          "type" : "string"
+        },
+        "odl2" : {
+          "type" : "string"
+        },
+        "numeroBollato" : {
+          "type" : "string"
+        },
+        "statoWorkflow" : {
+          "type" : "string"
+        },
+        "enteAutorizzativo" : {
+          "type" : "string"
+        },
+        "versioneDocumento" : {
+          "type" : "string"
+        },
+        "direttoreOperativo" : {
+          "type" : "string"
+        },
+        "direttoreLavori" : {
+          "type" : "string"
+        },
+        "latitudineFs" : {
+          "type" : "string"
+        },
+        "longitudineFs" : {
+          "type" : "string"
+        },
+        "precisioneFs" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "VisualizzaDocumentoOut" : {
+      "type" : "object",
+      "required" : [ "nomeDocumento", "formatoDocumento", "contenutoBinarioBase64" ],
+      "properties" : {
+        "nomeDocumento" : {
+          "type" : "string"
+        },
+        "formatoDocumento" : {
+          "type" : "string"
+        },
+        "contenutoBinarioBase64" : { }
+      }
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Calendario",
+    "description" : "Calendario service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/calendario" : {
+      "post" : {
+        "summary" : "postCalendario",
+        "description" : "postCalendario",
+        "operationId" : "post-fs-v1-calendario",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InvioCalendarioPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InvioCalendarioPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InvioCalendarioPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ModelloShift" : {
+      "type" : "object",
+      "required" : [ "DataOraFineCalendario", "TipoShift", "DataOraInizioCalendario" ],
+      "properties" : {
+        "TipoShift" : {
+          "type" : "string"
+        },
+        "DataOraInizioCalendario" : {
+          "type" : "string"
+        },
+        "DataOraFineCalendario" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvioCalendarioPostReq" : {
+      "type" : "object",
+      "required" : [ "Calendario" ],
+      "properties" : {
+        "Calendario" : {
+          "$ref" : "#/definitions/Calendario"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Calendario" : {
+      "type" : "object",
+      "required" : [ "NomeCalendario" ],
+      "properties" : {
+        "NomeCalendario" : {
+          "type" : "string"
+        },
+        "ModelloShift" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ModelloShift",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvioCalendarioPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    }
+  }
+}

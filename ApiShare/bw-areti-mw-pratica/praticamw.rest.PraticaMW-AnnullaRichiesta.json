@@ -1,0 +1,321 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "AnnullaRichiesta",
+    "description" : "AnnullaRichiesta service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/pratica/annulla" : {
+      "put" : {
+        "summary" : "putAnnullaRichiesta",
+        "description" : "putAnnullaRichiesta",
+        "operationId" : "put-api-v1-areti-interface-annullarichiesta",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AnnullaRichiestaPutReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AnnullaRichiestaPutRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AnnullaRichiestaPutRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/mw/v1/pratica/avanzamento" : {
+      "post" : {
+        "summary" : "postAnnullaRichiesta",
+        "description" : "postAnnullaRichiesta",
+        "operationId" : "post-areti-mw-v1-pratica-avanzamento",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/NotificaAvanzamentoPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a NotificaAvanzamentoPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/NotificaAvanzamentoPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "RispostaAnnullaRichiesta" : {
+      "type" : "object",
+      "required" : [ "EsitoAccettabilita", "Testata" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "EsitoAccettabilita" : {
+          "$ref" : "#/definitions/EsitoAccettabilita"
+        },
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Richiedente" : {
+      "type" : "object",
+      "required" : [ "NomeRichiedente", "RuoloRichiedente" ],
+      "properties" : {
+        "NomeRichiedente" : {
+          "type" : "string"
+        },
+        "RuoloRichiedente" : {
+          "type" : "string",
+          "enum" : [ "backOffice", "frontOffice", "trader", "am", "supervisor", "tutela", "salvaguardia", "metering", "cutover", "FOcutover" ]
+        }
+      }
+    },
+    "AnnullaRichiestaPutReq" : {
+      "type" : "object",
+      "required" : [ "RichiestaAnnullaRichiesta" ],
+      "properties" : {
+        "RichiestaAnnullaRichiesta" : {
+          "$ref" : "#/definitions/RichiestaAnnullaRichiesta"
+        }
+      }
+    },
+    "EsitoAccettabilita" : {
+      "type" : "object",
+      "required" : [ "Ammissibilita" ],
+      "properties" : {
+        "Ammissibilita" : {
+          "type" : "string"
+        },
+        "CodiceEsito" : {
+          "type" : "string"
+        },
+        "Motivazione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Testata" : {
+      "type" : "object",
+      "required" : [ "Piva_distributore", "CodPraticaEsterna", "Cod_servizio", "Cod_flusso", "Piva_utente" ],
+      "properties" : {
+        "Cod_servizio" : {
+          "type" : "string"
+        },
+        "Cod_flusso" : {
+          "type" : "string"
+        },
+        "Piva_utente" : {
+          "type" : "string"
+        },
+        "Piva_distributore" : {
+          "type" : "string"
+        },
+        "CodPraticaEsterna" : {
+          "type" : "string"
+        },
+        "CodPraticaMW" : {
+          "type" : "string"
+        },
+        "Cod_contr_disp" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "HeaderRichiesta" : {
+      "type" : "object",
+      "properties" : {
+        "richiesta" : {
+          "$ref" : "#/definitions/Richiesta"
+        },
+        "richiedente" : {
+          "$ref" : "#/definitions/Richiedente"
+        },
+        "flagContattoRete" : {
+          "type" : "boolean"
+        },
+        "ragioneSociale" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaAnnullaRichiesta" : {
+      "type" : "object",
+      "required" : [ "Testata" ],
+      "properties" : {
+        "Testata" : {
+          "$ref" : "#/definitions/Testata"
+        },
+        "HeaderRichiesta" : {
+          "$ref" : "#/definitions/HeaderRichiesta"
+        }
+      }
+    },
+    "AnnullaRichiestaPutRes" : {
+      "type" : "object",
+      "required" : [ "RispostaAnnullaRichiesta" ],
+      "properties" : {
+        "RispostaAnnullaRichiesta" : {
+          "$ref" : "#/definitions/RispostaAnnullaRichiesta"
+        }
+      }
+    },
+    "Richiesta" : {
+      "type" : "object",
+      "properties" : {
+        "CodiceRichiesta" : {
+          "type" : "string"
+        },
+        "DataRichiesta" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "CanaleDiProvenienza" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AvanzamentoType" : {
+      "type" : "object",
+      "required" : [ "codice", "dataAvanzamento" ],
+      "properties" : {
+        "codice" : {
+          "type" : "string",
+          "minLength" : 4,
+          "maxLength" : 5
+        },
+        "dataAvanzamento" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "causaleEsito" : {
+          "type" : "string"
+        },
+        "noteAvanzamento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "NotificaAvanzamentoPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "NotificaAvanzamentoPostReq" : {
+      "type" : "object",
+      "required" : [ "Avanzamento", "idPratica", "dataInserimentoAvanzamento" ],
+      "properties" : {
+        "Avanzamento" : {
+          "$ref" : "#/definitions/AvanzamentoType"
+        },
+        "dataInserimentoAvanzamento" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "idPratica" : {
+          "type" : "string"
+        },
+        "codiceCensimp" : {
+          "type" : "string"
+        },
+        "DataBET" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    }
+  }
+}

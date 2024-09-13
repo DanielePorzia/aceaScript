@@ -1,0 +1,95 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "areti-snow-v1-calloff-invio service",
+    "description" : "areti-snow-v1-calloff-invio service"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8080/"
+  } ],
+  "paths" : {
+    "/areti/gestionetabcongruenza/v1/snow/calloff/invio" : {
+      "post" : {
+        "summary" : "postAreti-snow-v1-calloff-invio",
+        "description" : "postAreti-snow-v1-calloff-invio",
+        "operationId" : "post-areti-snow-v1-calloff-invio",
+        "parameters" : [ ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Records"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "a Response to be returned",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Response" : {
+        "type" : "object",
+        "properties" : {
+          "Esito" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Esito",
+              "uniqueItems" : false
+            }
+          }
+        }
+      },
+      "Esito" : {
+        "type" : "object",
+        "properties" : {
+          "Id" : {
+            "type" : "string"
+          },
+          "Status" : {
+            "type" : "string"
+          },
+          "Message" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Records" : {
+        "type" : "object",
+        "properties" : {
+          "Records" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Records",
+              "uniqueItems" : false
+            }
+          }
+        }
+      }
+    }
+  }
+}

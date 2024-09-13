@@ -1,0 +1,631 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Bollato",
+    "description" : "Bollato service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/appian/v1/bollato/dettagliobollato" : {
+      "get" : {
+        "summary" : "getBollato",
+        "description" : "Get an item",
+        "operationId" : "get-areti-appian-v1-bollato-DettaglioBollato",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codiceBollato",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a DettaglioBollatoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/DettaglioBollatoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/appian/v1/bollato/ricercabollato" : {
+      "get" : {
+        "summary" : "getBollato",
+        "description" : "Get an item",
+        "operationId" : "get-areti-appian-v1-bollato-RicercaBollato",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codiceBollato",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "estensioneDelCantiereMinoreDi",
+          "in" : "query",
+          "description" : "",
+          "type" : "number",
+          "format" : "double",
+          "required" : false
+        }, {
+          "name" : "anno",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "direttoreOperativo",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "tipologiaDiLavoro",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "indirizzoFine",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "tipologiaDiBollato",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "ordineSecondario",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "dataCompilazioneRichiesta",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "stato",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "dataInizioLavori",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "indirizzoInizio",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "infoRipristinoMantoStradale",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "gruppoDiAppartenenza",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "impresaAssegnataria",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "direttoreLavoriAssegnatario",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "tipologiaDiIntervento",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "statoProgetto",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "codiceProgetto",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "dataFineLavori",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "codicePadre",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "gruppoOperativo",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "isDirettoreLavoriEsterno",
+          "in" : "query",
+          "description" : "",
+          "type" : "boolean",
+          "required" : false
+        }, {
+          "name" : "municipio",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "tipoBollato",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "professionistaAssegnatario",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "createdByGroup",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "statoNullaostaRichiesti",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "createdByUuid",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "avviso",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "estensioneDelCantiereMaggioreDi",
+          "in" : "query",
+          "description" : "",
+          "type" : "number",
+          "format" : "double",
+          "required" : false
+        }, {
+          "name" : "ordinePrimario",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RicercaBollatoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RicercaBollatoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/appian/v1/bollato/flagBollato" : {
+      "post" : {
+        "summary" : "postBollato",
+        "description" : "postBollato",
+        "operationId" : "post-areti-appian-v1-bollato-flagBollato",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/FlagBollatoReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a FlagBollatoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/FlagBollatoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/appian/v1/bollato/checkbollato" : {
+      "get" : {
+        "summary" : "getBollato",
+        "description" : "getBollato",
+        "operationId" : "get-areti-appian-v1-bollato-checkbollato",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "IdBollato",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CheckBollatoRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CheckBollatoRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "CheckBollatoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAP" : {
+          "$ref" : "#/definitions/EsitoAP"
+        }
+      }
+    },
+    "FlagDisegno" : {
+      "type" : "object",
+      "required" : [ "MunicipioPrimoTratto", "ZonaUrbanistica", "IdBollato", "IdTratto", "Indirizzofine", "IndirizzoInizio", "EstensioneTratto", "RegioGroupEle" ],
+      "properties" : {
+        "IdBollato" : {
+          "type" : "string"
+        },
+        "IdTratto" : {
+          "type" : "string"
+        },
+        "EstensioneTratto" : {
+          "type" : "string"
+        },
+        "IndirizzoInizio" : {
+          "type" : "string"
+        },
+        "Indirizzofine" : {
+          "type" : "string"
+        },
+        "MunicipioPrimoTratto" : {
+          "type" : "string"
+        },
+        "RegioGroupEle" : {
+          "type" : "string"
+        },
+        "ZonaUrbanistica" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CampiDettaglio" : {
+      "type" : "object",
+      "properties" : {
+        "idBollato" : {
+          "type" : "string"
+        },
+        "tipoBollato" : {
+          "type" : "string"
+        },
+        "codice" : {
+          "type" : "string"
+        },
+        "codicePadre" : {
+          "type" : "string"
+        },
+        "dataCompilazioneRichiesta" : {
+          "type" : "string"
+        },
+        "anno" : {
+          "type" : "string"
+        },
+        "gruppoDiAppartenenza" : {
+          "type" : "string"
+        },
+        "tipologiaDiLavoro" : {
+          "type" : "string"
+        },
+        "gruppoOperativo" : {
+          "type" : "string"
+        },
+        "tipologiaDiBollato" : {
+          "type" : "string"
+        },
+        "tipologiaDiIntervento" : {
+          "type" : "string"
+        },
+        "direttoreOperativo" : {
+          "type" : "string"
+        },
+        "infoRipristinoMantoStradale" : {
+          "type" : "string"
+        },
+        "createdByUuid" : {
+          "type" : "string"
+        },
+        "createdByGroup" : {
+          "type" : "string"
+        },
+        "codiceProgetto" : {
+          "type" : "string"
+        },
+        "statoProgetto" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        },
+        "ordineSecondario" : {
+          "type" : "string"
+        },
+        "ordinePrimario" : {
+          "type" : "string"
+        },
+        "avviso" : {
+          "type" : "string"
+        },
+        "dataInizioLavori" : {
+          "type" : "string"
+        },
+        "dataFineLavori" : {
+          "type" : "string"
+        },
+        "indirizzoInizio" : {
+          "type" : "string"
+        },
+        "indirizzoFine" : {
+          "type" : "string"
+        },
+        "statoNullaostaRichiesti" : {
+          "type" : "string"
+        },
+        "impresaAssegnataria" : {
+          "type" : "string"
+        },
+        "gruppoProfessionistaRiconsegna" : {
+          "type" : "string"
+        },
+        "direttoreLavoriRiconsegna" : {
+          "type" : "string"
+        },
+        "idUtenteCreazione" : {
+          "type" : "string"
+        },
+        "dataCreazione" : {
+          "type" : "string"
+        },
+        "idUtentemodifica" : {
+          "type" : "string"
+        },
+        "datamodifica" : {
+          "type" : "string"
+        },
+        "estensioneBollato" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Dati" : {
+      "type" : "object",
+      "required" : [ "gruppoAppartenenza", "stato", "tipoLavoro", "tipologiaBollato", "idBollato", "gruppoOperativo", "odL", "tipologiaIntervento" ],
+      "properties" : {
+        "idBollato" : {
+          "type" : "string"
+        },
+        "stato" : {
+          "type" : "string"
+        },
+        "odL" : {
+          "type" : "string"
+        },
+        "gruppoAppartenenza" : {
+          "type" : "string"
+        },
+        "tipoLavoro" : {
+          "type" : "string"
+        },
+        "gruppoOperativo" : {
+          "type" : "string"
+        },
+        "tipologiaBollato" : {
+          "type" : "string"
+        },
+        "tipologiaIntervento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DettaglioBollatoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAP" : {
+          "$ref" : "#/definitions/EsitoAP"
+        },
+        "CampiDettaglio" : {
+          "$ref" : "#/definitions/CampiDettaglio"
+        }
+      }
+    },
+    "FlagBollatoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAP" : {
+          "$ref" : "#/definitions/EsitoAP"
+        }
+      }
+    },
+    "RicercaBollatoRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoAP" : {
+          "$ref" : "#/definitions/EsitoAP"
+        },
+        "Dati" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Dati",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FlagBollatoReq" : {
+      "type" : "object",
+      "required" : [ "FlagBollato" ],
+      "properties" : {
+        "FlagBollato" : {
+          "$ref" : "#/definitions/FlagDisegno"
+        }
+      }
+    },
+    "EsitoAP" : {
+      "type" : "object",
+      "required" : [ "Check", "Codice" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        },
+        "Check" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

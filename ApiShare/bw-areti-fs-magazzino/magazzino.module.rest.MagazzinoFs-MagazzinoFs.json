@@ -1,0 +1,205 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "MagazzinoFs",
+    "description" : "MagazzinoFs service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/magazzino" : {
+      "put" : {
+        "summary" : "putMagazzinoFs",
+        "description" : "putMagazzinoFs - operazione put per veicolare le informazioni dei Magazzini Viaggianti a FS",
+        "operationId" : "put-company-fs-v1-magazzinofs",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/MagazzinoPutReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a MagazzinoPutRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/MagazzinoPutRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "MagazzinoPutRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "EsitoMagazzino" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EsitoMagazzino",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "MagazziniViaggianti" : {
+      "type" : "object",
+      "required" : [ "DataInizio", "DataFine", "Divisione", "Magazzino", "AttivitaEseguita", "IdMag", "Cid" ],
+      "properties" : {
+        "IdMag" : {
+          "type" : "string"
+        },
+        "Divisione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Magazzino" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "DataInizio" : {
+          "type" : "string"
+        },
+        "DataFine" : {
+          "type" : "string"
+        },
+        "Cid" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "Attivo" : {
+          "type" : "string"
+        },
+        "AttivitaEseguita" : {
+          "type" : "string",
+          "enum" : [ "I", "M", "D" ]
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "MagazzinoPutReq" : {
+      "type" : "object",
+      "required" : [ "MagazziniViaggianti" ],
+      "properties" : {
+        "MagazziniViaggianti" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MagazziniViaggianti",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoMagazzino" : {
+      "type" : "object",
+      "required" : [ "IdMag", "Codice" ],
+      "properties" : {
+        "IdMag" : {
+          "type" : "string"
+        },
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

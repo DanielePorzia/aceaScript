@@ -1,0 +1,365 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "RichiestaDocumentoDCS",
+    "description" : "Resource service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/dcs/v1/documento/richiesta" : {
+      "post" : {
+        "summary" : "postResource",
+        "description" : "postResource",
+        "operationId" : "post-api-v1-areti-interface-documento-richiestadocumentodcs",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/RichiestaDocumentoDCSReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RichiestaDocumentoDCSRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RichiestaDocumentoDCSRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "MODELLO" : {
+      "type" : "object",
+      "properties" : {
+        "itemM" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/itemM",
+            "uniqueItems" : false
+          }
+        },
+        "TIPO" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ROOT" : {
+      "type" : "object",
+      "required" : [ "BUKRS", "OBJECTID", "MODELLO", "DOC_TYPE", "COMUNICATION", "SENDER", "PREVIEW" ],
+      "properties" : {
+        "PREVIEW" : {
+          "type" : "string"
+        },
+        "SENDER" : {
+          "type" : "string"
+        },
+        "BUKRS" : {
+          "type" : "string"
+        },
+        "IWERK" : {
+          "type" : "string"
+        },
+        "OBJECTID" : {
+          "type" : "string"
+        },
+        "DOCKEY" : {
+          "type" : "string"
+        },
+        "DOC_TYPE" : {
+          "type" : "string"
+        },
+        "SAP_OBJECT" : {
+          "type" : "string"
+        },
+        "ARCH_DOCID" : {
+          "type" : "string"
+        },
+        "PARTNER" : {
+          "type" : "string"
+        },
+        "TAXNUM" : {
+          "type" : "string"
+        },
+        "NAME_ORG1" : {
+          "type" : "string"
+        },
+        "COD_FISC" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "ID_PRATICA" : {
+          "type" : "string"
+        },
+        "REL_OBJECT_ID" : {
+          "type" : "string"
+        },
+        "REL_OBJECT_TYPE" : {
+          "type" : "string"
+        },
+        "BUAG_ID" : {
+          "type" : "string"
+        },
+        "CATEGORIA" : {
+          "type" : "string"
+        },
+        "CREDATE" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "CANALE_PRODUZIONE_PLICO" : {
+          "type" : "string"
+        },
+        "DATA_SCADENZA_PLICO" : {
+          "type" : "string"
+        },
+        "ORA_SCADENZA_PLICO" : {
+          "type" : "string"
+        },
+        "TIPO_MERCATO" : {
+          "type" : "string"
+        },
+        "ACCETTAZIONE" : {
+          "type" : "string"
+        },
+        "PAG_ANTICIPATO" : {
+          "type" : "string"
+        },
+        "CODELINE" : {
+          "type" : "string"
+        },
+        "IMPORTO_PREV" : {
+          "type" : "string"
+        },
+        "MAIL" : {
+          "type" : "string"
+        },
+        "CATEGORIA_CRM" : {
+          "type" : "string"
+        },
+        "TIPOLOGIA" : {
+          "type" : "string"
+        },
+        "MOD_ESPOSIZIONE" : {
+          "type" : "string"
+        },
+        "BW_ABILITABILE" : {
+          "type" : "string"
+        },
+        "NAME" : {
+          "type" : "string"
+        },
+        "SURNAME" : {
+          "type" : "string"
+        },
+        "LATITUDINE" : {
+          "type" : "string"
+        },
+        "LONGITUDINE" : {
+          "type" : "string"
+        },
+        "PRECISIONE" : {
+          "type" : "string"
+        },
+        "FILENETID" : {
+          "type" : "string"
+        },
+        "BINARY_CONTENT" : { },
+        "BINARY_CONTENT_2" : { },
+        "BINARY_CONTENT_3" : { },
+        "COMUNICATION" : {
+          "$ref" : "#/definitions/COMUNICATION"
+        },
+        "MODELLO" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MODELLO",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaDocumentoDCSRes" : {
+      "type" : "object",
+      "required" : [ "EsitoRichiestaDocumentoDCS" ],
+      "properties" : {
+        "EsitoRichiestaDocumentoDCS" : {
+          "$ref" : "#/definitions/EsitoRichiestaDocumentoDCS"
+        }
+      }
+    },
+    "itemM" : {
+      "type" : "object",
+      "required" : [ "CHIAVE", "VALORE" ],
+      "properties" : {
+        "CHIAVE" : {
+          "type" : "string"
+        },
+        "VALORE" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaDocumentoDCSReq" : {
+      "type" : "object",
+      "required" : [ "ROOT" ],
+      "properties" : {
+        "ROOT" : {
+          "$ref" : "#/definitions/ROOT"
+        }
+      }
+    },
+    "EsitoRichiestaDocumentoDCS" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Attachments" : {
+          "$ref" : "#/definitions/Attachments"
+        }
+      }
+    },
+    "Attachment" : {
+      "type" : "object",
+      "required" : [ "Data" ],
+      "properties" : {
+        "Data" : {
+          "$ref" : "#/definitions/Data"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "protocollo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Data" : {
+      "type" : "object",
+      "required" : [ "Content" ],
+      "properties" : {
+        "ContentType" : {
+          "type" : "string"
+        },
+        "Content" : { }
+      }
+    },
+    "Attachments" : {
+      "type" : "object",
+      "properties" : {
+        "Attachment" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Attachment",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "itemC" : {
+      "type" : "object",
+      "required" : [ "CHANNEL" ],
+      "properties" : {
+        "BP_ID" : {
+          "type" : "string"
+        },
+        "NAME" : {
+          "type" : "string"
+        },
+        "CHANNEL" : {
+          "type" : "string"
+        },
+        "DESTINATION" : {
+          "type" : "string"
+        },
+        "MAINPARTNER" : {
+          "type" : "string"
+        }
+      }
+    },
+    "COMUNICATION" : {
+      "type" : "object",
+      "required" : [ "itemC" ],
+      "properties" : {
+        "itemC" : {
+          "$ref" : "#/definitions/itemC"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

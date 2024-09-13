@@ -1,0 +1,89 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "patchRicezioneBITM",
+    "description" : "patchRicezioneBITM"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/gestionetabcongruenza/v1/sap/tabellone/invio" : {
+      "patch" : {
+        "summary" : "patchPatchRicezioneBITM",
+        "description" : "patchPatchRicezioneBITM",
+        "operationId" : "patch-sap-bc-rest-sap-zprc_ricez_bitm",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ReceiveBitmReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ReceiveBitmRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ReceiveBitmRes"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ReceiveBitmReq" : {
+      "type" : "object",
+      "required" : [ "TipoAttivita", "Id", "Bitm" ],
+      "properties" : {
+        "Id" : {
+          "type" : "string"
+        },
+        "Bitm" : {
+          "type" : "string",
+          "maxLength" : 11
+        },
+        "TipoAttivita" : {
+          "type" : "string",
+          "maxLength" : 1,
+          "enum" : [ "I", "M", "D" ]
+        },
+        "Wbs" : {
+          "type" : "string"
+        },
+        "FiscalYear" : {
+          "type" : "string",
+          "maxLength" : 4
+        }
+      }
+    },
+    "ReceiveBitmRes" : {
+      "type" : "object",
+      "required" : [ "Esito", "Id" ],
+      "properties" : {
+        "Descrizione" : {
+          "type" : "string"
+        },
+        "Esito" : {
+          "type" : "string",
+          "maxLength" : 2,
+          "enum" : [ "OK", "KO" ]
+        },
+        "Id" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,613 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Risorsa",
+    "description" : "Risorsa service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/risorsa/assenza" : {
+      "post" : {
+        "summary" : "postRisorsa",
+        "description" : "postRisorsa",
+        "operationId" : "post-fs-v1-risorsa-assenza",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InvioAssenzaPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InvioAssenzaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InvioAssenzaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/risorsa" : {
+      "post" : {
+        "summary" : "postRisorsa",
+        "description" : "postRisorsa - operazione post per la creazione di un oggetto Utente-Risorsa su FS",
+        "operationId" : "post-company-fs-v1-risorsa",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/RisorsaPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RisorsaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RisorsaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "putRisorsa",
+        "description" : "putRisorsa - operazione put per l'aggiornamento di un oggetto Utente-Risorsa su FS",
+        "operationId" : "put-company-fs-v1-risorsa",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/RisorsaPutReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RisorsaPutRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RisorsaPutRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/risorsa/sostituzione" : {
+      "post" : {
+        "summary" : "postSostituzione",
+        "description" : "postSostituzione - operazione post per l'invio di un turno di sostituzione di una risorsa su FS",
+        "operationId" : "post-company-fs-v1-risorsa-sostituzione",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InvioSostituzionePostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InvioSostituzionePostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InvioSostituzionePostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/risorsa/annullamento" : {
+      "post" : {
+        "summary" : "postAnnullamento",
+        "description" : "Post per annullamento",
+        "operationId" : "fs-v1-risorsa-annullamento",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InvioAnnullamentoPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InvioAnnullamentoPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InvioAnnullamentoPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/risorsa/reperibilita" : {
+      "post" : {
+        "summary" : "postRisorsa",
+        "description" : "postReperibilita",
+        "operationId" : "post-fs-v1-risorsa-reperibilita",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/InvioReperibilitaPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InvioReperibilitaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InvioReperibilitaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "InvioAssenzaPostReq" : {
+      "type" : "object",
+      "required" : [ "Assenza" ],
+      "properties" : {
+        "Assenza" : {
+          "$ref" : "#/definitions/Assenza"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvioAssenzaPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "Assenza" : {
+      "type" : "object",
+      "required" : [ "DataOraInizio", "DataOraFine", "CID" ],
+      "properties" : {
+        "CID" : {
+          "type" : "string"
+        },
+        "DataOraInizio" : {
+          "type" : "string"
+        },
+        "DataOraFine" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Utente" : {
+      "type" : "object",
+      "required" : [ "Attivo", "Email", "UtenzaSAP", "Interno", "Ambito", "Cognome", "CID" ],
+      "properties" : {
+        "Nome" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "UtenzaSAP" : {
+          "type" : "string"
+        },
+        "Ambito" : {
+          "type" : "string",
+          "enum" : [ "01", "02", "03" ]
+        },
+        "Attivo" : {
+          "type" : "boolean"
+        },
+        "Interno" : {
+          "type" : "boolean"
+        },
+        "Societa" : {
+          "type" : "string"
+        },
+        "Telefono" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RisorsaPutInputTypes" : {
+      "type" : "object",
+      "required" : [ "TipoOperazione", "Utente" ],
+      "properties" : {
+        "Utente" : {
+          "$ref" : "#/definitions/Utente"
+        },
+        "Risorsa" : {
+          "$ref" : "#/definitions/Risorsa"
+        },
+        "TipoOperazione" : {
+          "type" : "string",
+          "enum" : [ "02" ]
+        }
+      }
+    },
+    "Sostituzione" : {
+      "type" : "object",
+      "required" : [ "DataOraInizio", "TipoTurno", "DataOraFine", "CID" ],
+      "properties" : {
+        "CID" : {
+          "type" : "string"
+        },
+        "DataOraInizio" : {
+          "type" : "string"
+        },
+        "DataOraFine" : {
+          "type" : "string"
+        },
+        "TipoTurno" : {
+          "type" : "string",
+          "enum" : [ "Work", "Undefined", "Night" ]
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "InvioSostituzionePostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "RisorsaPostRes" : {
+      "type" : "object",
+      "required" : [ "RisorsaPostOutputParams" ],
+      "properties" : {
+        "RisorsaPostOutputParams" : {
+          "$ref" : "#/definitions/RisorsaPostOutputTypes"
+        }
+      }
+    },
+    "Risorsa" : {
+      "type" : "object",
+      "properties" : {
+        "EngineerType" : {
+          "type" : "string"
+        },
+        "Mansione" : {
+          "type" : "string"
+        },
+        "CentroDiLavoro" : {
+          "type" : "string"
+        },
+        "Calendario" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvioSostituzionePostReq" : {
+      "type" : "object",
+      "required" : [ "Sostituzione" ],
+      "properties" : {
+        "Sostituzione" : {
+          "$ref" : "#/definitions/Sostituzione"
+        }
+      }
+    },
+    "RisorsaPostReq" : {
+      "type" : "object",
+      "required" : [ "RisorsaPostInputParams" ],
+      "properties" : {
+        "RisorsaPostInputParams" : {
+          "$ref" : "#/definitions/RisorsaPostInputTypes"
+        }
+      }
+    },
+    "Reperibilita" : {
+      "type" : "object",
+      "required" : [ "DataOraInizio", "DataOraFine", "CID" ],
+      "properties" : {
+        "CID" : {
+          "type" : "string"
+        },
+        "DataOraInizio" : {
+          "type" : "string"
+        },
+        "DataOraFine" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RisorsaPutOutputTypes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "FS_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvioReperibilitaPostReq" : {
+      "type" : "object",
+      "required" : [ "Reperibilita" ],
+      "properties" : {
+        "Reperibilita" : {
+          "$ref" : "#/definitions/Reperibilita"
+        }
+      }
+    },
+    "InvioAnnullamentoPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "InvioAnnullamentoPostReq" : {
+      "type" : "object",
+      "required" : [ "Annullamento" ],
+      "properties" : {
+        "Annullamento" : {
+          "$ref" : "#/definitions/Annullamento"
+        }
+      }
+    },
+    "RisorsaPutReq" : {
+      "type" : "object",
+      "required" : [ "RisorsaPutInputParams" ],
+      "properties" : {
+        "RisorsaPutInputParams" : {
+          "$ref" : "#/definitions/RisorsaPutInputTypes"
+        }
+      }
+    },
+    "InvioReperibilitaPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "RisorsaPutRes" : {
+      "type" : "object",
+      "required" : [ "RisorsaPutOutputParams" ],
+      "properties" : {
+        "RisorsaPutOutputParams" : {
+          "$ref" : "#/definitions/RisorsaPutOutputTypes"
+        }
+      }
+    },
+    "Annullamento" : {
+      "type" : "object",
+      "required" : [ "DataOraInizio", "DataOraFine", "CID" ],
+      "properties" : {
+        "CID" : {
+          "type" : "string"
+        },
+        "DataOraInizio" : {
+          "type" : "string"
+        },
+        "DataOraFine" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RisorsaPostInputTypes" : {
+      "type" : "object",
+      "required" : [ "TipoOperazione", "Utente" ],
+      "properties" : {
+        "Utente" : {
+          "$ref" : "#/definitions/Utente"
+        },
+        "Risorsa" : {
+          "$ref" : "#/definitions/Risorsa"
+        },
+        "TipoOperazione" : {
+          "type" : "string",
+          "enum" : [ "01" ]
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RisorsaPostOutputTypes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "FS_id" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

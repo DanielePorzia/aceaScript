@@ -1,0 +1,427 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "TaskPM",
+    "description" : "TaskPM service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/sappm/v1/task/allegati" : {
+      "get" : {
+        "summary" : "getAllegatiTask",
+        "description" : "getAllegatiTask - operazione get per richiedere a PM l'invio delle informazioni degli allegati del Task",
+        "operationId" : "get-sappm-v1-task-allegati",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "NumeroOrdine",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AllegatiTaskGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AllegatiTaskGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/sappm/v1/task/avvisoconsuntivoreq" : {
+      "post" : {
+        "summary" : "postAvvisoConsuntivo",
+        "description" : "postAvvisoConsuntivoReq - operazione post per veicolare l'avviso consuntivo del Task a PM",
+        "operationId" : "post-company-sappm-v1-task-avvisoconsuntivoreq",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AvvisoConsuntivoReqPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AvvisoConsuntivoReqPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AvvisoConsuntivoReqPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/sappm/v1/task/updatereq" : {
+      "post" : {
+        "summary" : "postTaskUpdateReq",
+        "description" : "postTaskUpdateReq - operazione post per veicolare la richiesta di aggiornamento Task a PM",
+        "operationId" : "post-company-sappm-v1-task-updatereq",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/TaskUpdatePMReqPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a TaskUpdatePMReqPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/TaskUpdatePMReqPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "TaskUpdatePMReqPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "TaskUpdatePMReqPostReq" : {
+      "type" : "object",
+      "required" : [ "TaskUpdatePMReq" ],
+      "properties" : {
+        "TaskUpdatePMReq" : {
+          "$ref" : "#/definitions/TaskUpdatePMReq"
+        }
+      }
+    },
+    "AvvisoConsuntivo" : {
+      "type" : "object",
+      "required" : [ "Matricola", "NumeroOrdine", "NumeroOperazione" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Matricola" : {
+          "type" : "string",
+          "maxLength" : 12
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AvvisoConsuntivoReq" : {
+      "type" : "object",
+      "required" : [ "AvvisoConsuntivo" ],
+      "properties" : {
+        "AvvisoConsuntivo" : {
+          "$ref" : "#/definitions/AvvisoConsuntivo"
+        },
+        "Questionario" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Questionario",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "TaskUpdatePMReq" : {
+      "type" : "object",
+      "required" : [ "TaskUpdateReq" ],
+      "properties" : {
+        "TaskUpdateReq" : {
+          "$ref" : "#/definitions/TaskUpdateReq"
+        }
+      }
+    },
+    "TaskUpdateReq" : {
+      "type" : "object",
+      "required" : [ "Matricola", "NumeroOrdine", "NumeroOperazione", "DataOraCambioStato", "Stato", "CID" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "CID" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "Stato" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Matricola" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "FlagNotaUrgente" : {
+          "type" : "boolean"
+        },
+        "DataOraCambioStato" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Latitudine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Longitudine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "Precisione" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "CausaleSospensione" : {
+          "type" : "string",
+          "maxLength" : 1
+        },
+        "CausaleScostamento" : {
+          "type" : "string"
+        },
+        "PrimaDataUtile" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "UltimaDataUtile" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "LatitudineOperazione" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "LongitudineOperazione" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "PrecisioneOperazione" : {
+          "type" : "string",
+          "maxLength" : 8
+        }
+      }
+    },
+    "AvvisoConsuntivoReqPostReq" : {
+      "type" : "object",
+      "required" : [ "AvvisoConsuntivoReq" ],
+      "properties" : {
+        "AvvisoConsuntivoReq" : {
+          "$ref" : "#/definitions/AvvisoConsuntivoReq"
+        }
+      }
+    },
+    "AllegatiTaskGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "AllegatiTask" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AllegatiTask",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AllegatiTask" : {
+      "type" : "object",
+      "required" : [ "NomeDocumento", "TipoDocumento", "DataOraAllegato", "Archivio", "ArcDocId", "OggettoRiferimento" ],
+      "properties" : {
+        "OggettoRiferimento" : {
+          "type" : "string"
+        },
+        "ArcDocId" : {
+          "type" : "string"
+        },
+        "DataOraAllegato" : {
+          "type" : "string"
+        },
+        "NomeDocumento" : {
+          "type" : "string"
+        },
+        "Estensione" : {
+          "type" : "string"
+        },
+        "Archivio" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "TipoDocumento" : {
+          "type" : "string",
+          "maxLength" : 10
+        },
+        "NominativoUtente" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AvvisoConsuntivoReqPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "Questionario" : {
+      "type" : "object",
+      "required" : [ "CodiceDomanda" ],
+      "properties" : {
+        "CodiceDomanda" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "CodiceRisposta" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "TestoRisposta" : {
+          "type" : "string",
+          "maxLength" : 40
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

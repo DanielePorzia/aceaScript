@@ -1,0 +1,140 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "AvvisoSapPM",
+    "description" : "AvvisoSapPM service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/avvisopm/esito" : {
+      "post" : {
+        "summary" : "postAvvisoSapPM",
+        "description" : "postAvvisoSapPM",
+        "operationId" : "post-areti-mw-v1-avvisopm-esito",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/NotificaEsitoAvvisoPostReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a NotificaEsitoAvvisoPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/NotificaEsitoAvvisoPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "NotificaEsitoAvvisoPostReq" : {
+      "type" : "object",
+      "required" : [ "Tipo", "IdPratica", "OperationSap" ],
+      "properties" : {
+        "IdPratica" : {
+          "type" : "string"
+        },
+        "Tipo" : {
+          "type" : "string"
+        },
+        "Classe" : {
+          "type" : "string"
+        },
+        "NumeroMessaggio" : {
+          "type" : "string"
+        },
+        "OperationSap" : {
+          "type" : "string"
+        },
+        "MessaggioSap" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "NotificaEsitoAvvisoPostRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    }
+  }
+}

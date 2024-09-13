@@ -1,0 +1,202 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "TaskReclami",
+    "description" : "RecuperoInterventi service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/fs/v1/task/reclami/recuperointerventi" : {
+      "get" : {
+        "summary" : "getTaskReclami",
+        "description" : "getTaskReclami",
+        "operationId" : "get-fs-v1-task-reclami-recuperointerventi",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "IdPratica",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RecuperoInterventiGetRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RecuperoInterventiGetRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Dati" : {
+      "type" : "object",
+      "properties" : {
+        "Task" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Task",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Task" : {
+      "type" : "object",
+      "required" : [ "Operazione", "StatoDelTask", "Distretto" ],
+      "properties" : {
+        "Operazione" : {
+          "type" : "string"
+        },
+        "DataEorarioDiAvvio" : {
+          "type" : "string"
+        },
+        "StatoDelTask" : {
+          "type" : "string"
+        },
+        "Distretto" : {
+          "type" : "string"
+        },
+        "Overbooking" : {
+          "type" : "string"
+        },
+        "Bloccato" : {
+          "type" : "string"
+        },
+        "DescrizioneChiaveTesto" : {
+          "type" : "string"
+        },
+        "NomeTecnicoAssegnato" : {
+          "type" : "string"
+        },
+        "TempoViaggio" : {
+          "type" : "string"
+        },
+        "StoricoDellOrdine" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/StoricoDellOrdine",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "StoricoDellOrdine" : {
+      "type" : "object",
+      "properties" : {
+        "Nome" : {
+          "type" : "string"
+        },
+        "CreatedDate" : {
+          "type" : "string"
+        },
+        "Field" : {
+          "type" : "string"
+        },
+        "OldValue" : {
+          "type" : "string"
+        },
+        "NewValue" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RecuperoInterventiGetRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Dati" : {
+          "$ref" : "#/definitions/Dati"
+        },
+        "EsitoFS" : {
+          "$ref" : "#/definitions/EsitoFS"
+        }
+      }
+    },
+    "EsitoFS" : {
+      "type" : "object",
+      "required" : [ "Codice" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

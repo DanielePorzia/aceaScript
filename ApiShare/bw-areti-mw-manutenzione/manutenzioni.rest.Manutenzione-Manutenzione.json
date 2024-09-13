@@ -1,0 +1,1928 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Manutenzione",
+    "description" : "Manutenzione service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/tess/v1/guasto/bt/notifica" : {
+      "post" : {
+        "summary" : "postManutenzione",
+        "description" : "postManutenzione",
+        "operationId" : "post-areti-tess-v1-guasto-bt-notifica",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/Ticketbt"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a Ticketbtresponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/Ticketbtresponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/mw/v1/manutenzione/interruzioniprogrammate" : {
+      "get" : {
+        "summary" : "getManutenzione",
+        "description" : "getManutenzione",
+        "operationId" : "get-areti-mw-v1-manutenzione-interruzioniprogrammate",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "cap",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "civico",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        }, {
+          "name" : "via",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a InterruzioniProgrammateOutput to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/InterruzioniProgrammateOutput"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/sf/v1/manutenzione/segnalazione" : {
+      "post" : {
+        "summary" : "postManutenzione",
+        "description" : "postManutenzione",
+        "operationId" : "post-areti-sf-v1-manutenzione-segnalazione",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/SegnalazioneReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a SegnalazioneRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/SegnalazioneRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/sf/v1/manutenzione/ricercaSegnalazione" : {
+      "get" : {
+        "summary" : "getManutenzione",
+        "description" : "getManutenzione",
+        "operationId" : "get-areti-sf-v1-manutenzione-ricercaSegnalazione",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "a RicercaSegnalazioneRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RicercaSegnalazioneRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/pm/v1/manutenzione/creazioneticket" : {
+      "post" : {
+        "summary" : "postManutenzione",
+        "description" : "postManutenzione",
+        "operationId" : "post-areti-pm-v1-manutenzione-creazioneticket",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CreazioneTicketReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CreazioneTicketRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CreazioneTicketRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/sf/v1/manutenzione/visore" : {
+      "post" : {
+        "summary" : "postManutenzione",
+        "description" : "postManutenzione",
+        "operationId" : "post-areti-sf-v1-manutenzione-visore",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/VisoreReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a VisoreRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/VisoreRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/mw/v1/manutenzione/notifichecliente" : {
+      "post" : {
+        "summary" : "postManutenzione",
+        "description" : "postManutenzione",
+        "operationId" : "post-areti-mw-v1-manutenzione-notifichecliente",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/NotificheClienteReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a NotificheClienteRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/NotificheClienteRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/areti/tess/v1/guasto/mtat/notifica" : {
+      "post" : {
+        "summary" : "postManutenzione",
+        "description" : "postManutenzione",
+        "operationId" : "post-areti-tess-v1-guasto-mtat-notifica",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/Ticketmt"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a Ticketmtresponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/Ticketmtresponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "SegnalazioneRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSF" : {
+          "$ref" : "#/definitions/EsitoSF"
+        }
+      }
+    },
+    "Allegato" : {
+      "type" : "object",
+      "required" : [ "TipoAllegato", "Counter", "NomeAllegato", "BinAllegato", "DimensioneAllegato" ],
+      "properties" : {
+        "NomeAllegato" : {
+          "type" : "string"
+        },
+        "TipoAllegato" : {
+          "type" : "string"
+        },
+        "DimensioneAllegato" : {
+          "type" : "string"
+        },
+        "BinAllegato" : { },
+        "Counter" : {
+          "type" : "string"
+        }
+      }
+    },
+    "notificheCliente" : {
+      "type" : "object",
+      "required" : [ "notificaCliente" ],
+      "properties" : {
+        "notificaCliente" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/notificaCliente",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "SegnalazioneReq" : {
+      "type" : "object",
+      "required" : [ "Segnalazione" ],
+      "properties" : {
+        "Segnalazione" : {
+          "$ref" : "#/definitions/Segnalazione"
+        }
+      }
+    },
+    "notificheClienteOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSAPPM" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EsitoSAPPM",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Ticketmt" : {
+      "type" : "object",
+      "required" : [ "Id_Wfa", "Atidatareclamo", "Data_Esitazione_Ticket", "Codice" ],
+      "properties" : {
+        "Id_Wfa" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Lsticodice" : {
+          "type" : "string"
+        },
+        "Ltincodice" : {
+          "type" : "string"
+        },
+        "Tpgucodice" : {
+          "type" : "string"
+        },
+        "Tpgadescrizione" : {
+          "type" : "string"
+        },
+        "Gto_Competente" : {
+          "type" : "string"
+        },
+        "Atidatareclamo" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "Municipio" : {
+          "type" : "string"
+        },
+        "Zonaurb" : {
+          "type" : "string"
+        },
+        "Comdescrizione" : {
+          "type" : "string"
+        },
+        "Codcabina" : {
+          "type" : "string"
+        },
+        "Desccabina" : {
+          "type" : "string"
+        },
+        "Codlinea" : {
+          "type" : "string"
+        },
+        "Desclinea" : {
+          "type" : "string"
+        },
+        "Coddirettrice" : {
+          "type" : "string"
+        },
+        "Descdirettrice" : {
+          "type" : "string"
+        },
+        "Codnodo1" : {
+          "type" : "string"
+        },
+        "Descnodo1" : {
+          "type" : "string"
+        },
+        "Codnodo2" : {
+          "type" : "string"
+        },
+        "Descnodo2" : {
+          "type" : "string"
+        },
+        "Notechiusura" : {
+          "type" : "string"
+        },
+        "Data_Esitazione_Ticket" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "AlberoFonico" : {
+      "type" : "object",
+      "required" : [ "DettaglioAlberoFonico" ],
+      "properties" : {
+        "DettaglioAlberoFonico" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Ticketmtresponse" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "Ticketbtresponse" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "InterruzioneProgrammata" : {
+      "type" : "object",
+      "required" : [ "stato", "note", "dataInizio", "cap", "civicoDa", "dataFine", "civicoA", "oraInizio", "oraFine", "via" ],
+      "properties" : {
+        "stato" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "dataInizio" : {
+          "type" : "string"
+        },
+        "oraInizio" : {
+          "type" : "string"
+        },
+        "dataFine" : {
+          "type" : "string"
+        },
+        "oraFine" : {
+          "type" : "string"
+        },
+        "via" : {
+          "type" : "string"
+        },
+        "civicoDa" : {
+          "type" : "string"
+        },
+        "civicoA" : {
+          "type" : "string"
+        },
+        "cap" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "InterruzioniProgrammateOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "InterruzioneProgrammata" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/InterruzioneProgrammata",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "notificaCliente" : {
+      "type" : "object",
+      "required" : [ "cap", "pod", "civico", "via" ],
+      "properties" : {
+        "pod" : {
+          "type" : "string"
+        },
+        "via" : {
+          "type" : "string"
+        },
+        "cap" : {
+          "type" : "string"
+        },
+        "civico" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AttachmentDocument" : {
+      "type" : "object",
+      "required" : [ "BinaryContent", "DocumentName" ],
+      "properties" : {
+        "DocumentName" : {
+          "type" : "string"
+        },
+        "BinaryContent" : {
+          "type" : "string"
+        }
+      }
+    },
+    "creazioneTicketOutput" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "TicketResponse" : {
+          "$ref" : "#/definitions/ticketResponseTypes"
+        }
+      }
+    },
+    "EsitoSF" : {
+      "type" : "object",
+      "required" : [ "Codice", "SF_UUID" ],
+      "properties" : {
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        },
+        "SF_UUID" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CampiComplementari" : {
+      "type" : "object",
+      "required" : [ "Tensione", "IDCivico1", "Trasformatore", "Codice2", "TipoUtenza", "Latitudine", "Codice1", "Email", "NomeCliente", "StatoIntervento", "NumeroLampadeSpente", "POD1", "TipoMisuratore", "ModalitaInstallo", "Lotto", "TrattoA", "Indirizzo", "OraInizioRich", "Nome", "TrattoDa", "POD", "NumeroPuntiSpenti", "DataRilettura", "PotenzaPrelievo", "StradaDa", "NonDisalimentabile", "CodiceDispacciamento", "StatoPericolo", "Piano", "TelefonareA", "CAP", "Longitudine", "TipiPericolo", "Note", "RotondaDa", "Richiesta", "NoteFE", "DescPericolo", "NumMisuratori", "Altro", "RivolgersiA", "StatoImpianto", "NumeroMisuratore", "Int", "EvidenzaStati", "Comune", "GruppoCodice2", "GruppoCodice3", "TarghettaA", "GruppoCodice1", "Presso", "DataAvvioRich", "Telefono", "Svincolo", "DescrizioneZonaUrbanistica", "CabinaSecondariaRiferimento", "Provenienza", "Incrocio", "TelCliente", "StatusUtenza", "Scala", "IDVia1", "UsernameWEBIP", "Grossista", "Direzione", "DataDecorrenzaRicarica", "DovePericolo", "TipoMercato", "TarghettaDa", "TelChiamante", "Fabbricato", "Cognome" ],
+      "properties" : {
+        "Provenienza" : {
+          "type" : "string"
+        },
+        "TelChiamante" : {
+          "type" : "string"
+        },
+        "NomeCliente" : {
+          "type" : "string"
+        },
+        "TelCliente" : {
+          "type" : "string"
+        },
+        "RivolgersiA" : {
+          "type" : "string"
+        },
+        "TelefonareA" : {
+          "type" : "string"
+        },
+        "StatoPericolo" : {
+          "type" : "string"
+        },
+        "NonDisalimentabile" : {
+          "type" : "string"
+        },
+        "Presso" : {
+          "type" : "string"
+        },
+        "DescrizioneZonaUrbanistica" : {
+          "type" : "string"
+        },
+        "Scala" : {
+          "type" : "string"
+        },
+        "Int" : {
+          "type" : "string"
+        },
+        "Lotto" : {
+          "type" : "string"
+        },
+        "Fabbricato" : {
+          "type" : "string"
+        },
+        "Piano" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "Grossista" : {
+          "type" : "string"
+        },
+        "StatusUtenza" : {
+          "type" : "string"
+        },
+        "StatoIntervento" : {
+          "type" : "string"
+        },
+        "TipoMercato" : {
+          "type" : "string"
+        },
+        "NumeroMisuratore" : {
+          "type" : "string"
+        },
+        "TipoMisuratore" : {
+          "type" : "string"
+        },
+        "POD1" : {
+          "type" : "string"
+        },
+        "PotenzaPrelievo" : {
+          "type" : "string"
+        },
+        "Tensione" : {
+          "type" : "string"
+        },
+        "NoteFE" : {
+          "type" : "string"
+        },
+        "EvidenzaStati" : {
+          "type" : "string"
+        },
+        "TipoUtenza" : {
+          "type" : "string"
+        },
+        "NumMisuratori" : {
+          "type" : "string"
+        },
+        "ModalitaInstallo" : {
+          "type" : "string"
+        },
+        "Longitudine" : {
+          "type" : "string"
+        },
+        "Latitudine" : {
+          "type" : "string"
+        },
+        "IDVia1" : {
+          "type" : "string"
+        },
+        "IDCivico1" : {
+          "type" : "string"
+        },
+        "CodiceDispacciamento" : {
+          "type" : "string"
+        },
+        "CabinaSecondariaRiferimento" : {
+          "type" : "string"
+        },
+        "Trasformatore" : {
+          "type" : "string"
+        },
+        "StatoImpianto" : {
+          "type" : "string"
+        },
+        "TarghettaDa" : {
+          "type" : "string"
+        },
+        "TarghettaA" : {
+          "type" : "string"
+        },
+        "DataAvvioRich" : {
+          "type" : "string"
+        },
+        "OraInizioRich" : {
+          "type" : "string"
+        },
+        "GruppoCodice1" : {
+          "type" : "string"
+        },
+        "Codice1" : {
+          "type" : "string"
+        },
+        "NumeroLampadeSpente" : {
+          "type" : "string"
+        },
+        "NumeroPuntiSpenti" : {
+          "type" : "string"
+        },
+        "GruppoCodice2" : {
+          "type" : "string"
+        },
+        "GruppoCodice3" : {
+          "type" : "string"
+        },
+        "Codice2" : {
+          "type" : "string"
+        },
+        "Cognome" : {
+          "type" : "string"
+        },
+        "Nome" : {
+          "type" : "string"
+        },
+        "Telefono" : {
+          "type" : "string"
+        },
+        "Indirizzo" : {
+          "type" : "string"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "Comune" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "Svincolo" : {
+          "type" : "string"
+        },
+        "TrattoDa" : {
+          "type" : "string"
+        },
+        "TrattoA" : {
+          "type" : "string"
+        },
+        "RotondaDa" : {
+          "type" : "string"
+        },
+        "StradaDa" : {
+          "type" : "string"
+        },
+        "Direzione" : {
+          "type" : "string"
+        },
+        "Altro" : {
+          "type" : "string"
+        },
+        "DataRilettura" : {
+          "type" : "string"
+        },
+        "Incrocio" : {
+          "type" : "string"
+        },
+        "DescPericolo" : {
+          "type" : "string"
+        },
+        "TipiPericolo" : {
+          "type" : "string"
+        },
+        "Richiesta" : {
+          "type" : "string"
+        },
+        "UsernameWEBIP" : {
+          "type" : "string"
+        },
+        "DovePericolo" : {
+          "type" : "string"
+        },
+        "DataDecorrenzaRicarica" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TableOfZc4cAlberofonic" : {
+      "type" : "object",
+      "properties" : {
+        "alberofonico" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "CreazioneTicketRes" : {
+      "type" : "object",
+      "required" : [ "creazioneTicketOutput" ],
+      "properties" : {
+        "creazioneTicketOutput" : {
+          "$ref" : "#/definitions/creazioneTicketOutput"
+        }
+      }
+    },
+    "CreazioneTicket" : {
+      "type" : "object",
+      "required" : [ "CampiComplementari" ],
+      "properties" : {
+        "Societa" : {
+          "type" : "string"
+        },
+        "Divisione" : {
+          "type" : "string"
+        },
+        "NumeroPOD" : {
+          "type" : "string"
+        },
+        "Ticket" : {
+          "type" : "string"
+        },
+        "DataAvviso" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "OraAvviso" : {
+          "type" : "string"
+        },
+        "RifTicket" : {
+          "type" : "string"
+        },
+        "ServiceCategory" : {
+          "type" : "string"
+        },
+        "CategoryID" : {
+          "type" : "string"
+        },
+        "Priorita" : {
+          "type" : "string"
+        },
+        "Avviso" : {
+          "type" : "string"
+        },
+        "SedeTecnica" : {
+          "type" : "string"
+        },
+        "Cliente" : {
+          "type" : "string"
+        },
+        "Via" : {
+          "type" : "string"
+        },
+        "NumeroCivico" : {
+          "type" : "string"
+        },
+        "Localita" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "Zona" : {
+          "type" : "string"
+        },
+        "NoteAvviso" : {
+          "type" : "string"
+        },
+        "CampiComplementari" : {
+          "$ref" : "#/definitions/CampiComplementari"
+        },
+        "AlberoFonico" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AlberoFonico",
+            "uniqueItems" : false
+          }
+        },
+        "Allegato" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Allegato",
+            "uniqueItems" : false
+          }
+        },
+        "RivolgersiA" : {
+          "type" : "string"
+        },
+        "TelefonareA" : {
+          "type" : "string"
+        },
+        "Municipio" : {
+          "type" : "string"
+        },
+        "NoteSuppl" : {
+          "type" : "string"
+        },
+        "Latitudine" : {
+          "type" : "string"
+        },
+        "Longitudine" : {
+          "type" : "string"
+        },
+        "IdVia" : {
+          "type" : "string"
+        },
+        "IdCivico" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "Impianto" : {
+          "type" : "string"
+        },
+        "DettaglioVia" : {
+          "type" : "string"
+        },
+        "IDChiamata" : {
+          "type" : "string"
+        },
+        "DataAvvisoIVR" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "OraAvvisoIVR" : {
+          "type" : "string"
+        },
+        "LineaBT" : {
+          "type" : "string"
+        },
+        "TestoBreve" : {
+          "type" : "string"
+        },
+        "Ordine" : {
+          "type" : "string"
+        },
+        "GestioneAllegati" : {
+          "type" : "string"
+        },
+        "TipoTicket" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Interruzione" : {
+      "type" : "object",
+      "required" : [ "Numero", "Id_Tdis", "Id_Tcdi", "Id_Esi", "Numinterruttorecabina", "Tensionecabina", "Id_Tcom", "Inizio", "Numfasiinterrotte", "Idtrasformatore" ],
+      "properties" : {
+        "Id_Wfa" : {
+          "type" : "string"
+        },
+        "Id_Esi" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Pesdescrizione" : {
+          "type" : "string"
+        },
+        "Idcreatore_Aute" : {
+          "type" : "string"
+        },
+        "Inizio" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Inizio_Ora" : {
+          "type" : "string"
+        },
+        "Fine" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Fine_Ora" : {
+          "type" : "string"
+        },
+        "Data_Modifica_Batch" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Id_Tcdi" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Id_Tdis" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Id_Tcom" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Numinterruttorecabina" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Tensionecabina" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Numero" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Numfasiinterrotte" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Contatoreesterno" : {
+          "type" : "string"
+        },
+        "Disserviziolocalizzato" : {
+          "type" : "string"
+        },
+        "Accessocabina" : {
+          "type" : "string"
+        },
+        "Numrapporto" : {
+          "type" : "string"
+        },
+        "Cabina" : {
+          "type" : "string"
+        },
+        "Codcabina" : {
+          "type" : "string"
+        },
+        "Idtrasformatore" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Sottomotivocausadisserv" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "Per_Il_Solo_Reclamante" : {
+          "type" : "string"
+        },
+        "Metodo_A" : {
+          "type" : "string"
+        },
+        "Fuori_Schema" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esitazione" : {
+      "type" : "object",
+      "required" : [ "Id_Wfa", "Id_Ati" ],
+      "properties" : {
+        "Id_Wfa" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "Id_Ati" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "Lsticodice" : {
+          "type" : "string"
+        },
+        "Lpesdescrizione" : {
+          "type" : "string"
+        },
+        "Concluso_Da" : {
+          "type" : "string"
+        },
+        "Unita" : {
+          "type" : "string"
+        },
+        "Guasto_Gruppo_Elettr" : {
+          "type" : "string"
+        },
+        "Interruzione" : {
+          "type" : "string"
+        },
+        "Interruzioni" : {
+          "$ref" : "#/definitions/Interruzioni"
+        }
+      }
+    },
+    "CreazioneTicketReq" : {
+      "type" : "object",
+      "required" : [ "CreazioneTicket" ],
+      "properties" : {
+        "CreazioneTicket" : {
+          "$ref" : "#/definitions/CreazioneTicket"
+        }
+      }
+    },
+    "Ticketbt" : {
+      "type" : "object",
+      "required" : [ "Datareclamo", "Numutenza", "Numero_Misuratori", "Data_Esitazione_Ticket", "Potenza" ],
+      "properties" : {
+        "Id_Wfa" : {
+          "type" : "string"
+        },
+        "Lsticodice" : {
+          "type" : "string"
+        },
+        "Ltincodice" : {
+          "type" : "string"
+        },
+        "Codice" : {
+          "type" : "string"
+        },
+        "Pgucodice" : {
+          "type" : "string"
+        },
+        "Pgadescrizione" : {
+          "type" : "string"
+        },
+        "Zonedescrizione" : {
+          "type" : "string"
+        },
+        "Unita_Richiedente" : {
+          "type" : "string"
+        },
+        "Gto_Competente" : {
+          "type" : "string"
+        },
+        "Sedescrizione" : {
+          "type" : "string"
+        },
+        "Dandescrizione" : {
+          "type" : "string"
+        },
+        "Datareclamo" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Nomecliente" : {
+          "type" : "string"
+        },
+        "Telefono" : {
+          "type" : "string"
+        },
+        "Cliente_Finale" : {
+          "type" : "string"
+        },
+        "Telefono_Cliente_Finale" : {
+          "type" : "string"
+        },
+        "Riferimento2" : {
+          "type" : "string"
+        },
+        "Telefono2" : {
+          "type" : "string"
+        },
+        "Pericolo" : {
+          "type" : "string"
+        },
+        "Disabile" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "Inidirizzo" : {
+          "type" : "string"
+        },
+        "Civico" : {
+          "type" : "string"
+        },
+        "Tipocivico" : {
+          "type" : "string"
+        },
+        "Angolo" : {
+          "type" : "string"
+        },
+        "Municipio" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "Zonadesc" : {
+          "type" : "string"
+        },
+        "Zonaurb" : {
+          "type" : "string"
+        },
+        "Comdescrizione" : {
+          "type" : "string"
+        },
+        "Scala" : {
+          "type" : "string"
+        },
+        "Interno" : {
+          "type" : "string"
+        },
+        "Lotto" : {
+          "type" : "string"
+        },
+        "Fabbricato" : {
+          "type" : "string"
+        },
+        "Piano" : {
+          "type" : "string"
+        },
+        "Codice_Pod" : {
+          "type" : "string"
+        },
+        "Grossista" : {
+          "type" : "string"
+        },
+        "Stato_Utenza" : {
+          "type" : "string"
+        },
+        "Stato_Intervento" : {
+          "type" : "string"
+        },
+        "Tipologia_Mercato" : {
+          "type" : "string"
+        },
+        "Nummisuratore" : {
+          "type" : "string"
+        },
+        "Tmisuratore" : {
+          "type" : "string"
+        },
+        "Numutenza" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "Potenza" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Tendescrizione" : {
+          "type" : "string"
+        },
+        "Codnodo1" : {
+          "type" : "string"
+        },
+        "Descnodo1" : {
+          "type" : "string"
+        },
+        "Notesire" : {
+          "type" : "string"
+        },
+        "Notechiusura" : {
+          "type" : "string"
+        },
+        "Campo_Notevie" : {
+          "type" : "string"
+        },
+        "Noteannullamento" : {
+          "type" : "string"
+        },
+        "Data_Esitazione_Ticket" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Piano_Lavoro" : {
+          "type" : "string"
+        },
+        "Mis_Riferimento" : {
+          "type" : "string"
+        },
+        "Cs_Riferimento" : {
+          "type" : "string"
+        },
+        "Tr_Riferimento" : {
+          "type" : "string"
+        },
+        "Modalita_Evidenza_Stati" : {
+          "type" : "string"
+        },
+        "Tipo_Utenza" : {
+          "type" : "string"
+        },
+        "Numero_Misuratori" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Mod_Installazione" : {
+          "type" : "string"
+        },
+        "Oridescrizione" : {
+          "type" : "string"
+        },
+        "Id_Pratica_Mw" : {
+          "type" : "string"
+        },
+        "Contratto_Disp" : {
+          "type" : "string"
+        },
+        "Coordinata_X" : {
+          "type" : "string"
+        },
+        "Coordinata_Y" : {
+          "type" : "string"
+        },
+        "Id_Via" : {
+          "type" : "string"
+        },
+        "Id_Civico" : {
+          "type" : "string"
+        },
+        "Codice_Ticket_Orig" : {
+          "type" : "string"
+        },
+        "Linea_Bt" : {
+          "type" : "string"
+        },
+        "Assegnazioni" : {
+          "$ref" : "#/definitions/Assegnazioni"
+        },
+        "Solleciti" : {
+          "$ref" : "#/definitions/Solleciti"
+        }
+      }
+    },
+    "Text" : {
+      "type" : "object",
+      "required" : [ "CreationDateTime" ],
+      "properties" : {
+        "CreationDateTime" : {
+          "type" : "string"
+        },
+        "Content" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Assegnazione" : {
+      "type" : "object",
+      "required" : [ "Id_Wfa", "Ora_Reclamo", "Data_Reclamo", "Chiusura", "Assegnazione", "Date_Time_Reclamo", "Tipo_Ticket", "Progressivo" ],
+      "properties" : {
+        "Id_Wfa" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "Id_Tic" : {
+          "type" : "string"
+        },
+        "Tipo_Ticket" : {
+          "type" : "string"
+        },
+        "Date_Time_Reclamo" : {
+          "type" : "string"
+        },
+        "Data_Reclamo" : {
+          "type" : "string"
+        },
+        "Ora_Reclamo" : {
+          "type" : "string"
+        },
+        "Squdescrizione" : {
+          "type" : "string"
+        },
+        "Tsqudescrizione" : {
+          "type" : "string"
+        },
+        "Tipo_Squadra_Codice" : {
+          "type" : "string"
+        },
+        "Unita" : {
+          "type" : "string"
+        },
+        "Assegnazione" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Progressivo" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Chiusura" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Esitazioni" : {
+          "$ref" : "#/definitions/Esitazioni"
+        }
+      }
+    },
+    "Interruzioni" : {
+      "type" : "object",
+      "properties" : {
+        "Interruzione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Interruzione",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "ServiceRequest" : {
+      "type" : "object",
+      "required" : [ "FunctionalLocationID", "ServiceIssueCategoryID", "Surname", "Name" ],
+      "properties" : {
+        "Text" : {
+          "$ref" : "#/definitions/Text"
+        },
+        "FiscalCode" : {
+          "type" : "string"
+        },
+        "Name" : {
+          "type" : "string"
+        },
+        "Surname" : {
+          "type" : "string"
+        },
+        "Address" : {
+          "type" : "string"
+        },
+        "City" : {
+          "type" : "string"
+        },
+        "HouseNumber" : {
+          "type" : "string"
+        },
+        "District" : {
+          "type" : "string"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "TagID" : {
+          "type" : "string"
+        },
+        "ServiceIssueCategoryID" : {
+          "type" : "string"
+        },
+        "SRDUCallID" : {
+          "type" : "string"
+        },
+        "LongitudeMeasure" : {
+          "type" : "string"
+        },
+        "LatitudeMeasure" : {
+          "type" : "string"
+        },
+        "FunctionalLocationID" : {
+          "type" : "string"
+        },
+        "CallTo" : {
+          "type" : "string"
+        },
+        "Title" : {
+          "type" : "string"
+        },
+        "AttachmentDocument" : {
+          "$ref" : "#/definitions/AttachmentDocument"
+        }
+      }
+    },
+    "Assegnazioni" : {
+      "type" : "object",
+      "properties" : {
+        "Assegnazione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Assegnazione",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "NotificheClienteReq" : {
+      "type" : "object",
+      "required" : [ "notificheCliente" ],
+      "properties" : {
+        "notificheCliente" : {
+          "$ref" : "#/definitions/notificheCliente"
+        }
+      }
+    },
+    "Segnalazione" : {
+      "type" : "object",
+      "required" : [ "ServiceRequest" ],
+      "properties" : {
+        "ServiceRequest" : {
+          "$ref" : "#/definitions/ServiceRequest"
+        }
+      }
+    },
+    "BapiReturnTypes" : {
+      "type" : "object",
+      "required" : [ "code", "message_v1", "log_no", "type", "message", "message_v3", "message_v2", "log_msg_no", "message_v4" ],
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "log_no" : {
+          "type" : "string"
+        },
+        "log_msg_no" : {
+          "type" : "string"
+        },
+        "message_v1" : {
+          "type" : "string"
+        },
+        "message_v2" : {
+          "type" : "string"
+        },
+        "message_v3" : {
+          "type" : "string"
+        },
+        "message_v4" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esitazioni" : {
+      "type" : "object",
+      "properties" : {
+        "Esitazione" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Esitazione",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "NotificheClienteRes" : {
+      "type" : "object",
+      "required" : [ "notificheClienteOutput" ],
+      "properties" : {
+        "notificheClienteOutput" : {
+          "$ref" : "#/definitions/notificheClienteOutput"
+        }
+      }
+    },
+    "ticketResponseTypes" : {
+      "type" : "object",
+      "required" : [ "n_ordine", "es_return", "alberofonico", "avviso" ],
+      "properties" : {
+        "es_return" : {
+          "$ref" : "#/definitions/BapiReturnTypes"
+        },
+        "n_ordine" : {
+          "type" : "string"
+        },
+        "avviso" : {
+          "type" : "string"
+        },
+        "alberofonico" : {
+          "$ref" : "#/definitions/TableOfZc4cAlberofonic"
+        }
+      }
+    },
+    "Sollecito" : {
+      "type" : "object",
+      "required" : [ "Datareclamo", "Numutenza", "Numero_Misuratori", "Potenza" ],
+      "properties" : {
+        "Id_Wfa" : {
+          "type" : "string"
+        },
+        "Codice_Sollecito" : {
+          "type" : "string"
+        },
+        "Pgucodice" : {
+          "type" : "string"
+        },
+        "Sedescrizione" : {
+          "type" : "string"
+        },
+        "Dandescrizione" : {
+          "type" : "string"
+        },
+        "Datareclamo" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Nomecliente" : {
+          "type" : "string"
+        },
+        "Telefono" : {
+          "type" : "string"
+        },
+        "Cliente_Finale" : {
+          "type" : "string"
+        },
+        "Telefono_Cliente_Finale" : {
+          "type" : "string"
+        },
+        "Riferimento2" : {
+          "type" : "string"
+        },
+        "Telefono2" : {
+          "type" : "string"
+        },
+        "Pericolo" : {
+          "type" : "string"
+        },
+        "Disabile" : {
+          "type" : "string"
+        },
+        "Note" : {
+          "type" : "string"
+        },
+        "Inidirizzo" : {
+          "type" : "string"
+        },
+        "Civico" : {
+          "type" : "string"
+        },
+        "Tipocivico" : {
+          "type" : "string"
+        },
+        "Angolo" : {
+          "type" : "string"
+        },
+        "Municipio" : {
+          "type" : "string"
+        },
+        "Cap" : {
+          "type" : "string"
+        },
+        "Zonadesc" : {
+          "type" : "string"
+        },
+        "Zonaurb" : {
+          "type" : "string"
+        },
+        "Comdescrizione" : {
+          "type" : "string"
+        },
+        "Scala" : {
+          "type" : "string"
+        },
+        "Interno" : {
+          "type" : "string"
+        },
+        "Lotto" : {
+          "type" : "string"
+        },
+        "Fabbricato" : {
+          "type" : "string"
+        },
+        "Piano" : {
+          "type" : "string"
+        },
+        "Codice_Pod" : {
+          "type" : "string"
+        },
+        "Grossista" : {
+          "type" : "string"
+        },
+        "Stato_Utenza" : {
+          "type" : "string"
+        },
+        "Stato_Intervento" : {
+          "type" : "string"
+        },
+        "Tipologia_Mercato" : {
+          "type" : "string"
+        },
+        "Nummisuratore" : {
+          "type" : "string"
+        },
+        "Tmisuratore" : {
+          "type" : "string"
+        },
+        "Numutenza" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "Potenza" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Tendescrizione" : {
+          "type" : "string"
+        },
+        "Cs_Riferimento" : {
+          "type" : "string"
+        },
+        "Tr_Riferimento" : {
+          "type" : "string"
+        },
+        "Mod_Evidenza_Stati" : {
+          "type" : "string"
+        },
+        "Tipo_Utenza" : {
+          "type" : "string"
+        },
+        "Numero_Misuratori" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Mod_Installazione" : {
+          "type" : "string"
+        }
+      }
+    },
+    "VisoreReq" : {
+      "type" : "object",
+      "required" : [ "Visore" ],
+      "properties" : {
+        "Visore" : {
+          "$ref" : "#/definitions/SessionContext"
+        }
+      }
+    },
+    "Solleciti" : {
+      "type" : "object",
+      "properties" : {
+        "Sollecito" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Sollecito",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoSAPPM" : {
+      "type" : "object",
+      "properties" : {
+        "stato" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "data_iniz" : {
+          "type" : "string"
+        },
+        "ora_iniz" : {
+          "type" : "string"
+        },
+        "data_fine" : {
+          "type" : "string"
+        },
+        "ora_fine" : {
+          "type" : "string"
+        },
+        "zvia" : {
+          "type" : "string"
+        },
+        "zcivico_da" : {
+          "type" : "string"
+        },
+        "zcivico_a" : {
+          "type" : "string"
+        },
+        "zcap" : {
+          "type" : "string"
+        },
+        "qmnum" : {
+          "type" : "string"
+        },
+        "aufnr" : {
+          "type" : "string"
+        },
+        "zpod" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SessionContext" : {
+      "type" : "object",
+      "required" : [ "SessionID" ],
+      "properties" : {
+        "SessionID" : {
+          "type" : "string"
+        },
+        "BTLine" : {
+          "type" : "string"
+        },
+        "CertifiedCity" : {
+          "type" : "string"
+        },
+        "CertifiedCountryCode" : {
+          "type" : "string"
+        },
+        "CertifiedFloorID" : {
+          "type" : "string"
+        },
+        "CertifiedHouseID" : {
+          "type" : "string"
+        },
+        "CertifiedPostalCode" : {
+          "type" : "string"
+        },
+        "CertifiedStreet" : {
+          "type" : "string"
+        },
+        "CertifiedAddressNotes" : {
+          "type" : "string"
+        },
+        "LatitudeMeasure" : {
+          "type" : "string"
+        },
+        "LongitudeMeasure" : {
+          "type" : "string"
+        },
+        "CS" : {
+          "type" : "string"
+        },
+        "District" : {
+          "type" : "string"
+        },
+        "FunctionalLocationID" : {
+          "type" : "string"
+        },
+        "GISID" : {
+          "type" : "string"
+        },
+        "HouseNumberID" : {
+          "type" : "string"
+        },
+        "Main" : {
+          "type" : "string"
+        },
+        "Network" : {
+          "type" : "string"
+        },
+        "PodId" : {
+          "type" : "string"
+        },
+        "Sub" : {
+          "type" : "string"
+        },
+        "TR" : {
+          "type" : "string"
+        },
+        "UrbanZone" : {
+          "type" : "string"
+        },
+        "UrbanZoneDescription" : {
+          "type" : "string"
+        },
+        "ERPNotificationID" : {
+          "type" : "string"
+        },
+        "Idrete" : {
+          "type" : "string"
+        },
+        "TAGID" : {
+          "type" : "string"
+        },
+        "ObjectType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "VisoreRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSF" : {
+          "$ref" : "#/definitions/EsitoSF"
+        }
+      }
+    },
+    "RicercaSegnalazioneRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSF" : {
+          "$ref" : "#/definitions/EsitoSF"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

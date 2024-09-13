@@ -1,0 +1,191 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "MeterRegister",
+    "description" : "MeterRegister service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/twobeat/v1/meterregister/reading" : {
+      "post" : {
+        "summary" : "postMeterRegister",
+        "description" : "postMeterRegister",
+        "operationId" : "post-areti-twobeat-v1-meterregister-read",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ReadMeterRegister_Request"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ReadMeterRegister_Response to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ReadMeterRegister_Response"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReadMeterRegister_Response" : {
+      "type" : "object",
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "Payload" : {
+          "$ref" : "#/definitions/PayloadResponse_Type"
+        }
+      }
+    },
+    "Readings" : {
+      "type" : "object",
+      "required" : [ "Ref", "Value" ],
+      "properties" : {
+        "Ref" : {
+          "type" : "string"
+        },
+        "Value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReadMeterRegister_Request" : {
+      "type" : "object",
+      "required" : [ "Header", "Payload" ],
+      "properties" : {
+        "Header" : {
+          "$ref" : "#/definitions/Header_Type"
+        },
+        "Payload" : {
+          "$ref" : "#/definitions/Payload_Type"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Header_Type" : {
+      "type" : "object",
+      "required" : [ "RequestID", "UserID", "CorrelationID", "MessageID" ],
+      "properties" : {
+        "CorrelationID" : {
+          "type" : "string"
+        },
+        "MessageID" : {
+          "type" : "string"
+        },
+        "RequestID" : {
+          "type" : "string"
+        },
+        "UserID" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Payload_Type" : {
+      "type" : "object",
+      "required" : [ "ReadingType", "POD", "Misuratore" ],
+      "properties" : {
+        "Misuratore" : {
+          "type" : "string"
+        },
+        "POD" : {
+          "type" : "string"
+        },
+        "ReadingType" : {
+          "type" : "string"
+        },
+        "Readings" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Readings",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "PayloadResponse_Type" : {
+      "type" : "object",
+      "properties" : {
+        "Readings" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Readings",
+            "uniqueItems" : false
+          }
+        }
+      }
+    }
+  }
+}

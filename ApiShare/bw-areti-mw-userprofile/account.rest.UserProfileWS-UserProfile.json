@@ -1,0 +1,143 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "UserProfile",
+    "description" : "UserProfile service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/userprofile" : {
+      "put" : {
+        "summary" : "putUserProfile",
+        "description" : "Update an item",
+        "operationId" : "put-areti-mw-v1-userprofile",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/UserProfilePutReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a UserProfilePutRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/UserProfilePutRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "UserProfilePutReq" : {
+      "type" : "object",
+      "required" : [ "RichiestaUserProfile" ],
+      "properties" : {
+        "RichiestaUserProfile" : {
+          "$ref" : "#/definitions/RichiestaUserProfile"
+        }
+      }
+    },
+    "RichiestaUserProfile" : {
+      "type" : "object",
+      "required" : [ "ProfileId", "UserId" ],
+      "properties" : {
+        "UserId" : {
+          "type" : "string"
+        },
+        "ProfileId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UserProfilePutRes" : {
+      "type" : "object",
+      "required" : [ "RispostaUserProfile" ],
+      "properties" : {
+        "RispostaUserProfile" : {
+          "$ref" : "#/definitions/RispostaUserProfile"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RispostaUserProfile" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    }
+  }
+}

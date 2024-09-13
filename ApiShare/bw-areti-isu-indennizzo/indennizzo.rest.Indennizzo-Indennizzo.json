@@ -1,0 +1,185 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Indennizzo",
+    "description" : "Indennizzo service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/isu/v1/indennizzo/recuperodati" : {
+      "get" : {
+        "summary" : "getIndennizzo",
+        "description" : "getIndennizzo",
+        "operationId" : "get-areti-sapisu-v1-indennizzi-reclami-recuperodati",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pod",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a CreazioneCaseDaPECRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/CreazioneCaseDaPECRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Indennizzo" : {
+      "type" : "object",
+      "required" : [ "DescrizioneStatoIndennizzo", "CodiceTipologiaContratto", "DescrizioneTipologiaContratto", "CodiceTipologiaIndennizzo", "DescrizioneTipologiaIndennizzo", "CodiceStatoIndennizzo", "ImportoErogato" ],
+      "properties" : {
+        "IdPratica" : {
+          "type" : "string"
+        },
+        "ImportoErogato" : {
+          "type" : "string"
+        },
+        "CodiceStatoIndennizzo" : {
+          "type" : "string"
+        },
+        "DescrizioneStatoIndennizzo" : {
+          "type" : "string"
+        },
+        "DataDiRegistrazione" : {
+          "type" : "string"
+        },
+        "DPTrader" : {
+          "type" : "string"
+        },
+        "CodiceTipologiaIndennizzo" : {
+          "type" : "string"
+        },
+        "DescrizioneTipologiaIndennizzo" : {
+          "type" : "string"
+        },
+        "DataEvento" : {
+          "type" : "string"
+        },
+        "CodiceTipologiaContratto" : {
+          "type" : "string"
+        },
+        "DescrizioneTipologiaContratto" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoISU" : {
+      "type" : "object",
+      "required" : [ "Esito", "CodiceErrore" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "CodiceErrore" : {
+          "type" : "string"
+        },
+        "DescrizioneErrore" : {
+          "type" : "string"
+        },
+        "Indennizzo" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Indennizzo",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoRecuperoIndennizzi" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoISU" : {
+          "$ref" : "#/definitions/EsitoISU"
+        }
+      }
+    },
+    "CreazioneCaseDaPECRes" : {
+      "type" : "object",
+      "required" : [ "EsitoRecuperoIndennizzi" ],
+      "properties" : {
+        "EsitoRecuperoIndennizzi" : {
+          "$ref" : "#/definitions/EsitoRecuperoIndennizzi"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "DiagnosticaMt",
+    "description" : "DiagnosticaMt service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/sappm/v1/diagnosticamt" : {
+      "post" : {
+        "summary" : "postDiagnosticaMt",
+        "description" : "postDiagnosticaMt - operazione post per veicolare le informazione della DiagnosticaMT a PM",
+        "operationId" : "post-company-sappm-v1-diagnosticamt",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/DiagnosticaMtReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a DiagnosticaMtRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/DiagnosticaMtRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "DiagnosticaMtRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiagnosticaMtReq" : {
+      "type" : "object",
+      "required" : [ "DiagnosticaMt" ],
+      "properties" : {
+        "DiagnosticaMt" : {
+          "$ref" : "#/definitions/DiagnosticaMt"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiagnosticaMt" : {
+      "type" : "object",
+      "required" : [ "NumeroOrdine", "NumeroOperazione" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string",
+          "maxLength" : 12
+        },
+        "NumeroOperazione" : {
+          "type" : "string",
+          "maxLength" : 4
+        },
+        "Meteo" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "Temperatura" : {
+          "type" : "integer"
+        },
+        "Uo" : {
+          "type" : "integer"
+        },
+        "StrumentoUtilizzato" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "EsitoL1" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "EsitoL2" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "EsitoL3" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "TipoIsolamentoL1" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "DistanzaL1" : {
+          "type" : "integer"
+        },
+        "LivelloSpUoL1" : {
+          "type" : "integer"
+        },
+        "NumScaricheL1" : {
+          "type" : "integer"
+        },
+        "TolleranzaL1" : {
+          "type" : "integer"
+        },
+        "StatoL1" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "TipoIsolamentoL2" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "DistanzaL2" : {
+          "type" : "integer"
+        },
+        "LivelloSpUoL2" : {
+          "type" : "integer"
+        },
+        "NumScaricheL2" : {
+          "type" : "integer"
+        },
+        "TolleranzaL2" : {
+          "type" : "integer"
+        },
+        "StatoL2" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "TipoIsolamentoL3" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "DistanzaL3" : {
+          "type" : "integer"
+        },
+        "LivelloSpUoL3" : {
+          "type" : "integer"
+        },
+        "NumScaricheL3" : {
+          "type" : "integer"
+        },
+        "TolleranzaL3" : {
+          "type" : "integer"
+        },
+        "StatoL3" : {
+          "type" : "string",
+          "maxLength" : 40
+        },
+        "EsitoProva" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "GuastoProva" : {
+          "type" : "string",
+          "maxLength" : 2
+        }
+      }
+    }
+  }
+}

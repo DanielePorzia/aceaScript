@@ -1,0 +1,182 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Referente",
+    "description" : "Referente service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/areti/mw/v1/referente" : {
+      "patch" : {
+        "summary" : "patchReferente",
+        "description" : "patchReferente",
+        "operationId" : "patch-areti-mw-v1-referente",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ReferentePatchReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ReferentePatchRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ReferentePatchRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Referente" : {
+      "type" : "object",
+      "required" : [ "cognome", "idPratica", "nome", "recapitoTelefonico1" ],
+      "properties" : {
+        "idPratica" : {
+          "type" : "string"
+        },
+        "nome" : {
+          "type" : "string"
+        },
+        "cognome" : {
+          "type" : "string"
+        },
+        "recapitoTelefonico1" : {
+          "type" : "string"
+        },
+        "recapitoTelefonico2" : {
+          "type" : "string"
+        },
+        "recapitoTelefonico3" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoMW" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReferentePatchReq" : {
+      "type" : "object",
+      "required" : [ "Referente" ],
+      "properties" : {
+        "Referente" : {
+          "$ref" : "#/definitions/Referente"
+        }
+      }
+    },
+    "ReferentePatchRes" : {
+      "type" : "object",
+      "required" : [ "EsitoMW" ],
+      "properties" : {
+        "EsitoMW" : {
+          "$ref" : "#/definitions/EsitoMW"
+        },
+        "EsitoPM" : {
+          "$ref" : "#/definitions/Result"
+        },
+        "EsitoIdex" : {
+          "$ref" : "#/definitions/Result"
+        }
+      }
+    },
+    "Result" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "type" : "string"
+        },
+        "Codice" : {
+          "type" : "string"
+        },
+        "Descrizione" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

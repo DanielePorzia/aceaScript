@@ -1,0 +1,594 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "AppuntamentoFS",
+    "description" : "RichiestaSlot service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{company}/fs/v1/appuntamento/confermaslot" : {
+      "post" : {
+        "summary" : "ConfermaSlotFS",
+        "description" : "Servizio di conferma slot su FS",
+        "operationId" : "post-fs-v1-appuntamento-confermaslot",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ConfermaPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ConfermaPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ConfermaPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/appuntamento/richiestaslot" : {
+      "post" : {
+        "summary" : "postAppuntamentoFS",
+        "description" : "postAppuntamentoFS",
+        "operationId" : "post-fs-v1-richiestaslot",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/RichiestaSlotPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RichiestaSlotPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RichiestaSlotPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    },
+    "/{company}/fs/v1/appuntamento/overbooking" : {
+      "post" : {
+        "summary" : "postOverbooking",
+        "description" : "Servizio di comunicazione overbooking verso FS",
+        "operationId" : "post-fs-v1-appuntamento-overbooking",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/OverbookingPostReq"
+          },
+          "required" : true
+        }, {
+          "name" : "company",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a OverbookingPostRes to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/OverbookingPostRes"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/EsitoHttp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "WorkOrderLineItem" : {
+      "type" : "object",
+      "required" : [ "NumeroOperazione" ],
+      "properties" : {
+        "NumeroOperazione" : {
+          "type" : "string"
+        },
+        "Priorità" : {
+          "type" : "string"
+        },
+        "CodicePratica" : {
+          "type" : "string"
+        },
+        "SedeTecnica" : {
+          "type" : "string"
+        },
+        "Via" : {
+          "type" : "string"
+        },
+        "Citta" : {
+          "type" : "string"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "Latitudine" : {
+          "type" : "string"
+        },
+        "Longitudine" : {
+          "type" : "string"
+        },
+        "CID" : {
+          "type" : "string"
+        },
+        "Idoneita" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Res" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        },
+        "BookingSlot" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/BookingSlot",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "ConfermaReq" : {
+      "type" : "object",
+      "required" : [ "DataFineAppuntamento", "IdChiamata", "NumeroOperazione", "DataInizioAppuntamento" ],
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string"
+        },
+        "CodicePraticaMW" : {
+          "type" : "string"
+        },
+        "IdChiamata" : {
+          "type" : "string"
+        },
+        "NumeroOperazione" : {
+          "type" : "string"
+        },
+        "DataInizioAppuntamento" : {
+          "type" : "string"
+        },
+        "DataFineAppuntamento" : {
+          "type" : "string"
+        },
+        "Stato" : {
+          "type" : "string"
+        },
+        "FlagModificaAppuntamento" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "EsitoHttp" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messaggio" : {
+          "type" : "string"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "dettaglioErrore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ConfermaRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "AppointmentDetail" : {
+      "type" : "object",
+      "required" : [ "DataFinePeriodo", "Profilo", "DataInizioPeriodo" ],
+      "properties" : {
+        "DataInizioPeriodo" : {
+          "type" : "string"
+        },
+        "DataFinePeriodo" : {
+          "type" : "string"
+        },
+        "Profilo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RichiestaSlotPostRes" : {
+      "type" : "object",
+      "required" : [ "Res" ],
+      "properties" : {
+        "Res" : {
+          "$ref" : "#/definitions/Res"
+        }
+      }
+    },
+    "RichiestaSlotPostReq" : {
+      "type" : "object",
+      "required" : [ "Req" ],
+      "properties" : {
+        "Req" : {
+          "$ref" : "#/definitions/Req"
+        }
+      }
+    },
+    "WorkOrder" : {
+      "type" : "object",
+      "properties" : {
+        "NumeroOrdine" : {
+          "type" : "string"
+        },
+        "CodicePraticaMW" : {
+          "type" : "string"
+        },
+        "Squadra" : {
+          "type" : "boolean"
+        },
+        "Via" : {
+          "type" : "string"
+        },
+        "Citta" : {
+          "type" : "string"
+        },
+        "CAP" : {
+          "type" : "string"
+        },
+        "Latitudine" : {
+          "type" : "string"
+        },
+        "Longitudine" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Esito" : {
+      "type" : "object",
+      "required" : [ "codice" ],
+      "properties" : {
+        "codice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descrizione" : {
+          "type" : "string"
+        },
+        "codiceCausaleInammissibilita" : {
+          "type" : "string"
+        },
+        "flagAmmissibilita" : {
+          "type" : "string"
+        },
+        "esitoPad" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/esitoPad",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "OverbookingPostRes" : {
+      "type" : "object",
+      "required" : [ "OverbookingRes" ],
+      "properties" : {
+        "OverbookingRes" : {
+          "$ref" : "#/definitions/OverbookingRes"
+        }
+      }
+    },
+    "OverbookingPostReq" : {
+      "type" : "object",
+      "required" : [ "OverbookingReq" ],
+      "properties" : {
+        "OverbookingReq" : {
+          "$ref" : "#/definitions/OverbookingReq"
+        }
+      }
+    },
+    "BookingSlot" : {
+      "type" : "object",
+      "required" : [ "DataFineFascia", "DataInizioFascia", "Grade" ],
+      "properties" : {
+        "Grade" : {
+          "type" : "string"
+        },
+        "DataInizioFascia" : {
+          "type" : "string"
+        },
+        "DataFineFascia" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Team" : {
+      "type" : "object",
+      "required" : [ "WorkOrderLineItem", "ServiceAppointment" ],
+      "properties" : {
+        "WorkOrderLineItem" : {
+          "$ref" : "#/definitions/WorkOrderLineItem"
+        },
+        "ServiceAppointment" : {
+          "$ref" : "#/definitions/ServiceAppointment"
+        },
+        "Skill" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Skill",
+            "uniqueItems" : false
+          }
+        },
+        "Tool" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tool",
+            "uniqueItems" : false
+          }
+        },
+        "RAL" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RAL",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "Tool" : {
+      "type" : "object",
+      "properties" : {
+        "Label" : {
+          "type" : "string"
+        },
+        "Level" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WorkType" : {
+      "type" : "object",
+      "properties" : {
+        "TipoAttivita" : {
+          "type" : "string"
+        },
+        "DescTipoAttivita" : {
+          "type" : "string"
+        },
+        "CentroDiLavoro" : {
+          "type" : "string"
+        },
+        "TipoOrdine" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ServiceAppointment" : {
+      "type" : "object",
+      "properties" : {
+        "IdChiamata" : {
+          "type" : "string"
+        },
+        "NumeroOperazione" : {
+          "type" : "string"
+        },
+        "OperazionePrincipale" : {
+          "type" : "boolean"
+        },
+        "DataInizioSchedulazione" : {
+          "type" : "string"
+        },
+        "DataFineSchedulazione" : {
+          "type" : "string"
+        },
+        "Durata" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "AppuntamentoEsteso" : {
+          "type" : "boolean"
+        },
+        "TaskImpresa" : {
+          "type" : "boolean"
+        },
+        "AppuntamentoRemoto" : {
+          "type" : "boolean"
+        },
+        "ModificaDipendenza" : {
+          "type" : "boolean"
+        },
+        "CallIdNumber" : {
+          "type" : "string"
+        },
+        "TipoDipendenza" : {
+          "type" : "string",
+          "enum" : [ "EF", "FI", "IF", "II" ]
+        },
+        "SameResource" : {
+          "type" : "boolean"
+        },
+        "VirtualRemoteAccess" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ConfermaPostRes" : {
+      "type" : "object",
+      "required" : [ "ConfermaRes" ],
+      "properties" : {
+        "ConfermaRes" : {
+          "$ref" : "#/definitions/ConfermaRes"
+        }
+      }
+    },
+    "OverbookingReq" : {
+      "type" : "object",
+      "required" : [ "IdChiamata", "NumeroOperazione" ],
+      "properties" : {
+        "CodicePraticaMW" : {
+          "type" : "string"
+        },
+        "IdChiamata" : {
+          "type" : "string"
+        },
+        "NumeroOperazione" : {
+          "type" : "string"
+        },
+        "FlagFuoriSla" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ConfermaPostReq" : {
+      "type" : "object",
+      "required" : [ "ConfermaReq" ],
+      "properties" : {
+        "ConfermaReq" : {
+          "$ref" : "#/definitions/ConfermaReq"
+        }
+      }
+    },
+    "OverbookingRes" : {
+      "type" : "object",
+      "required" : [ "Esito" ],
+      "properties" : {
+        "Esito" : {
+          "$ref" : "#/definitions/Esito"
+        },
+        "EsitoSP" : {
+          "$ref" : "#/definitions/EsitoSP"
+        }
+      }
+    },
+    "Skill" : {
+      "type" : "object",
+      "properties" : {
+        "Label" : {
+          "type" : "string"
+        },
+        "Level" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EsitoSP" : {
+      "type" : "object",
+      "properties" : {
+        "SP" : {
+          "type" : "string"
+        },
+        "CodiceSP" : {
+          "type" : "string"
+        },
+        "DescrizioneSP" : {
+          "type" : "string"
+        }
+      }
+    },
+    "esitoPad" : {
+      "type" : "object",
+      "required" : [ "valore", "chiave" ],
+      "properties" : {
+        "chiave" : {
+          "type" : "string"
+        },
+        "valore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RAL" : {
+      "type" : "object",
+      "properties" : {
+        "Label" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Req" : {
+      "type" : "object",
+      "required" : [ "WorkOrder", "WorkType", "AppointmentDetail" ],
+      "properties" : {
+        "WorkOrder" : {
+          "$ref" : "#/definitions/WorkOrder"
+        },
+        "WorkType" : {
+          "$ref" : "#/definitions/WorkType"
+        },
+        "AppointmentDetail" : {
+          "$ref" : "#/definitions/AppointmentDetail"
+        },
+        "Team" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Team",
+            "uniqueItems" : false
+          }
+        }
+      }
+    }
+  }
+}
