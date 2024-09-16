@@ -1,0 +1,17 @@
+Verrà più avanti fornito in allegato un file excel parzialmente compilato che sarà il punto in cui raccogliere tutte le informazioni tecniche di ogni API, utili all'importazione su AS. Sarà fornita inoltre una spiegazione di ogni colonna di questo file per far sì che possa essere compilato/compreso al meglio.
+
+Spiegazione excel allegato:
+
+1. Colonna A: funge da chiave per recuperare alcuni campi in maniera semiautomatica direttamente da Mashery/dalle cartelle fornite nella mail precedente. Non è richiesta nessuna modifica.
+2. Colonna B: I nomi delle API sono stati desunti dal quarto campo del nome dell'api presente nell'excel fornitoci precedentemente, è corretto? In caso contrario sarà necessario modificare i nomi per far si che vengano riportati il quel modo su AS
+3. Colonna C: E' la versione che verrà riportata su AS, sarà fissata alla versione 1.0.0 in assenza di altre indicazioni. Non è richiesta nessuna modifica.
+4. Colonna D: La descrizione di ogni API è obbligatoria e deve essere di minimo di 10 caratteri, anche se formata da soli spazi vuoti. Qualora si volesse riportare su AS sarà necessario specificarla
+5. Colonna E: E' la lista di eventuali categorie da associare all'API, dopo aver raccolto questo dato sarà necessario crearle su AS ed elencare i loro ID in questo campo
+6. Colonna F: E' la lista di eventuali tags da associare all'API, dopo aver raccolto questo dato sarà necessario crearli su AS ed elencare i loro ID in questo campo
+7. Colonna G: E' il nome dell'organizzazione a cui dovrà appartenere l'API. Dopo aver raccolto questo dato sarà necessario crearla su AS e crearne gli n gruppi desiderati. Non è necessario riportare il suo ID
+8. Colonna H: E' l'ID del gruppo a cui l'API sarà associata, sarà necessario crearlo precedentemente su AS e poi recuperarne l'ID tramite il DevTool del browser (chiamata /groups) o da DB
+9. Colonna I: E' l'Id dell'App Producer dell'API. ATTENZIONE: Il gruoupId che si specifica nella colonna F dovrà essere l'ID del gruppo che si specifica per l'App Producer riportata in questa colonna. E.g. Se due API "Reclamo" e "Calendario" fanno parte di due gruppi differenti rispettivamente "Devs" e "Users", ma entrambe devono avere come Producer l'App "FS", sarà necessario creare due App "FS", una relativa al gruppo "Devs" e l'altra al gruppo "Users" in modo che la prima possa essere impostata come producer di Reclamo e la seconda come producer di "Calendario"
+10. Colonna J: E' il nome dell'App che si vuole impostare come producer della relativa API. Dopo aver raccolto questo dato sarà necessario crearla su AS con il gruppo coerente a quello dell'API da associargli
+11. Colonna K: E' l'id dell'owner dell'API. L'idea era quella di associare in una prima fase tutte le API al tenant owner, potendo così copi-incollare l'ID di un solo utente nella colonna, in caso così non si volesse sarà necessario riportare l'ID dell'utente che si vuole rendere owner della corrente API.
+12. Colonna L: E' l'id del developer dell'API. Stesso discorso del punto 9, ma con il developer invece che l'owner
+13. Colonna M: E' l'ID dell'integration pattern relativo all'API, di default questo è "REST", qualora si volesse cambiare sarà necessario riportare l'id dell'integration pattern desiderato

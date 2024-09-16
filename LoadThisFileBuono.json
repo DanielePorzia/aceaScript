@@ -1,0 +1,77 @@
+[
+    {
+        "apiOwner": "38a277c2-a163-4c62-92f2-4651263a6f98",
+        "description": "Servizio per la ricezione dei calendari da SAP PM / HCM",
+        "developer": "38a277c2-a163-4c62-92f2-4651263a6f98",
+        "groupId": "c655a3b6-0ab1-4b1b-b63c-55f59ee0b0c6",
+        "integrationPatternId": "0a1a2eab-a885-4586-8ae9-38a17cf9037f",
+        "name": "Calendario",
+        "producers": [
+            "462d7a57-a3d7-4efb-8572-5f045211cdd8"
+        ],
+        "version": "1.0.0",
+        "fileName": "calendario.rest.Calendario-Calendario",
+        "contentType": "application/json",
+        "body": "{\n  \"swagger\" : \"2.0\",\n  \"info\" : {\n    \"version\" : \"1.0\",\n    \"title\" : \"Calendario\",\n    \"description\" : \"Calendario service\"\n  },\n  \"host\" : \"localhost:8080\",\n  \"basePath\" : \"/\",\n  \"schemes\" : [ \"http\" ],\n  \"paths\" : {\n    \"/{company}/fs/v1/calendario\" : {\n      \"post\" : {\n        \"summary\" : \"postCalendario\",\n        \"description\" : \"postCalendario\",\n        \"operationId\" : \"post-fs-v1-calendario\",\n        \"consumes\" : [ \"application/json\" ],\n        \"produces\" : [ \"application/json\" ],\n        \"parameters\" : [ {\n          \"name\" : \"body\",\n          \"in\" : \"body\",\n          \"description\" : \"\",\n          \"schema\" : {\n            \"$ref\" : \"#/definitions/InvioCalendarioPostReq\"\n          },\n          \"required\" : true\n        }, {\n          \"name\" : \"company\",\n          \"in\" : \"path\",\n          \"description\" : \"\",\n          \"type\" : \"string\",\n          \"required\" : true\n        } ],\n        \"responses\" : {\n          \"200\" : {\n            \"description\" : \"a InvioCalendarioPostRes to be returned\",\n            \"schema\" : {\n              \"$ref\" : \"#/definitions/InvioCalendarioPostRes\"\n            }\n          },\n          \"400\" : {\n            \"description\" : \"Bad Request\",\n            \"schema\" : {\n              \"$ref\" : \"#/definitions/EsitoHttp\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"definitions\" : {\n    \"ModelloShift\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"DataOraFineCalendario\", \"TipoShift\", \"DataOraInizioCalendario\" ],\n      \"properties\" : {\n        \"TipoShift\" : {\n          \"type\" : \"string\"\n        },\n        \"DataOraInizioCalendario\" : {\n          \"type\" : \"string\"\n        },\n        \"DataOraFineCalendario\" : {\n          \"type\" : \"string\"\n        }\n      }\n    },\n    \"Esito\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"codice\" ],\n      \"properties\" : {\n        \"codice\" : {\n          \"type\" : \"integer\",\n          \"format\" : \"int32\"\n        },\n        \"descrizione\" : {\n          \"type\" : \"string\"\n        },\n        \"codiceCausaleInammissibilita\" : {\n          \"type\" : \"string\"\n        },\n        \"flagAmmissibilita\" : {\n          \"type\" : \"string\"\n        },\n        \"esitoPad\" : {\n          \"type\" : \"array\",\n          \"items\" : {\n            \"$ref\" : \"#/definitions/esitoPad\",\n            \"uniqueItems\" : false\n          }\n        }\n      }\n    },\n    \"EsitoHttp\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"codice\" ],\n      \"properties\" : {\n        \"codice\" : {\n          \"type\" : \"integer\",\n          \"format\" : \"int32\"\n        },\n        \"messaggio\" : {\n          \"type\" : \"string\"\n        },\n        \"descrizione\" : {\n          \"type\" : \"string\"\n        },\n        \"dettaglioErrore\" : {\n          \"type\" : \"string\"\n        }\n      }\n    },\n    \"InvioCalendarioPostReq\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"Calendario\" ],\n      \"properties\" : {\n        \"Calendario\" : {\n          \"$ref\" : \"#/definitions/Calendario\"\n        }\n      }\n    },\n    \"EsitoSP\" : {\n      \"type\" : \"object\",\n      \"properties\" : {\n        \"SP\" : {\n          \"type\" : \"string\"\n        },\n        \"CodiceSP\" : {\n          \"type\" : \"string\"\n        },\n        \"DescrizioneSP\" : {\n          \"type\" : \"string\"\n        }\n      }\n    },\n    \"Calendario\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"NomeCalendario\" ],\n      \"properties\" : {\n        \"NomeCalendario\" : {\n          \"type\" : \"string\"\n        },\n        \"ModelloShift\" : {\n          \"type\" : \"array\",\n          \"items\" : {\n            \"$ref\" : \"#/definitions/ModelloShift\",\n            \"uniqueItems\" : false\n          }\n        }\n      }\n    },\n    \"esitoPad\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"valore\", \"chiave\" ],\n      \"properties\" : {\n        \"chiave\" : {\n          \"type\" : \"string\"\n        },\n        \"valore\" : {\n          \"type\" : \"string\"\n        }\n      }\n    },\n    \"InvioCalendarioPostRes\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"Esito\" ],\n      \"properties\" : {\n        \"Esito\" : {\n          \"$ref\" : \"#/definitions/Esito\"\n        },\n        \"EsitoSP\" : {\n          \"$ref\" : \"#/definitions/EsitoSP\"\n        }\n      }\n    }\n  }\n}",
+        "ApiShareId": "25c84e34-f27c-41fc-9054-ebf11d3d9fcb",
+        "authorizationType": [
+            "f36880e9-9455-477d-b37b-e62254c99eec"
+        ],
+        "masheryIdDEV": "tufgdctu874c764mcwkjns5t",
+        "DEV": {
+            "environmentId": "9c64453b-2028-40dd-aec2-db12583614ae",
+            "gatewayId": "e17938e6-5875-49ae-9047-a7fa4f524937",
+            "privateServerUrls": [
+                "http://10.243.11.86"
+            ],
+            "publicServers": [
+                {
+                    "domainId": "ff18d112-3086-4e7e-b34a-24ab6bacb703",
+                    "basePath": "/"
+                }
+            ]
+        },
+        "masheryIdTEST": "en39zkfeeqjprx784n98hatk",
+        "TEST": {
+            "environmentId": "25bd7aed-f4a0-4f4d-a0b3-0a6570eb73c9",
+            "gatewayId": "e17938e6-5875-49ae-9047-a7fa4f524937",
+            "privateServerUrls": [
+                "http://10.243.11.87"
+            ],
+            "publicServers": [
+                {
+                    "domainId": "ff18d112-3086-4e7e-b34a-24ab6bacb702",
+                    "basePath": "/"
+                }
+            ]
+        },
+        "masheryIdPREPROD": "4hjqz7283jmbr7c8k2as3tf8",
+        "PREPROD": {
+            "environmentId": "9fa2cc39-7d1b-4ae7-a690-58259a1d28a6",
+            "gatewayId": "e17938e6-5875-49ae-9047-a7fa4f524937",
+            "privateServerUrls": [
+                "http://10.243.11.88"
+            ],
+            "publicServers": [
+                {
+                    "domainId": "pre-int.api.areti.it",
+                    "basePath": "/"
+                }
+            ]
+        },
+        "masheryIdPROD": "htw83dsmmd3e5dtpngh5p76r",
+        "PROD": {
+            "environmentId": "2d68ccc1-792e-46b1-8c91-a8f8a3312651",
+            "gatewayId": "e17938e6-5875-49ae-9047-a7fa4f524937",
+            "privateServerUrls": [
+                "http://10.243.16.202"
+            ],
+            "publicServers": [
+                {
+                    "domainId": "ff18d112-3086-4e7e-b34a-24ab6bacb701",
+                    "basePath": "/"
+                }
+            ]
+        }
+    }
+]

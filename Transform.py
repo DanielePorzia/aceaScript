@@ -5,6 +5,7 @@ import requests
 
 def get_access_token():
 
+    print("Getting Access Token")
     grant_type="password"
     client_id = "webapp-client"
     username = "service.account@apishare.cloud"
@@ -31,9 +32,10 @@ def get_access_token():
     
     # Verifica se la richiesta ha avuto successo (HTTP Status 200)
     if response.status_code == 200:
+       
         # Decodifica la risposta JSON
         token = response.json().get("access_token")
-        
+        print(f"Token: {token}")
         return token
         
     else:
@@ -87,7 +89,7 @@ file_excel = "FileAcea.xlsx"
 df = pd.read_excel(file_excel)
 
 # Specifica il percorso della cartella contenente le cartelle Swagger
-base_folder = r"ApiShare"  # Specifica il percorso corretto
+base_folder = r"ApiShare"  
 
 # Lista per salvare le API
 json_list = []

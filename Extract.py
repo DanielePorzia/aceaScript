@@ -19,7 +19,7 @@ def get_access_token():
     credentials = f"{client_id}:{client_secret}"
     encoded_credentials = base64.b64encode(credentials.encode()).decode()
 
-    # Intestazioni della richiesta
+    # Header della richiesta
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": f"Basic {encoded_credentials}"
@@ -48,7 +48,10 @@ def get_access_token():
         return None
         
 def fetch_services(bearer_token,limit):
-    filter = "&filter=organization.name:Areti" #Cambia con filtro desiderato
+    
+    #Cambia con filtro desiderato
+    filter = "&filter=organization.name:Areti" 
+    
     url = f"https://api.mashery.com/v3/rest/services?limit={limit}&fields=name,id,description{filter}"
     headers = {
         "Authorization": f"Bearer {bearer_token}"
@@ -60,7 +63,6 @@ def fetch_services(bearer_token,limit):
         print("Errore chiamando API per services")
         return None
 
-# Funzione per chiamare l'API Mashery con un Bearer Token
 def fetch_endpoints(service_id, bearer_token):
     url = f"https://api.mashery.com/v3/rest/services/{service_id}/endpoints?fields=publicDomains,requestPathAlias,name,outboundTransportProtocol,systemDomains"
     headers = {
@@ -73,7 +75,7 @@ def fetch_endpoints(service_id, bearer_token):
         print(f"Errore chiamando API per service ID {service_id}: {response.status_code} - {response.text}")
         return None
 
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 token = get_access_token()
 print(f"Token: {token}")
 
@@ -82,6 +84,8 @@ json_api_list = fetch_services(token,300)
 # Legge il file Excel
 file_excel = "FileAcea.xlsx"
 df = pd.read_excel(file_excel)
+
+
 ListaNonTrovati=[]
 counter = 0
 
@@ -164,4 +168,8 @@ for obj in json_api_list:
 df.to_excel(file_excel, index=False)
 
 print("Operazione completata!")
-print(f"Lista non trovati: {ListaNonTrovati}")
+
+with open("ListaNonTrovati.txt","w") as lnt:
+    lnt.write(','.join(ListaNonTrovati))
+    
+print(f"File ListaNonTrovati creato con successo. Il file contiene la lista dei services che sono su Mashery ma che non sono stati trovati nel file excel")
